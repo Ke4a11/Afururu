@@ -1,7 +1,9 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import ke4a11.ecc.ac.jp.afururu.R;
@@ -22,9 +25,11 @@ import ke4a11.ecc.ac.jp.afururu.R;
  *  moneySpinerの方で値を変えた時に、一緒にintの値を変えてそれを配列の添字にする？
  */
 public class _MoneyTop extends Fragment {
-
-    private MoneyActivity parent;
+    //どの画面に飛ばすかのフラグ
+    public static int moneyFlg = 0;
+    //各国為替のレート
     private TextView mView;
+    //設定で選択された国
     private String moneySpinner ="gbp";
 
     @Override
@@ -41,23 +46,32 @@ public class _MoneyTop extends Fragment {
             getcsv();
         }
 
+        //ボタン作成
+        ImageButton calenderButton = (ImageButton)view.findViewById(R.id.calenderButton);
+        //ImageButton graphButton =(ImageButton)view.findViewById(R.id.graphButton);
+        //ImageButton exchangeButton =(ImageButton)view.findViewById(R.id.exchangeButton);
+        ImageButton settingButton = (ImageButton)view.findViewById(R.id.settingButton);
+
+        //リスナー設定
+        calenderButton.setOnClickListener(new ChangeView());
+        //graphButton.setOnClickListener(new ChangeView());
+        //exchangeButton.setOnClickListener(new ChangeView());
+        settingButton.setOnClickListener(new ChangeView());
+
         return view;
     }
-/*
+
     //リスナーボタン押下時処理
     class ChangeView implements OnClickListener {
+        Intent i;
         public void onClick(View v){
-            if (v == getView().findViewById(R.id.calenderButton)){
-                parent.ToMoney_Calender();
-                //}else if(v == getView().findViewById(R.id.graphButton)){
-                //    parent.ToMoney_Graph();
-                //}else if(v == getView().findViewById(R.id.exchangeButton)){
-                //    parent.ToMoney_Exchange();
-            }else if (v == getView().findViewById(R.id.settingButton)){
-                parent.ToMoney_Set();
+            if (v == getView().findViewById(R.id.calenderButton)) {
+                moneyFlg = 1;
+                i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
+                startActivity(i);
             }
         }
-    }*/
+    }
 
     //ネットに繋がっているかチェックするメソッド
     private boolean netWorkCheck(Context context){
@@ -84,6 +98,5 @@ public class _MoneyTop extends Fragment {
         data = String.format("%.1f",f);
         mView.setText("¥" + data + "/£");
     }
-
 
 }

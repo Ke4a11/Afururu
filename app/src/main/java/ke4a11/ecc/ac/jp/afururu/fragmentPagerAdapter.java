@@ -9,6 +9,8 @@ import ke4a11.ecc.ac.jp.afururu.English._EnglishTop;
 import ke4a11.ecc.ac.jp.afururu.Money._MoneyTop;
 
 public class fragmentPagerAdapter extends FragmentPagerAdapter {
+    //タブ名配列
+    private final String[] tabname = {"Money","English","Map","Setting"};
 
     //コンストラクタ
     public fragmentPagerAdapter(FragmentManager fm) {
@@ -26,13 +28,15 @@ public class fragmentPagerAdapter extends FragmentPagerAdapter {
         return null;
     }
 
+    //タブの数をセット
     @Override
     public int getCount() {
-        //タブの数をセット
         return 2;
     }
+
+    //タブ名セット
     @Override
     public CharSequence getPageTitle(int position){
-        return "ページ"+(position+1);
+        return tabname[position];
     }
 }
