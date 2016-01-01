@@ -15,6 +15,7 @@ import ke4a11.ecc.ac.jp.afururu.R;
 public class _MapTop extends Fragment {
 
 
+    
     public _MapTop() {
         // Required empty public constructor
     }
