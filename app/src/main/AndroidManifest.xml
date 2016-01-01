@@ -23,7 +23,10 @@
         </activity>
         <activity android:name=".Money.MoneyActivity" >
         </activity>
-        <activity android:name=".Money.Money_Calc" >
+        <activity android:name=".Map.MapActivity">
+        </activity>
+        <activity android:name=".Money.Money_Calc"
+            android:theme="@style/Theme.TranslucentBackground">
         </activity>
     </application>
 

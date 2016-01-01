@@ -1,7 +1,6 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -12,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -82,7 +80,7 @@ public class _MoneyTop extends Fragment {
             }
 
             //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
-            Intent i = new Intent(getActivity().getApplicationContext(),Money_Calc.class);
+            Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
             startActivity(i);
         }
     }

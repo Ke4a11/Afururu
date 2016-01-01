@@ -15,4 +15,24 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--半透明背景設定 android:theme="@style/Theme.TranslucentBackground"-->
+    <drawable name="transparameter">#bb000000</drawable>
+    <style name="Theme.TranslucentBackground" parent="android:style/Theme.Translucent">
+        <item name="android:windowBackground">@drawable/transparameter</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--android:theme="@style/Theme.MyTrans"-->
+    <drawable name="translucent_background">#44FF0000</drawable>
+    <style name="Theme.MyTrans" parent="android:style/Theme.Translucent">
+        <item name="android:windowBackground">@drawable/translucent_background</item>
+    </style>
+
+    <!-- アニメーションの詳細設定 res>animatorに詳しい内容 -->
+    <style name="Animation" parent="android:Animation" />
+    <style name="Animation.Activity" parent="android:Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@animator/slide_in_under</item>
+        <item name="android:activityOpenExitAnimation">@animator/slide_out_under</item>
+    </style>
+
 </resources>

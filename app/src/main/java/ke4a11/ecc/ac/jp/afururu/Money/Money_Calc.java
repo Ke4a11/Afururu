@@ -1,15 +1,14 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import ke4a11.ecc.ac.jp.afururu.R;
 
-public class Money_Calc extends AppCompatActivity {
+public class Money_Calc extends Activity {
 
     //結果表示用のテキストView
     TextView mTextView1;
@@ -65,6 +64,7 @@ public class Money_Calc extends AppCompatActivity {
                 mCalculator.reset();
             }
         });
+
     }
 
     //buttonIDを引数にして各ボタンにOnClickListenerを設定する独自メソッド
@@ -80,7 +80,7 @@ public class Money_Calc extends AppCompatActivity {
                     if (textvalue.equals("0") || textvalue.equals("00")) {
                         //始めが0であれば入力した数字の未表示
                         mTextView1.setText(input);
-                    }else{
+                    } else {
                         //押したボタンの表示を右端に追加する
                         mTextView1.setText(textvalue + input);
                     }
@@ -94,7 +94,7 @@ public class Money_Calc extends AppCompatActivity {
         findViewById(buttonID).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Button btn=(Button) v;
+                Button btn = (Button) v;
                 //押されたボタンの文字列取得
                 String input = btn.getText().toString();
                 //現在表示されている文字
@@ -105,6 +105,4 @@ public class Money_Calc extends AppCompatActivity {
             }
         });
     }
-
-
 }

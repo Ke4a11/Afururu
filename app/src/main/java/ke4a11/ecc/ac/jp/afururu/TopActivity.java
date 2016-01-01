@@ -1,5 +1,6 @@
 package ke4a11.ecc.ac.jp.afururu;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -42,8 +43,15 @@ public class TopActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                //        .setAction("Action", null).show();
+
+                //calc 画面の呼び出し
+                Intent i = new Intent(getApplicationContext(),Money_Calc.class);
+                startActivity(i);
+                //animationの設定 styleに記述 manifestではなく、コードで指定
+                overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
+
             }
         });
     }
