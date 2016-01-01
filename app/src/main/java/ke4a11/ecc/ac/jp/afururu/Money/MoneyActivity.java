@@ -17,7 +17,15 @@ public class MoneyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money);
 
-        ToMoney_Calender();
+        if(_MoneyTop.moneyFlg.equals("cal")){
+            ToMoney_Calender();
+        }else if(_MoneyTop.moneyFlg.equals("gra")){
+            ToMoney_Graph();
+        }else if(_MoneyTop.moneyFlg.equals("exc")){
+            ToMoney_Exchange();
+        }else if(_MoneyTop.moneyFlg.equals("set")){
+            ToMoney_Setting();
+        }
 
     }
 
@@ -28,4 +36,23 @@ public class MoneyActivity extends AppCompatActivity {
         ft.replace(R.id.fragment_money,Money_Calendar.newInstance());
         ft.commit();
     }
+    public void ToMoney_Graph(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_money,Money_Graph.newInstance());
+        ft.commit();
+    }
+    public void ToMoney_Exchange(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_money, Money_Exchange.newInstance());
+        ft.commit();
+    }
+    public void ToMoney_Setting(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_money,Money_Setting.newInstance());
+        ft.commit();
+    }
+
 }

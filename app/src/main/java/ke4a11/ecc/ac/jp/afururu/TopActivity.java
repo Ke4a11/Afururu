@@ -1,5 +1,6 @@
 package ke4a11.ecc.ac.jp.afururu;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -33,6 +34,8 @@ public class TopActivity extends AppCompatActivity {
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(mViewPager);
+        tabs.setIndicatorHeight(10);
+        tabs.setIndicatorColor(0xff2196F3);
 
         //FloatingButtonの作成と処理（リスナーと細かい処理は分けた方が良さげ）
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

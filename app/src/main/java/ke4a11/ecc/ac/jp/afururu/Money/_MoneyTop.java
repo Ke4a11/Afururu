@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ import ke4a11.ecc.ac.jp.afururu.R;
  */
 public class _MoneyTop extends Fragment {
     //どの画面に飛ばすかのフラグ
-    public static int moneyFlg = 0;
+    public static String moneyFlg = "cal";
     //各国為替のレート
     private TextView mView;
     //設定で選択された国
@@ -41,6 +42,12 @@ public class _MoneyTop extends Fragment {
         //為替のデータ入力先変数
         mView = (TextView)view.findViewById(R.id.rate);
 
+        //持ってくる為替の指定
+        if(moneySpinner != null){
+            //なければ押されたものをとってくる
+            moneySpinner = Money_Setting.selectedSpinner;
+        }
+
         //ネットに繋がっているなら為替を持ってくる
         if(netWorkCheck(getContext().getApplicationContext())){
             getcsv();
@@ -48,14 +55,14 @@ public class _MoneyTop extends Fragment {
 
         //ボタン作成
         ImageButton calenderButton = (ImageButton)view.findViewById(R.id.calenderButton);
-        //ImageButton graphButton =(ImageButton)view.findViewById(R.id.graphButton);
-        //ImageButton exchangeButton =(ImageButton)view.findViewById(R.id.exchangeButton);
+        ImageButton graphButton =(ImageButton)view.findViewById(R.id.graphButton);
+        ImageButton exchangeButton =(ImageButton)view.findViewById(R.id.exchangeButton);
         ImageButton settingButton = (ImageButton)view.findViewById(R.id.settingButton);
 
         //リスナー設定
         calenderButton.setOnClickListener(new ChangeView());
-        //graphButton.setOnClickListener(new ChangeView());
-        //exchangeButton.setOnClickListener(new ChangeView());
+        graphButton.setOnClickListener(new ChangeView());
+        exchangeButton.setOnClickListener(new ChangeView());
         settingButton.setOnClickListener(new ChangeView());
 
         return view;
@@ -63,13 +70,20 @@ public class _MoneyTop extends Fragment {
 
     //リスナーボタン押下時処理
     class ChangeView implements OnClickListener {
-        Intent i;
         public void onClick(View v){
             if (v == getView().findViewById(R.id.calenderButton)) {
-                moneyFlg = 1;
-                i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
-                startActivity(i);
+                moneyFlg = "cal";
+            }else if (v == getView().findViewById(R.id.graphButton)){
+                moneyFlg = "gra";
+            }else if(v == getView().findViewById(R.id.exchangeButton)){
+                moneyFlg = "exc";
+            }else if(v == getView().findViewById(R.id.settingButton)){
+                moneyFlg = "set";
             }
+
+            //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
+            Intent i = new Intent(getActivity().getApplicationContext(),Money_Calc.class);
+            startActivity(i);
         }
     }
 
