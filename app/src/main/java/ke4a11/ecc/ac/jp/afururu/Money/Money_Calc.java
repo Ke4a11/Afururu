@@ -16,6 +16,8 @@ public class Money_Calc extends Activity {
     //計算用オブジェクト
     Calculate mCalculator = new Calculate();
 
+    String textvalue="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,19 +70,29 @@ public class Money_Calc extends Activity {
     }
 
     //buttonIDを引数にして各ボタンにOnClickListenerを設定する独自メソッド
+    //数字が押された時処理
     public void setView(final int buttonID){
         findViewById(buttonID).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Button btn = (Button) v;
+                //押された数字
                 String input = btn.getText().toString();
-                String textvalue = mTextView1.getText().toString();
+                //
+
+                /*
+                if(mCalculator.mOperator != null){
+                    mTextView1.setText("");
+                }*/
+
+                textvalue = mTextView1.getText().toString();
+
 
                 if (textvalue.length() < 12) {
                     if (textvalue.equals("0") || textvalue.equals("00")) {
                         //始めが0であれば入力した数字の未表示
                         mTextView1.setText(input);
-                    } else {
+                    }else{
                         //押したボタンの表示を右端に追加する
                         mTextView1.setText(textvalue + input);
                     }
@@ -89,7 +101,7 @@ public class Money_Calc extends Activity {
         });
     }
 
-    //数字意外が押された時の処理
+    //数字意外が押された時の処理 演算子
     public void setCalc(final int buttonID){
         findViewById(buttonID).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +110,16 @@ public class Money_Calc extends Activity {
                 //押されたボタンの文字列取得
                 String input = btn.getText().toString();
                 //現在表示されている文字
-                String textvalue = mTextView1.getText().toString();
+                textvalue = mTextView1.getText().toString();
 
                 mCalculator.putInput(textvalue); //演算前の入力中の数値をセットする
                 mCalculator.putInput(input); //演算する演算記号をセットする
+
+
+                textvalue ="";
             }
         });
     }
+
+
 }
