@@ -10,6 +10,8 @@ import ke4a11.ecc.ac.jp.afururu.R;
 
 public class Money_Calc extends Activity {
 
+    /*初めてのこうしんです*/
+
     //結果表示用のテキストView
     TextView mTextView1;
 
