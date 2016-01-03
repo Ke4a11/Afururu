@@ -80,16 +80,16 @@ public class Money_Calc extends Activity {
                 String input = btn.getText().toString();
                 //
 
-                /*
+                //ここ追加
                 if(mCalculator.mOperator != null){
                     mTextView1.setText("");
-                }*/
+                }
 
                 textvalue = mTextView1.getText().toString();
 
-
+                //|| textvalue.equals("00") if文の条件削除
                 if (textvalue.length() < 12) {
-                    if (textvalue.equals("0") || textvalue.equals("00")) {
+                    if (textvalue.equals("0")) {
                         //始めが0であれば入力した数字の未表示
                         mTextView1.setText(input);
                     }else{
