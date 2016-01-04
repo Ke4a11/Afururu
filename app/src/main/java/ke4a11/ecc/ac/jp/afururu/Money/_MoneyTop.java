@@ -22,6 +22,10 @@ import ke4a11.ecc.ac.jp.afururu.R;
  * ￥は以外にいる？
  * /£は 配列に文字列として様々な通貨単位を入れて
  *  moneySpinerの方で値を変えた時に、一緒にintの値を変えてそれを配列の添字にする？
+ *
+ *  added!!!!!!!!!!!!
+ *
+ *
  */
 public class _MoneyTop extends Fragment {
     //どの画面に飛ばすかのフラグ
