@@ -10,15 +10,14 @@ import ke4a11.ecc.ac.jp.afururu.R;
 
 public class Money_Calc extends Activity {
 
-    /*初めてのこうしんです*/
-
     //結果表示用のテキストView
     TextView mTextView1;
 
     //計算用オブジェクト
     Calculate mCalculator = new Calculate();
 
-    String textvalue="";
+    // 演算キーが押された状態を持つフラグ
+    boolean calcflg = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +31,9 @@ public class Money_Calc extends Activity {
         setView(R.id.button00); //00ﾎﾞﾀﾝ
 
         //1-9までのﾎﾞﾀﾝにOnClickListenerを設定する
-        setView(R.id.button1);
-        setView(R.id.button2);
-        setView(R.id.button3);
-        setView(R.id.button4);
-        setView(R.id.button5);
-        setView(R.id.button6);
-        setView(R.id.button7);
-        setView(R.id.button8);
-        setView(R.id.button9);
+        setView(R.id.button1); setView(R.id.button2); setView(R.id.button3);
+        setView(R.id.button4); setView(R.id.button5); setView(R.id.button6);
+        setView(R.id.button7); setView(R.id.button8); setView(R.id.button9);
 
         //"+","-","*","/"各ボタンにOnClickListener押された時の処理を設定する
         setCalc(R.id.Plusbutton);   //"+"
@@ -80,20 +73,17 @@ public class Money_Calc extends Activity {
                 Button btn = (Button) v;
                 //押された数字
                 String input = btn.getText().toString();
-                //
 
-                //ここ追加
-                if(mCalculator.mOperator != null){
-                    mTextView1.setText("");
-                }
-
-                textvalue = mTextView1.getText().toString();
+                String textvalue = mTextView1.getText().toString();
 
                 //|| textvalue.equals("00") if文の条件削除
                 if (textvalue.length() < 12) {
-                    if (textvalue.equals("0")) {
-                        //始めが0であれば入力した数字の未表示
-                        mTextView1.setText(input);
+                    if (textvalue.equals("0") || calcflg==true) {
+                        if (buttonID != R.id.button0 || buttonID != R.id.button00){
+                            //始めが0であれば入力した数字の未表示
+                            mTextView1.setText(input);
+                        }
+                        calcflg = false; //演算子が押された状態
                     }else{
                         //押したボタンの表示を右端に追加する
                         mTextView1.setText(textvalue + input);
@@ -112,13 +102,12 @@ public class Money_Calc extends Activity {
                 //押されたボタンの文字列取得
                 String input = btn.getText().toString();
                 //現在表示されている文字
-                textvalue = mTextView1.getText().toString();
+                String textvalue = mTextView1.getText().toString();
 
                 mCalculator.putInput(textvalue); //演算前の入力中の数値をセットする
                 mCalculator.putInput(input); //演算する演算記号をセットする
+                calcflg = true; //演算キーが押されていない
 
-
-                textvalue ="";
             }
         });
     }

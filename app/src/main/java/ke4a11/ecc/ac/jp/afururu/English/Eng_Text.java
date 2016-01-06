@@ -22,6 +22,7 @@ public class Eng_Text {
     public static final String[] TITLES_hotel =
             {
                     //hotel_checkin(黒色)
+                    "チェックイン",
                     "チェックインをお願いします。名前は_____です。",
                     "これが予約確認書です。（予約してある場合）",
                     "予約してません。空いている部屋はありますか？（予約していない場合）",
@@ -33,14 +34,14 @@ public class Eng_Text {
                     "こちらのフォームにご記入下さい。",//会話
                     "お支払はクレジットカードですか？",//会話
                     "お部屋の番号は＿＿＿になります。こちらが鍵です。",//会話
-                    "hotel_checkin",
+                    "滞在中",
                     //hotel_stay(白色)
                     "（今から外出します。）鍵を預かって下さい。",
                     "（外出から帰り、）鍵を下さい。部屋の番号は________です。",
                     "タクシーを呼んでもらえますか？",
                     "この近くにおすすめのレストランありませんか？",
                     "明日朝、モーニングコールを______時にお願いします。部屋番号___の＿＿＿＿です。",//16
-                    "hotel_stay",
+                    "クレーム",
                     //hotel_claim(赤色)
                     "部屋に鍵を置いたままドアを閉めてしまいました。",
                     "部屋に困った事があるのですが。",
@@ -55,7 +56,7 @@ public class Eng_Text {
                     "ベッドメイクができていません。すぐにベッドメイクしてください。",
                     "部屋にタオルがありません。持ってきてください。",
                     "ドアの鍵がかかりません。",
-                    "hotel_claim",
+                    "チェックアウト",
                     //hotel_checkout(青色)
                     "チェックアウトお願いします。",//会話
                     "有難うございます。少々お待ち下さい。",//会話
@@ -67,9 +68,6 @@ public class Eng_Text {
                     "映画は見ていないです。",
                     "ミニバーのコーラをお飲みになりましたので、その料金です。",
                     "それでは、こちらにサインをお願いします。",
-                    "hotel_checkout"
-
-
             };
 
     /*
@@ -79,8 +77,8 @@ public class Eng_Text {
 
     public static final String[] DIALOG_hotel =
             {
-                    "チェックインをお願いします。名前は_____です。\n" +
-                            "I'd like to check in. My name is _________.",
+                    "",//"チェックイン"のところ
+                    "I'd like to check in. My name is _________.",
                     "This is a confirmation slip.",
                     "I have no reservation. Do you have a room available?",
                     "One single room for 2 nights.",
@@ -91,13 +89,13 @@ public class Eng_Text {
                     "Please fill out this form.",
                     "Will you make payment by credit card?",
                     "Your room number is ___. This is the room key.",
-                    //ホテル滞在中
+                    "",//"滞在中"のところ
                     "(I will go out now.) Please keep my key, thanks.",
                     "(Coming back to the hotel) Can I have my key? My room number is __________.",
                     "Would you call me a taxi please?",
                     "Do you have any suggestions for good restaurants in the area?",
                     "Can I ask you for a wake-up call at ____ am tomorrow morning? My name is _____, room number is ___.",//16
-                    //クレーム対応
+                    "",//"クレーム"のところ
                     "I left the key inside the room.",
                     "I have a problem in my room.",
                     "The air conditioner doesn't work.",

@@ -6,7 +6,7 @@ package ke4a11.ecc.ac.jp.afururu.Money;
 public class Calculate {
 
     //入力中の文字列
-    StringBuilder mInputNumber = new StringBuilder();
+    public StringBuilder mInputNumber = new StringBuilder();
     //入力中の演算子
     String mOperator;
     //計算結果
