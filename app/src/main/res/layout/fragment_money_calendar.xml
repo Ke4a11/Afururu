@@ -4,300 +4,442 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/rootlayout"
     tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Calendar">
 
-    <TextView
-        android:layout_height="wrap_content"
-        android:id="@+id/txYM"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="先月"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/txYM"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="来月" />
+
+    </LinearLayout>
+
     <!--6行7列のテーブル状
         5行にすると、表示されない部分の出てきてしまう場合があるため
         一つのテキストビューは横の大きさを指定しているためタブレットなどの表示では小さくなる-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/table_layout"
         android:layout_gravity="right|top">
+        <!--0行目-->
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp">
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="日"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textColor="#FF0000"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="月"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="火"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="水"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="木"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="金"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textSize="15sp" />
+            <TextView
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:text="土"
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:background="#FFFFFF"
+                android:textSize="15sp" />
+        </TableRow>
+
         <!--1行目-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:id="@+id/txDay00"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:textColor="#FF0000"
+
+                android:clickable="true"
+                android:onClick="testToast"
+                />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay01"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay02"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay03"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay04"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay05"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay06"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             </TableRow>
         <!--2行目-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:id="@+id/txDay07"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:textColor="#FF0000" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay08"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay09"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay10"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/txDay11"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay12"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay13"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             </TableRow>
         <!--3行目-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:id="@+id/txDay14"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:textColor="#FF0000" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay15"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay16"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay17"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay18"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay19"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay20"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
         </TableRow>
         <!--4行目-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="4"
                 android:id="@+id/txDay21"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:textColor="#FF0000" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay22"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay23"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay24"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay25"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay26"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay27"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
         </TableRow>
         <!--5行目-->
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="5"
                 android:id="@+id/txDay28"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:textColor="#FF0000" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay29"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay30"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay31"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay32"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay33"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay34"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             </TableRow>
         <!--6行目-->
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"
                 android:id="@+id/txDay35"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp"
+                android:textColor="#FF0000" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay36"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay37"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay38"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay39"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay40"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             <TextView
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:id="@+id/txDay41"
-                android:layout_column="1" />
+                android:layout_column="1"
+                android:layout_marginRight="2dp" />
             </TableRow>
         </TableLayout>
 
