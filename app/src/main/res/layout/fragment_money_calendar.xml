@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="先月"
+            android:id="@+id/PrevMonth"
             android:layout_gravity="left" />
 
         <TextView
@@ -27,7 +28,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="来月" />
+            android:text="来月"
+            android:id="@+id/NextMonth"/>
 
     </LinearLayout>
 

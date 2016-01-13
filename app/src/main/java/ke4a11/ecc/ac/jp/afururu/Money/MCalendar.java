@@ -2,48 +2,46 @@ package ke4a11.ecc.ac.jp.afururu.Money;
 
 import java.util.Calendar;
 
-import ke4a11.ecc.ac.jp.afururu.R;
 
+/*
+    *****簡単な説明*****
+    MCalendarのインスタンスを生成する時に自分自身を引数にする。
+    それをコンストラクタでフィールドに代入して使えるようにする。
+    makeCalendar()メソッドでカレンダーの値を持った
+    calendarMatrix[][] ができる、そして
+    最後に throwcal()メソッドで呼び出し元に カレンダーの変数を投げる。
+    **************終わり
+    *
+    * 呼び出し元の説明
+    * 受け取った変数を自分（MCalendarではない）のフィールドに代入して
+    * それを使ってテキストビューに表示させている。
+
+
+*/
 public class MCalendar{
 
     //フィールド
-    private Money_Calendar money_calendar;
-
+    private Money_Calendar money_calendar; //
 
     //コンストラクタ
     public MCalendar(Money_Calendar fragment){
         money_calendar = fragment;
     }
 
+    //カレンダーを二次元配列 calendarMatrix[][] に入れる
+    public void makeCalendar(int year,int month){
 
-
-    public void makeCalendar(){
-
-        int showyear;
-        int showmonth;
+        int showyear = year;
+        int showmonth = month;
         int startDay;
         int lastDate1;
         int dayCount;
         int lastDate2;
         boolean isStart;
         int[][] calendarMatrix = new int [6][7];
-        int len;
-        String name;
-        int resId;
-
-
-        //初期設定
-        Calendar cal = Calendar.getInstance();
-        showyear = cal.get(Calendar.YEAR);//現在の年を取得
-        showmonth = cal.get(Calendar.MONTH)+1;//現在の月を取得
-
-        int num1 = 0;
 
         Calendar calendar = Calendar.getInstance();
         calendar.clear();
-        //年月表示
-        //TextView textView = (TextView)ll.findViewById(R.id.txYM);
-        //textView.setText(showyear + "年" + showmonth + "月");
 
         //月の初めの曜日を求める
         calendar.set(showyear, showmonth -1,1); // 引数: 1月: 0, 2月: 1, ...
@@ -103,13 +101,13 @@ public class MCalendar{
         }
 
 
-        showcal(calendarMatrix);
+        throwcal(calendarMatrix);
 
     }
 
 
-    //Money_Calendarの方へ持っていく
-    protected void showcal(int[][] result){
+    //Money_Calendarにカレンダーの値を持った calendarMatrix[][] を持っていく
+    protected void throwcal(int[][] result){
         money_calendar.setcal(result);
     }
 }
