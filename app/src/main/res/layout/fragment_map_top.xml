@@ -1,8 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="ke4a11.ecc.ac.jp.afururu.Map._MapTop">
 
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="ふらぐめんと" />
-
-</FrameLayout>
+<fragment
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/fragment_map"
+tools:context="com.example.macuser.takiken.MapsFragment"
+android:name="com.google.android.gms.maps.SupportMapFragment" />
