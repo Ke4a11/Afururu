@@ -22,7 +22,7 @@ public class _MapTop extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_map_top, container, false);
 
         return view;
     }
