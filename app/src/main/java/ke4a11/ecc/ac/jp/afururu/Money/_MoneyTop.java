@@ -17,14 +17,13 @@ import android.widget.TextView;
 import ke4a11.ecc.ac.jp.afururu.R;
 
 /**
- ********** 課題
+ ********** TODO
  * setCurrencyメソッドのsetText内で￥と/£の決め打ちをコードで処理する必要がある
  * ￥は以外にいる？
  * /£は 配列に文字列として様々な通貨単位を入れて
  *  moneySpinerの方で値を変えた時に、一緒にintの値を変えてそれを配列の添字にする？
  *
- *  added!!!!!!!!!!!!
- *
+ *  画面遷移時にカレンダーが出てくる。レイアウトファイルがおかしい？
  *
  */
 public class _MoneyTop extends Fragment {
