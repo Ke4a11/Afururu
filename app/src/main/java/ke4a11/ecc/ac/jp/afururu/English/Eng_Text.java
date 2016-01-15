@@ -34,7 +34,7 @@ public class Eng_Text {
                     "こちらのフォームにご記入下さい。",//会話
                     "お支払はクレジットカードですか？",//会話
                     "お部屋の番号は＿＿＿になります。こちらが鍵です。",//会話
-                    "滞在中",
+                    "hotel_checkin",
                     //hotel_stay(白色)
                     "（今から外出します。）鍵を預かって下さい。",
                     "（外出から帰り、）鍵を下さい。部屋の番号は________です。",
@@ -68,6 +68,9 @@ public class Eng_Text {
                     "映画は見ていないです。",
                     "ミニバーのコーラをお飲みになりましたので、その料金です。",
                     "それでは、こちらにサインをお願いします。",
+                    "hotel_checkout"
+
+
             };
 
     /*
@@ -105,10 +108,22 @@ public class Eng_Text {
                     "Could you fix it?",
                     "The people next door are very noisy.\n" +
                             "Could you get me a different room?\n",
+                    "My room hasn't been cleand yet.",
+                    "The bed isn't made.\nPlease make the bed right now.\n",
+                    "I can't find any towels in my room.\nPlease bring me some.\n",
+                    "The door lock is broken.",
+                    //チェックアウト
+                    "I want to check out please.",
+                    "Thank you very much. Just a moment please.",
+                    "Your bill is __________dollars.\nThis is the bill statement.\n",
+                    "I think there is a mistake in the calculation of my bill.",
                     "What is this charge for? (showing the statement?)",
                     "I didn't make any phone calls.",
                     "I didn't watch any movies.",
                     "You had a coke from the mini bar. This is fee.",
+                    "Please put your signature here, thanks.",
+                    "Thank you very much for your stay.",
+                    "I/We enjoyed my/our stay. Thank you very much",
 
             };
 
@@ -236,7 +251,7 @@ public class Eng_Text {
                     "遺失物係はどこですか",
                     "日本大使館はどこですか",
                     "助けて!",//助けを呼ぶときの言い方
-                    "どうしたんですか？",//助けを呼ぶときの言い方
+                    "どうしたんですか？",//助けを呼ぶときの言い方(訪ねるとき)
                     "泥棒！",//トラブルを話すときの英会話
                     "強盗です！",
                     "昨日、バッグが盗まれました",
@@ -278,7 +293,7 @@ public class Eng_Text {
                     "He was hit by a car.\nHe was run over by a car.",
                     "A car hit my bicycle.",
                     "He has a terrible injury.",
-                    "He is unconscious.",
+                    "She is unconscious.",
                     "I think I might have fractured my left leg.",
                     "I broke my elbow.",
                     "She burned her right hand badly.",
@@ -325,14 +340,55 @@ public class Eng_Text {
             };
     public static final String[] TITLES_res =
             {
-                    "ホテルセンテンス",
+                    "開いてますか？（今、営業中ですか？）",
+                    "禁煙席をお願いします。",
+                    "喫煙席をお願いします。",
+                    "あのテーブル（席）に座っていいですか？（指差しながら）",
+                    "待ち時間はどれくらいですかね？",
+                    "それじゃ、、待ちます。",
+                    "残念ですね。それじゃあまたにします．",
+                    "メニューをください。（私に/ 私たちに。）",
+                    "オーダーお願いします。",
+                    "ラストオーダーは何時ですか",
+                    "決まったらお呼びしますので",
+                    "おすすめはどの料理ですか？",
+                    "これ下さい。\n(メニュー内の料理名を指差しながら）",
+                    //料理の味付け
+                    "甘い（味付け）ですか？",
+                    "辛いですか？",
+                    "酸っぱいですか？",
+                    "塩味ですか？",
+                    //支払い
+                    "勘定お願いします",
+                    "クレジットカードで支払えますか？",
+                    "レシート（領収書）を下さい。",
 
 
             };
 
     public static final String[] DIALOG_res =
             {
-                    "I’d like to go to ○○.",
+                    "Are you open ?",
+                    "No-smoking section please",
+                    "Smoking section please",
+                    "Can we (I) sit at that table?",
+                    "How long wait?",
+                    "OK, We (I) will wait",
+                    "Sorry, we(I) have no time to wait. Thank you.",
+                    "Can I have a menu? / Can we have menu’s?",
+                    "Excuse me. Can you take our (my) order, please",
+                    "What time is the last order?",
+                    "We (I) will let you know when we have decided.",
+                    "Which one do you recommend?",
+                    "I will have this.\n(From pointing at an entree in the menu)",
+                    "Is it sweet?",
+                    "Is it spicy?",
+                    "Is it sour?",
+                    "Is it salty taste?",
+                    "Check (Cheque) please.",
+                    "Can I pay by credit card?",
+                    "Please give me a receipt.",
+                    
 
             };
 
