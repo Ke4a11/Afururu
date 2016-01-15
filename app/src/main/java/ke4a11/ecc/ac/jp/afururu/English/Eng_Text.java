@@ -122,9 +122,6 @@ public class Eng_Text {
                     "Please put your signature here, thanks.",
                     "Thank you very much for your stay.",
                     "I/We enjoyed my/our stay. Thank you very much",
-                    "",
-                    "",
-                    "",
 
 
 
@@ -255,7 +252,7 @@ public class Eng_Text {
                     "遺失物係はどこですか",
                     "日本大使館はどこですか",
                     "助けて!",//助けを呼ぶときの言い方
-                    "どうしたんですか？",//助けを呼ぶときの言い方
+                    "どうしたんですか？",//助けを呼ぶときの言い方(訪ねるとき)
                     "泥棒！",//トラブルを話すときの英会話
                     "強盗です！",
                     "昨日、バッグが盗まれました",
@@ -395,10 +392,5 @@ public class Eng_Text {
                     
 
             };
-        public static final String[] DIALOG_emergency =
-                {
-
-
-                };
 
 }
