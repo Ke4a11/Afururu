@@ -3,6 +3,6 @@
     android:layout_height="match_parent" tools:context="ke4a11.ecc.ac.jp.afururu.Map._MapTop">
 
     <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Map Top" />
+        android:text="ふらぐめんと" />
 
 </FrameLayout>
