@@ -83,9 +83,13 @@ public class _MoneyTop extends Fragment {
                 moneyFlg = "set";
             }
 
-            //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
-            Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
-            startActivity(i);
+            //カレンダーは別のアクティビティのため
+            if(moneyFlg.equals("cal")){
+            }else{
+                //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
+                Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
+                startActivity(i);
+            }
         }
     }
 

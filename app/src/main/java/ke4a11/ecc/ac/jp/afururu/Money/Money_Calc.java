@@ -79,7 +79,7 @@ public class Money_Calc extends Activity {
                 //|| textvalue.equals("00") if文の条件削除
                 if (textvalue.length() < 12) {
                     if (textvalue.equals("0") || calcflg==true) {
-                        if (buttonID != R.id.button0 || buttonID != R.id.button00){
+                        if (buttonID != R.id.button0){
                             //始めが0であれば入力した数字の未表示
                             mTextView1.setText(input);
                         }

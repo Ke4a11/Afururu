@@ -11,26 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="先月"
             android:id="@+id/PrevMonth"
             android:layout_gravity="left" />
-
         <TextView
             android:layout_height="wrap_content"
             android:id="@+id/txYM"
             android:layout_width="wrap_content"
             android:layout_gravity="center" />
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="来月"
             android:id="@+id/NextMonth"/>
-
     </LinearLayout>
 
     <!--6行7列のテーブル状
@@ -104,7 +100,6 @@
                 android:background="#FFFFFF"
                 android:textSize="15sp" />
         </TableRow>
-
         <!--1行目-->
         <TableRow
             android:layout_width="match_parent"

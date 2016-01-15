@@ -49,11 +49,12 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.details,English_Detail.newInstance(index));
-
+/*
+これがあれば戻るボタンでさっき表示した英語が戻る
             if (mSelectedItem != -1){
                 ft.addToBackStack(null);
             }
-
+*/
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             //処理の確定
             ft.commit();
@@ -101,8 +102,15 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
         category.add("クレーム");
         category.add("チェックアウト");
         //空港
+        category.add("検問");
+        category.add("飛行機内");
 
         //学校
+        category.add("挨拶");
+        category.add("日常的な会話");
+
+        //レストラン
+
     }
 
     //リストアイテム用のアダプター
@@ -120,7 +128,7 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
             t.setTextSize(28);
             t.setTextColor(Color.BLUE);
 
-            // ヘッダの設定
+            // 通常のテキストの時の処理
             if (! category.contains(titleEngText[position])) {
                 t.setBackgroundColor(Color.WHITE);
                 t.setTextColor(Color.BLACK);

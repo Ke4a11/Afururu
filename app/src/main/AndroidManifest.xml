@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".English.English_Textview_Activity" >
         </activity>
+        <activity android:name=".Money.MoneyActiviy_ListorCal" >
+        </activity>
     </application>
 
 </manifest>
