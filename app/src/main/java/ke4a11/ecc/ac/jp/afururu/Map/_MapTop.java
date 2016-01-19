@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ke4a11.ecc.ac.jp.afururu.R;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 
 
@@ -47,16 +49,12 @@ public class _MapTop extends Fragment {
     private static View view;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
-    public static _MapTop newInstance() {
-        _MapTop fragment = new _MapTop();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public _MapTop() {
-        // Required empty public constructor
-    }
+//    public static _MapTop newInstance() {
+//        _MapTop fragment = new _MapTop();
+//        Bundle args = new Bundle();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,18 +63,8 @@ public class _MapTop extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // ここでハマった
-        // 困ったときのstackoverflow
-        // http://stackoverflow.com/questions/14083950/duplicate-id-tag-null-or-parent-id-with-another-fragment-for-com-google-androi
-        if (view != null) {
-            ViewGroup parent = (ViewGroup) view.getParent();
-            if (parent != null)
-                parent.removeView(view);
-        }
-        try {
+        if (view == null) {
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
-        } catch (InflateException e) {
-                        /* map is already there, just return view as it is */
         }
         return view;
     }
