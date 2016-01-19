@@ -26,6 +26,7 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -56,9 +57,15 @@ public class _MapTop extends Fragment {
 //        return fragment;
 //    }
 
+    private TextView centerLocationText;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_map_top);
+        setUpMapIfNeeded();
+
+        centerLocationText = (TextView)findViewById(R.id.center_location_textView);
     }
 
     @Override
@@ -110,7 +117,30 @@ public class _MapTop extends Fragment {
         options.position(takizawa);
         options.title("滝沢");
         mMap.addMarker(options);
-    }
+        mMap.setMyLocationEnabled(true);
 
+        mMap.setOnCameraChangeListener((new GoogleMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition) {
+
+            }
+        }));
+
+
+        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener(){
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition){
+                double zoomLevel = cameraPosition.zoom;
+                double latitude = cameraPosition.target.longitude;
+
+                String centerText = "zoom level" + zoomLevel + "/n"
+                        + "latitude" + latitude + "/n"
+                        +"longitude" + longitude;
+                centerLocationText.setText(centerText);
+
+            }
+        });
+
+    }
 
 }
