@@ -1,14 +1,14 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
-import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 //Import package
 
@@ -34,61 +34,65 @@ import ke4a11.ecc.ac.jp.afururu.R;
 *  リスト表示かカレンダー表示を選択する
 *  独自のコードが大量に必要なのでわけた
 *
-*
-*
-*
 * */
 
-public class MoneyActiviy_ListorCal extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_List.OnFragmentInteractionListener{
 
-    private ListView listBoutItem;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_money_activiy_listorcal);
 
+        //spinner用のアダプターを作成
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
 
-        //listBoutItem = (ListView)findViewById(R.id.listView1);
-        //listBoutItem.setOnItemClickListener(this);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //listBoutItem.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        //アイテム追加
+        ad.add("カレンダー");
+        ad.add("リスト一覧");
+        spinner = (Spinner)findViewById(R.id.spinner_listorcal);
 
-        //ListItemViewAdapter adapter = new ListItemViewAdapter(this,android.R.layout.simple_list_item_1,titleEngText);
+        spinner.setAdapter(ad);
 
-        //listBoutItem.setAdapter(adapter);
+        //スピナーのリスナの設定
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (spinner.getSelectedItemPosition() == 0) {
+                    //カレンダー表示
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.fragment_listorcal, Money_Calendar.newInstance());
+                    ft.commit();
+                } else if (spinner.getSelectedItemPosition() == 1) {
+                    //リスト表示
+                    FragmentManager fm = getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
+                    ft.commit();
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
     }
 
+    @Override
+    public void onFragmentInteraction(String id) {
+        //implementsしているため必ず必要
 
-    //リストのアイテムを押した時の処理
-    public void onItemClick(AdapterView<?> parent,View view,int position,long arg3){
+        //Intent detailIntent =
 
-    }
-
-    //リストアイテム用のアダプター
-    class ListItemViewAdapter extends ArrayAdapter<String> {
-
-        public ListItemViewAdapter(Context cn, int textViewResourceId, String[] objects) {
-            super(cn, textViewResourceId, objects);
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ListView l = (ListView)parent;
-            TextView t = new TextView(getBaseContext());
-
-            t.setText(l.getItemAtPosition(position).toString());
-
-            convertView = t;
-            convertView.setBackgroundResource(R.drawable.listitem_color1);
-
-            return convertView;
-        }
-
-        @Override
-        public boolean isEnabled(int position){
-
-            return true;
-        }
     }
 
 }

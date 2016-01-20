@@ -84,6 +84,8 @@ public class _MoneyTop extends Fragment {
 
             //カレンダーは別のアクティビティのため
             if(moneyFlg.equals("cal")){
+                Intent i = new Intent(getActivity().getApplicationContext(),MoneyActiviy_ListorCal.class);
+                startActivity(i);
             }else{
                 //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
                 Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
@@ -113,10 +115,6 @@ public class _MoneyTop extends Fragment {
     void setCurrency(String data){
         //小数第１位のみ表示　２位以下切り捨て
         String d = data;
-
-        if(d == null){
-            d = "150";
-        }
         Float f = Float.parseFloat(d);
         data = String.format("%.1f",f);
         mView.setText("¥" + data + "/£");
