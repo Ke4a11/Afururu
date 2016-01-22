@@ -1,7 +1,10 @@
 package ke4a11.ecc.ac.jp.afururu.Map;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -27,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,33 +50,29 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class _MapTop extends Fragment {
 
-
     private static View view;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
-//    public static _MapTop newInstance() {
-//        _MapTop fragment = new _MapTop();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+      public static _MapTop newInstance() {
+          _MapTop fragment = new _MapTop();
+          Bundle args = new Bundle();
+          fragment.setArguments(args);
+          return fragment;
+      }
 
-    private TextView centerLocationText;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_map_top);
-        setUpMapIfNeeded();
 
-        centerLocationText = (TextView)findViewById(R.id.center_location_textView);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (view == null) {
+
+        if (view == null
+                //&& netWorkCheck(getContext().getApplicationContext())
+                ) {
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
         }
+//        else{
+//            Toast.makeText(getContext(),"ねっとにつないで",Toast.LENGTH_LONG).show();}
         return view;
     }
 
@@ -86,8 +86,7 @@ public class _MapTop extends Fragment {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map))
-                    .getMap();
+            mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -118,29 +117,17 @@ public class _MapTop extends Fragment {
         options.title("滝沢");
         mMap.addMarker(options);
         mMap.setMyLocationEnabled(true);
-
-        mMap.setOnCameraChangeListener((new GoogleMap.OnCameraChangeListener() {
-            @Override
-            public void onCameraChange(CameraPosition cameraPosition) {
-
-            }
-        }));
-
-
-        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener(){
-            @Override
-            public void onCameraChange(CameraPosition cameraPosition){
-                double zoomLevel = cameraPosition.zoom;
-                double latitude = cameraPosition.target.longitude;
-
-                String centerText = "zoom level" + zoomLevel + "/n"
-                        + "latitude" + latitude + "/n"
-                        +"longitude" + longitude;
-                centerLocationText.setText(centerText);
-
-            }
-        });
-
     }
+
+    private boolean netWorkCheck(Context context){
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        if (info != null){
+            return info.isConnected(); //繋がっている
+        }else{
+            return false; //繋がっていない
+        }
+    }
+
 
 }

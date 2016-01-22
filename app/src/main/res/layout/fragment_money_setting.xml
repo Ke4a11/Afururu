@@ -3,18 +3,30 @@
     android:layout_height="match_parent"
     tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Setting">
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="今月使う金額"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="52dp"
         android:id="@+id/MoneySpinner"
-        android:layout_gravity="left|top"
+        android:layout_gravity="right|bottom"
         android:spinnerMode="dialog"
         android:background="#e9ff20" />
 
-    <TextView
+    <Spinner
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_height="45dp"
+        android:id="@+id/spinner"
+        android:layout_gravity="center"
+        android:background="#ADFF2F" />
+
 
 </FrameLayout>
