@@ -48,6 +48,7 @@ public class _MapTop extends Fragment {
 
 
     private static View view;
+    /*
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
 //    public static _MapTop newInstance() {
@@ -66,16 +67,16 @@ public class _MapTop extends Fragment {
         setUpMapIfNeeded();
 
         centerLocationText = (TextView)findViewById(R.id.center_location_textView);
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (view == null) {
+       if (view == null) {
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
         }
         return view;
     }
-
+/*
     @Override
     public void onResume() {
         super.onResume();
@@ -141,6 +142,7 @@ public class _MapTop extends Fragment {
             }
         });
 
-    }
+    }}*/
 
-}
+
+    }
