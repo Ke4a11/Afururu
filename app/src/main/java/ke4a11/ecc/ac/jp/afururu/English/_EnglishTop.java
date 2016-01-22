@@ -1,6 +1,7 @@
 package ke4a11.ecc.ac.jp.afururu.English;
 
 
+//import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 //FragmentPagerAdapter で使うために supportlibrary の fragment を使用
@@ -60,16 +61,16 @@ public class _EnglishTop extends Fragment {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }else if(v == getView().findViewById(R.id.enghotButton)){
-                English_Textview_Activity.titleEngText = Eng_Text.TITLES_airport;
-                English_Detail.detailEngText = Eng_Text.DIALOG_airport;
+                English_Textview_Activity.titleEngText = Eng_Text.TITLES_hotel;
+                English_Detail.detailEngText = Eng_Text.DIALOG_hotel;
 
                 Intent intent = getActivity().getIntent();
                 intent.setClass(getActivity(), English_Textview_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }else if(v == getView().findViewById(R.id.engairButton)){
-                English_Textview_Activity.titleEngText = Eng_Text.TITLES_res;
-                English_Detail.detailEngText = Eng_Text.DIALOG_res;
+                English_Textview_Activity.titleEngText = Eng_Text.TITLES_airport;
+                English_Detail.detailEngText = Eng_Text.DIALOG_airport;
 
                 Intent intent = getActivity().getIntent();
                 intent.setClass(getActivity(), English_Textview_Activity.class);
