@@ -102,11 +102,10 @@ public class Money_List extends Fragment implements AbsListView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
+            //Activityにあるメソッドの呼び出し。引数に押した場所のid(ITEM_MAPの添字に使う)を渡している。
             mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
 
-            Toast.makeText(getActivity(),position+1 + "を押しました。",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),position+1 + "を押しました。",Toast.LENGTH_SHORT).show();
         }
     }
 

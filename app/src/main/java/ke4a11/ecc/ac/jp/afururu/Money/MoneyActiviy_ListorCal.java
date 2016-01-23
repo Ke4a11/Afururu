@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 //Import package
 
@@ -87,12 +88,26 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
     }
 
+    //Money_Listのアイテムのクリックをリスナーが感知したら？
     @Override
     public void onFragmentInteraction(String id) {
         //implementsしているため必ず必要
 
-        //Intent detailIntent =
+        Intent detailIntent = new Intent(this,MoneyActivity_ListorCal_Detail.class);
+        //Money_ListorCal_Detail の初めのif文で受け取って処理しているため必ず必要。
+        //具体的な処理は、Money_ListorCal_Detailの変数である、mItemにデータを入れるため
+        //DummyContent中のITEM_MAPのキーを特定させるために String id を使う。
+        //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
+        detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
+        startActivity(detailIntent);
 
+    }
+
+
+
+    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
+    public void testToast(View view){
+        Toast.makeText(getApplicationContext(), "Test OK!", Toast.LENGTH_SHORT).show();
     }
 
 }

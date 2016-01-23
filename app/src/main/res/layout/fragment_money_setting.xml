@@ -11,10 +11,12 @@
         android:spinnerMode="dialog"
         android:background="#e9ff20" />
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="100"
         android:id="@+id/editText"
         android:layout_gravity="left|center_vertical" />
+
 
 </FrameLayout>

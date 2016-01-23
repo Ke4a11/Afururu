@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 
 import ke4a11.ecc.ac.jp.afururu.R;
@@ -22,6 +24,8 @@ public class Money_Setting extends Fragment {
     //為替のURLに渡すString型の配列
     private final String[] rateName = {"gbp","eur","usd"};
 
+    public static String set_balance = "0";
+
     public Money_Setting() {
         // Required empty public constructor
     }
@@ -31,6 +35,10 @@ public class Money_Setting extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_money_setting, container, false);
+
+        //今月の残金を代入
+        TextView edit_balance = (TextView)view.findViewById(R.id.editText);
+        set_balance = edit_balance.getText().toString();
 
         //spinner用のアダプターを作成
         ArrayAdapter<String> ad = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item);

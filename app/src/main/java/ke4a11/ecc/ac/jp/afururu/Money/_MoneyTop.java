@@ -11,8 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
@@ -65,6 +68,12 @@ public class _MoneyTop extends Fragment {
         graphButton.setOnClickListener(new ChangeView());
         exchangeButton.setOnClickListener(new ChangeView());
         settingButton.setOnClickListener(new ChangeView());
+
+
+        //Balanceの値をSettingより持ってくる
+        TextView balance = (TextView) view.findViewById(R.id.balance);
+        String a = Money_Setting.set_balance;
+        balance.setText("£" + Money_Setting.set_balance);
 
         return view;
     }
