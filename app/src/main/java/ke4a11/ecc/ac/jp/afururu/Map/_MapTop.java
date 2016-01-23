@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ke4a11.ecc.ac.jp.afururu.R;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import java.util.ArrayList;
 
 
@@ -24,6 +26,7 @@ import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -45,42 +48,35 @@ public class _MapTop extends Fragment {
 
 
     private static View view;
+    /*
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
-    public static _MapTop newInstance() {
-        _MapTop fragment = new _MapTop();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static _MapTop newInstance() {
+//        _MapTop fragment = new _MapTop();
+//        Bundle args = new Bundle();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
-    public _MapTop() {
-        // Required empty public constructor
-    }
+    private TextView centerLocationText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.fragment_map_top);
+        setUpMapIfNeeded();
+
+        centerLocationText = (TextView)findViewById(R.id.center_location_textView);
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // ここでハマった
-        // 困ったときのstackoverflow
-        // http://stackoverflow.com/questions/14083950/duplicate-id-tag-null-or-parent-id-with-another-fragment-for-com-google-androi
-        if (view != null) {
-            ViewGroup parent = (ViewGroup) view.getParent();
-            if (parent != null)
-                parent.removeView(view);
-        }
-        try {
+       if (view == null) {
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
-        } catch (InflateException e) {
-                        /* map is already there, just return view as it is */
         }
         return view;
     }
-
+/*
     @Override
     public void onResume() {
         super.onResume();
@@ -122,7 +118,31 @@ public class _MapTop extends Fragment {
         options.position(takizawa);
         options.title("滝沢");
         mMap.addMarker(options);
+        mMap.setMyLocationEnabled(true);
+
+        mMap.setOnCameraChangeListener((new GoogleMap.OnCameraChangeListener() {
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition) {
+
+            }
+        }));
+
+
+        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener(){
+            @Override
+            public void onCameraChange(CameraPosition cameraPosition){
+                double zoomLevel = cameraPosition.zoom;
+                double latitude = cameraPosition.target.longitude;
+
+                String centerText = "zoom level" + zoomLevel + "/n"
+                        + "latitude" + latitude + "/n"
+                        +"longitude" + longitude;
+                centerLocationText.setText(centerText);
+
+            }
+        });
+
+    }}*/
+
+
     }
-
-
-}
