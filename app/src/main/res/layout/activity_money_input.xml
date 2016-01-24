@@ -39,7 +39,9 @@
             <TextView
                 android:layout_width="321dp"
                 android:layout_height="fill_parent"
-                android:id="@+id/dateText"/>
+                android:id="@+id/dateText"
+                android:clickable="true"
+                android:textSize="30dp" />
 
 
         </LinearLayout>
@@ -81,7 +83,9 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/shopEdit" />
+                android:id="@+id/shopEdit"
+                android:inputType="text"
+                android:maxLength="20"/>
 
         </LinearLayout>
 
@@ -102,7 +106,9 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/memoEdit" />
+                android:id="@+id/memoEdit"
+                android:inputType="text"
+                android:maxLength="20"/>
 
         </LinearLayout>
 
@@ -116,15 +122,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="DB確認！"
             android:id="@+id/showButton" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="dropbutton"
-            android:id="@+id/dropButton"
-            android:layout_gravity="center_horizontal" />
 
 
     </LinearLayout>

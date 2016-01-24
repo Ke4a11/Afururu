@@ -26,13 +26,13 @@ public class MoneyShowDatabase extends AppCompatActivity{
         SQLiteDatabase db = helper.getReadableDatabase();
 
         // queryメソッドの実行例
-        Cursor c = db.query("ecc", new String[] { "shop", "memo" , "category" }, null,
+        Cursor c = db.query("ecc", new String[] { "date","shop", "category","memo"}, null,
                 null, null, null, null);
         boolean mov = c.moveToFirst();
 
         while (mov) {
             TextView textView = new TextView(this);
-            textView.setText(String.format("%s : %s : %s" , c.getString(0), c.getString(1) ,c.getString(2)));
+            textView.setText(String.format("%s : %s : %s : %s", c.getString(0), c.getString(1) ,c.getString(2), c.getString(3)));
             mov = c.moveToNext();
             layout.addView(textView);
 

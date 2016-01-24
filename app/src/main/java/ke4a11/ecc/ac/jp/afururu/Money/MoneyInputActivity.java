@@ -1,6 +1,8 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
+import android.app.DatePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,15 +12,21 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 import ke4a11.ecc.ac.jp.afururu.Setting.ShowDataBase;
@@ -37,12 +45,11 @@ public class MoneyInputActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
 
-
-
         MoneyOpenHelper helper = new MoneyOpenHelper(this);
         final SQLiteDatabase db = helper.getWritableDatabase();
         final EditText shopText = (EditText) findViewById(R.id.shopEdit);
         final EditText memoText = (EditText) findViewById(R.id.memoEdit);
+        final TextView dateText = (TextView)findViewById(R.id.dateText);
         Button entryButton = (Button) findViewById(R.id.addButton);
        final Spinner spinner = (Spinner)findViewById(R.id.categorySpinner);
 
@@ -51,8 +58,12 @@ public class MoneyInputActivity extends AppCompatActivity {
         entryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+            /* 　memoTextでエンター押したらいけるよにしたため移動
                 String shop = shopText.getText().toString();
                 String memo = memoText.getText().toString();
+                String date = dateText.getText().toString();
                  // 選択されているアイテムのIndexを取得
                 //int idx = spinner.getSelectedItemPosition();
 
@@ -60,12 +71,17 @@ public class MoneyInputActivity extends AppCompatActivity {
                 String category = (String)spinner.getSelectedItem();
 
                 ContentValues insertValues = new ContentValues();
+                insertValues.put("date",date);
                 insertValues.put("shop", shop);
-               insertValues.put("memo", memo);
-               insertValues.put("category",category);
-                long id = db.insert("ecc", shop, insertValues);
+                insertValues.put("category",category);
+                insertValues.put("memo", memo);
+                long id = db.insert("ecc", date, insertValues);
+
+                */
             }
         });
+
+
         Button showButton = (Button) findViewById(R.id.showButton);
         showButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +130,41 @@ public class MoneyInputActivity extends AppCompatActivity {
             }
         });
 
+        memoText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                //EnterKeyが押されたかを判定
+                if (event.getAction() == KeyEvent.ACTION_DOWN
+                        && keyCode == KeyEvent.KEYCODE_ENTER) {
+
+                    //ソフトキーボードを閉じる
+                    InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+
+                    //登録押したときの処理の内容
+                    String shop = shopText.getText().toString();
+                    String memo = memoText.getText().toString();
+                    String date = dateText.getText().toString();
+                    // 選択されているアイテムのIndexを取得
+                    //int idx = spinner.getSelectedItemPosition();
+
+                    // 選択されているアイテムを取得
+                    String category = (String)spinner.getSelectedItem();
+
+                    ContentValues insertValues = new ContentValues();
+                    insertValues.put("date",date);
+                    insertValues.put("shop", shop);
+                    insertValues.put("category",category);
+                    insertValues.put("memo", memo);
+                    long id = db.insert("ecc", date, insertValues);
+
+
+                    return true;
+    }
+    return false;
+}
+});
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -124,16 +175,30 @@ public class MoneyInputActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         //日付を表示する処理
         setContentView(R.layout.activity_money_input);
-        TextView dateText = (TextView)findViewById(R.id.dateText);
+        final TextView dateText = (TextView)findViewById(R.id.dateText);
         Time time = new Time("Asia/Tokyo");
         time.setToNow();
         String date = time.year + "年" + (time.month+1) + "月" + time.monthDay + "日　";
         dateText.setText(date);
+        //押したときカレンダー表示
+        dateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
 
-
-
-
+                DatePickerDialog dialog = new DatePickerDialog(MoneyInputActivity.this,new DatePickerDialog.OnDateSetListener() {
+                    	public void onDateSet(DatePicker picker,	int year, int month,int day) {
+                        	dateText.setText(year + "年" + (month+1) + "月" + day + "日");
+                     }
+               }
+                      ,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)
+                );
+                dialog.show();
+            }
+        });
     }
 }

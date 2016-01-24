@@ -11,13 +11,13 @@ public class MoneyOpenHelper extends SQLiteOpenHelper {
 
 
         public MoneyOpenHelper(Context context) {
-            super(context, "ShopMemoDB", null, 2);
+            super(context, "ShopMemoDB3", null, 2);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("create table ecc(" + " shop text not null," + " memo text,"
-                    +" category text" + ");");
+                    +" category text," + " date text " + ");");
 
         }
 
