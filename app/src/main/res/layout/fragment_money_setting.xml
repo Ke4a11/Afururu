@@ -3,6 +3,16 @@
     android:layout_height="match_parent"
     tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Setting">
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="今月使う金額"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="150dp"

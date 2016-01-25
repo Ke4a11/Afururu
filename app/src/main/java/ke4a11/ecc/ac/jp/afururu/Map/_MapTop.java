@@ -48,35 +48,27 @@ public class _MapTop extends Fragment {
 
 
     private static View view;
-    /*
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
-//    public static _MapTop newInstance() {
-//        _MapTop fragment = new _MapTop();
-//        Bundle args = new Bundle();
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+      public static _MapTop newInstance() {
+          _MapTop fragment = new _MapTop();
+          Bundle args = new Bundle();
+          fragment.setArguments(args);
+          return fragment;
+      }
 
-    private TextView centerLocationText;
+  
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_map_top);
-        setUpMapIfNeeded();
-
-        centerLocationText = (TextView)findViewById(R.id.center_location_textView);
-    }*/
+   
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       if (view == null) {
+        if (view == null) {
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
         }
         return view;
     }
-/*
+
     @Override
     public void onResume() {
         super.onResume();
@@ -87,8 +79,7 @@ public class _MapTop extends Fragment {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map))
-                    .getMap();
+            mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap();
@@ -120,29 +111,6 @@ public class _MapTop extends Fragment {
         mMap.addMarker(options);
         mMap.setMyLocationEnabled(true);
 
-        mMap.setOnCameraChangeListener((new GoogleMap.OnCameraChangeListener() {
-            @Override
-            public void onCameraChange(CameraPosition cameraPosition) {
+    }    
 
-            }
-        }));
-
-
-        mMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener(){
-            @Override
-            public void onCameraChange(CameraPosition cameraPosition){
-                double zoomLevel = cameraPosition.zoom;
-                double latitude = cameraPosition.target.longitude;
-
-                String centerText = "zoom level" + zoomLevel + "/n"
-                        + "latitude" + latitude + "/n"
-                        +"longitude" + longitude;
-                centerLocationText.setText(centerText);
-
-            }
-        });
-
-    }}*/
-
-
-    }
+}

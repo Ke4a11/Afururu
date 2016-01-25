@@ -1,6 +1,5 @@
 package ke4a11.ecc.ac.jp.afururu.Setting;
 
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +17,9 @@ import android.view.ViewGroup;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
-
+/**
+ * A simple {@link Fragment} subclass.
+ */
 public class _SettingTop extends Fragment {
 
     public void onStart() {
@@ -28,7 +29,6 @@ public class _SettingTop extends Fragment {
         final SQLiteDatabase db = helper.getWritableDatabase();
         final EditText nameText = (EditText) getActivity().findViewById(R.id.editName);
         final EditText ageText = (EditText) getActivity().findViewById(R.id.editAge);
-
         Button entryButton = (Button) getActivity().findViewById(R.id.insert);
         entryButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -93,10 +93,35 @@ public class _SettingTop extends Fragment {
             }
         });
     }
+        MyOpenHelper helper = new MyOpenHelper(getContext());
+        final SQLiteDatabase db = helper.getWritableDatabase();
+        final EditText nameText = (EditText) getActivity().findViewById(R.id.editName);
+        final EditText ageText = (EditText) getActivity().findViewById(R.id.editAge);
+
+        Button entryButton = (Button) getActivity().findViewById(R.id.insert);
+        entryButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = nameText.getText().toString();
+                String age = ageText.getText().toString();
+                ContentValues insertValues = new ContentValues();
+                insertValues.put("name", name);
+                insertValues.put("age", age);
+                long id = db.insert("person", name, insertValues);
+            }
+        });
+        Button updateButton = (Button) getActivity().findViewById(R.id.update);
+        updateButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = nameText.getText().toString();
+                String age = ageText.getText().toString();
+                if (name.equals("")) {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setting_top, container, false);
     }
 

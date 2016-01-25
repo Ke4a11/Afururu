@@ -1,8 +1,3 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
 
     <fragment
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,21 +7,6 @@
     android:id="@+id/fragment_map"
     android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-    <TextView
-        android:id="@+id/center_location_textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|left"
-        android:textColor="#0000FF"
-        android:textSize="50dp"
-        />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="+"
-        android:textColor="#0000FF"
-        android:textSize="50dp"/>
 
-</FrameLayout>
+    
