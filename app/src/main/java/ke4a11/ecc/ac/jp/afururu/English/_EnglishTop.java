@@ -32,12 +32,15 @@ public class _EnglishTop extends Fragment {
         ImageButton enghotButton = (ImageButton)view.findViewById(R.id.enghotButton);
         ImageButton engairButton = (ImageButton)view.findViewById(R.id.engairButton);
         ImageButton engschButton = (ImageButton)view.findViewById(R.id.engschButton);
-
+        ImageButton emeButton = (ImageButton)view.findViewById(R.id.emeButton);
+        ImageButton teiButton = (ImageButton)view.findViewById(R.id.teiButton);
         //リスナの設定
         engresButton.setOnClickListener(new ChangeView());
         enghotButton.setOnClickListener(new ChangeView());
         engairButton.setOnClickListener(new ChangeView());
         engschButton.setOnClickListener(new ChangeView());
+        emeButton.setOnClickListener(new ChangeView());
+        teiButton.setOnClickListener(new ChangeView());
 
         return view;
     }
@@ -83,7 +86,24 @@ public class _EnglishTop extends Fragment {
                 intent.setClass(getActivity(), English_Textview_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+            }else if(v == getView().findViewById(R.id.emeButton)){
+                English_Textview_Activity.titleEngText = Eng_Text.TITLES_emergency;
+                English_Detail.detailEngText = Eng_Text.DIALOG_emergency;
+
+                Intent intent = getActivity().getIntent();
+                intent.setClass(getActivity(), English_Textview_Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }else if(v == getView().findViewById(R.id.teiButton)){
+                English_Textview_Activity.titleEngText = Eng_Text.TITLES_life;
+                English_Detail.detailEngText = Eng_Text.DIALOG_life;
+
+                Intent intent = getActivity().getIntent();
+                intent.setClass(getActivity(), English_Textview_Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
+
 
         }
 
