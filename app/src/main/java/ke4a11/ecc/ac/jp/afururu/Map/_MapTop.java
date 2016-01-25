@@ -109,7 +109,7 @@ public class _MapTop extends Fragment {
         options.position(takizawa);
         options.title("滝沢");
         mMap.addMarker(options);
-        mMap.setMyLocationEnabled(true);
+        //mMap.setMyLocationEnabled(true);
 
     }    
 

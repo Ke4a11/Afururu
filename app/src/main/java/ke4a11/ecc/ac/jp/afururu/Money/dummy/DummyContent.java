@@ -16,11 +16,21 @@ public DummyItem
  * 一番初めの読み込み時のみ実行されるので、ボタンを押した時の処理などはない。
  * Money_ListのmAdapterの引数であるDummyContent.Itemからこのjavaが実行される。
  *
+ * DummyContentクラスの中にDummyItemのクラスを持っている。
+ *
+ * DummyContentのフィールドのITEMS は DummyItemクラスのフィールドの値を入れている。
+ *
  * （予想）
  * createDummyItemメソッドの中で実行されるたびに
  * new DummyItem をしているので添字（item.id）さえ分かれば他の変数 content と detail は自動的に分かる
  */
 public class DummyContent {
+
+    public static String[] dummy_payout;
+    public static String[] dummy_category;
+    public static String[] dummy_shop;
+    public static String[] dummy_memo;
+
 
     //Genericsという技List<ここのこと> 初めからその型でデータを持つという宣言
     public static List<DummyItem> ITEMS = new ArrayList<DummyItem>();
@@ -33,7 +43,7 @@ public class DummyContent {
     実際には、showDatabaseで行っているqueryメソッド実行の例を
     メソッド化して、結果を配列に格納。それをなんとかして、このカウントに入れる。（配列名[].length）
      */
-    private static final int COUNT = 10;
+    private static final int COUNT = dummy_payout.length;
 
     //まずアイテムの表示コード、addItem.createDummy,makeDetailメソッド全て使う
     static {
@@ -78,7 +88,7 @@ public class DummyContent {
         public String details;
 
         //この引数を家計簿に必要なものと合わせる。
-        //メモ,店名：String 金額：int
+        //メモ,店名,カテゴリ：String 金額：int
         public DummyItem(String id, String content, String details) {
             this.id = id;
             this.content = content;

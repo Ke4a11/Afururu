@@ -93,30 +93,6 @@ public class _SettingTop extends Fragment {
             }
         });
     }
-        MyOpenHelper helper = new MyOpenHelper(getContext());
-        final SQLiteDatabase db = helper.getWritableDatabase();
-        final EditText nameText = (EditText) getActivity().findViewById(R.id.editName);
-        final EditText ageText = (EditText) getActivity().findViewById(R.id.editAge);
-
-        Button entryButton = (Button) getActivity().findViewById(R.id.insert);
-        entryButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                ContentValues insertValues = new ContentValues();
-                insertValues.put("name", name);
-                insertValues.put("age", age);
-                long id = db.insert("person", name, insertValues);
-            }
-        });
-        Button updateButton = (Button) getActivity().findViewById(R.id.update);
-        updateButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                if (name.equals("")) {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

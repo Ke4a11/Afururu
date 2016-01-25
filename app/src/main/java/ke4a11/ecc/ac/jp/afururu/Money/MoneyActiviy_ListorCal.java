@@ -71,6 +71,11 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
                     ft.commit();
                 } else if (spinner.getSelectedItemPosition() == 1) {
                     //リスト表示
+
+                    /*
+                    ここにDummyContentで使う配列を打ち込む
+                     */
+
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
@@ -84,8 +89,36 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        /*
 
 
+        MyOpenHelper helper = new MyOpenHelper(this);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        // queryメソッドの実行例
+        //query(String テーブル名, String[] カラム, String whereの値, String[] whereの配列, String groupBy, String having, String orderBy)
+        Cursor c = db.query("person", new String[] { "name", "age" }, null, null, null, null, null);
+        boolean mov = c.moveToFirst();
+
+        while (mov) {
+            TextView textView = new TextView(this);
+            textView.setText(String.format("%s : %s", c.getString(0),
+                    c.getString(1)));
+            mov = c.moveToNext();
+            layout.addView(textView);
+        }
+
+        c.close();
+        db.close()
+
+
+         */
     }
 
     //Money_Listのアイテムのクリックをリスナーが感知したら？

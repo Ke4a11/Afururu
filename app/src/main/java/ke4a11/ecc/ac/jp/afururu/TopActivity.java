@@ -55,8 +55,8 @@ public class TopActivity extends AppCompatActivity {
         });
 
         //サービスの起動
-        Intent i = new Intent(this,ServiceMoneyExchange.class);
-        startService(i);
+        //Intent i = new Intent(this,ServiceMoneyExchange.class);
+        //startService(i);
     }
 
     //タブ作成メソッド
