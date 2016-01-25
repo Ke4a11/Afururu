@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="fill_parent" android:orientation="vertical" tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Input"
+    android:weightSum="1">
+
+
+
+    <TextView android:layout_width="match_parent" android:layout_height="50dp"
+        android:text="0"
+        android:textSize="30dp"
+        android:gravity="right"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.78">
+        <!--Dateを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            　　
+
+            <!--日付label-->
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:text="Date"
+                android:id="@+id/date"
+                android:gravity="center"
+                android:layout_weight="0.43"
+                android:textSize="25dp" />
+
+            <!--日付TextView-->
+            <TextView
+                android:layout_width="321dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/dateText"
+                android:clickable="true"
+                android:textSize="30dp" />
+
+
+        </LinearLayout>
+
+        <!--Categoryを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:text="Category"
+                android:id="@+id/category"
+                android:textSize="25dp"
+                android:gravity="center" />
+
+            <Spinner android:id="@+id/categorySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </Spinner>
+
+        </LinearLayout>
+        <!--Shopを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="99dp"
+                android:layout_height="70dp"
+                android:text="Shop"
+                android:id="@+id/shop"
+                android:textSize="25dp"
+                android:gravity="center" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/shopEdit"
+                android:inputType="text"
+                android:maxLength="20"/>
+
+        </LinearLayout>
+
+        <!--Memoを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="96dp"
+                android:layout_height="70dp"
+                android:text="Memo"
+                android:id="@+id/memo"
+                android:textSize="25dp"
+                android:gravity="center" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/memoEdit"
+                android:inputType="text"
+                android:maxLength="20"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="登録"
+            android:id="@+id/addButton"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DB確認！"
+            android:id="@+id/showButton" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
