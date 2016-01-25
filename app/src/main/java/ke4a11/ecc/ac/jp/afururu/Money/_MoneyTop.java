@@ -3,6 +3,7 @@ package ke4a11.ecc.ac.jp.afururu.Money;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -11,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
@@ -26,7 +27,6 @@ import ke4a11.ecc.ac.jp.afururu.R;
  * /£は 配列に文字列として様々な通貨単位を入れて
  *  moneySpinerの方で値を変えた時に、一緒にintの値を変えてそれを配列の添字にする？
  *
- *  画面遷移時にカレンダーが出てくる。レイアウトファイルがおかしい？
  *
  */
 public class _MoneyTop extends Fragment {
@@ -36,14 +36,20 @@ public class _MoneyTop extends Fragment {
     private TextView mView;
     //設定で選択された国
     private String moneySpinner ="gbp";
+    //残金ビュー
+    private TextView balanceView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_money_top, container, false);
 
-        //為替のデータ入力先変数
+        //残金ビューの生成
+        balanceView = (TextView) view.findViewById(R.id.balance);
+
+        //為替ビューの生成
         mView = (TextView)view.findViewById(R.id.rate);
 
         //持ってくる為替の指定
@@ -54,7 +60,7 @@ public class _MoneyTop extends Fragment {
 
         //ネットに繋がっているなら為替を持ってくる
         if(netWorkCheck(getContext().getApplicationContext())){
-            getcsv();
+        //    getcsv();
         }
 
         //ボタン作成
@@ -69,11 +75,6 @@ public class _MoneyTop extends Fragment {
         exchangeButton.setOnClickListener(new ChangeView());
         settingButton.setOnClickListener(new ChangeView());
 
-
-        //Balanceの値をSettingより持ってくる
-        TextView balance = (TextView) view.findViewById(R.id.balance);
-        String a = Money_Setting.set_balance;
-        balance.setText("£" + Money_Setting.set_balance);
 
         return view;
     }
@@ -101,6 +102,43 @@ public class _MoneyTop extends Fragment {
                 startActivity(i);
             }
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getContext(),"Top onStart",Toast.LENGTH_SHORT).show();
+
+        //残金読み込み
+        balanceView.setText(getBalance());
+
+        //為替の再読みこみ
+        if(moneySpinner != null){
+            moneySpinner = Money_Setting.selectedSpinner;
+        }
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(),"Top onResume",Toast.LENGTH_SHORT).show();
+    }
+
+    /***
+     * Activityが「onPause」になった場合や、Fragmentが変更更新されて操作を受け付けなくなった場合に呼び出される
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        Toast.makeText(getContext(),"Top onPause",Toast.LENGTH_SHORT).show();
+    }
+
+    //Settingで編集した今月の使う金を返す
+    public String getBalance(){
+        SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE );
+        int a = sp.getInt("balance", -1);
+        return String.valueOf(a);
     }
 
     //ネットに繋がっているかチェックするメソッド

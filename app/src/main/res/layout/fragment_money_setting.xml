@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Setting">
@@ -14,9 +14,26 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100"
-        android:id="@+id/editText"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:ems="5"
+        android:inputType="number"
+        android:id="@+id/edit_balanceMoney"
+        android:layout_below="@+id/MoneySpinner" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新"
+        android:id="@+id/updatebtn"
+        android:layout_below="@+id/edit_balanceMoney" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="初期化"
+        android:id="@+id/resetbtn"
+        android:layout_below="@+id/updatebtn" />
 
 
-</FrameLayout>
+</RelativeLayout>

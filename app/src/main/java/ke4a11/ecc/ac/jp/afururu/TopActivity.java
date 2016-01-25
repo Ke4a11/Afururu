@@ -46,13 +46,17 @@ public class TopActivity extends AppCompatActivity {
                 //        .setAction("Action", null).show();
 
                 //calc 画面の呼び出し
-                Intent i = new Intent(getApplicationContext(),Money_Calc.class);
+                Intent i = new Intent(getApplicationContext(), Money_Calc.class);
                 startActivity(i);
                 //animationの設定 styleに記述 manifestではなく、コードで指定
                 overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
 
             }
         });
+
+        //サービスの起動
+        Intent i = new Intent(this,ServiceMoneyExchange.class);
+        startService(i);
     }
 
     //タブ作成メソッド

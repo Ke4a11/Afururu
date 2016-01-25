@@ -1,6 +1,9 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,12 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-
+import android.widget.Toast;
 
 import ke4a11.ecc.ac.jp.afururu.R;
+
+/*
+* *****簡単な説明*****
+* preferenceを使っているが、値は上書き更新される
+*
+*
+ */
 
 public class Money_Setting extends Fragment {
 
@@ -21,10 +31,14 @@ public class Money_Setting extends Fragment {
 
     private Spinner spinner;
 
+    //今月使う金額の入力
+    private EditText edit_balance;
+
     //為替のURLに渡すString型の配列
     private final String[] rateName = {"gbp","eur","usd"};
 
-    public static String set_balance = "0";
+    //更新ボタン
+    private Button updatebtn;
 
     public Money_Setting() {
         // Required empty public constructor
@@ -33,12 +47,54 @@ public class Money_Setting extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_money_setting, container, false);
 
-        //今月の残金を代入
-        TextView edit_balance = (TextView)view.findViewById(R.id.editText);
-        set_balance = edit_balance.getText().toString();
+        //保存
+        edit_balance = (EditText)view.findViewById(R.id.edit_balanceMoney);
+
+        //更新ボタンを押した時内容が変わっていれば更新する
+        updatebtn = (Button)view.findViewById(R.id.updatebtn);
+        updatebtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //入力した値を保持するため
+                edit_balance.setText(edit_balance.getText().toString());
+
+                //コードが長くなるため、一時的にbalanceの値を保持する変数
+                int tmp_balance = Integer.parseInt(edit_balance.getText().toString());
+
+                //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
+                SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE);
+                // プリファレンスに書き込むためのEditorオブジェクト取得
+                Editor editor = sp.edit();
+                // "balance" というキーで名前を登録
+                editor.putInt("balance", tmp_balance);
+
+                /*
+                他に追加 の設定があればここに記述
+                 */
+
+                // 書き込みの確定（実際にファイルに書き込む）
+                editor.commit();
+
+
+                Toast.makeText(getContext(),"更新完了しました！",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //preference の値を全て解放する
+        Button resetbtn = (Button)view.findViewById(R.id.resetbtn);
+        resetbtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
+                SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE);
+                sp.edit().clear().commit();
+            }
+        });
+
+
 
         //spinner用のアダプターを作成
         ArrayAdapter<String> ad = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item);
@@ -58,9 +114,6 @@ public class Money_Setting extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //選択されたレートから、為替に渡す配列を決める
                 selectedSpinner = rateName[spinner.getSelectedItemPosition()];
-
-                //selectedSpinner = (String)spinner.getSelectedItem();
-                //Toast.makeText(getContext(),Integer.toString(spinner.getSelectedItemPosition()),Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -69,6 +122,12 @@ public class Money_Setting extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getContext(), "Setting onStart", Toast.LENGTH_SHORT).show();
     }
 
     public static Money_Setting newInstance() {

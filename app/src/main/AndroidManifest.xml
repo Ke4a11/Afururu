@@ -76,9 +76,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Money.MoneyShowDatabase"
-            android:label="@string/title_activity_show_data_base"/>
+        <activity
+            android:name=".Money.MoneyShowDatabase"
+            android:label="@string/title_activity_show_data_base" />
 
+        <service
+            android:name=".Money.ServiceMoneyExchange"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

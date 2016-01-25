@@ -18,12 +18,13 @@ public class ShowDataBase extends Activity {
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         setContentView(layout);
+
         MyOpenHelper helper = new MyOpenHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         // queryメソッドの実行例
-        Cursor c = db.query("person", new String[] { "name", "age" }, null,
-                null, null, null, null);
+        //query(String テーブル名, String[] カラム, String whereの値, String[] whereの配列, String groupBy, String having, String orderBy)
+        Cursor c = db.query("person", new String[] { "name", "age" }, null, null, null, null, null);
         boolean mov = c.moveToFirst();
 
         while (mov) {

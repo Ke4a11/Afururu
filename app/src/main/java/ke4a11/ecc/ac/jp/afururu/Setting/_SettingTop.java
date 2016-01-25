@@ -18,9 +18,7 @@ import android.view.ViewGroup;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class _SettingTop extends Fragment {
 
     public void onStart() {
@@ -30,6 +28,7 @@ public class _SettingTop extends Fragment {
         final SQLiteDatabase db = helper.getWritableDatabase();
         final EditText nameText = (EditText) getActivity().findViewById(R.id.editName);
         final EditText ageText = (EditText) getActivity().findViewById(R.id.editAge);
+
         Button entryButton = (Button) getActivity().findViewById(R.id.insert);
         entryButton.setOnClickListener(new OnClickListener() {
             @Override

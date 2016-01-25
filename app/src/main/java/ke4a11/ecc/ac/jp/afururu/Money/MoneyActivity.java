@@ -1,5 +1,6 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,6 @@ public class MoneyActivity extends AppCompatActivity {
         }else if(_MoneyTop.moneyFlg.equals("set")){
             ToMoney_Setting();
         }
-
     }
 
     //added
