@@ -1,6 +1,7 @@
 package ke4a11.ecc.ac.jp.afururu.English;
 
-
+import java.util.Locale;
+import java.util.Queue;
 import android.content.Intent;
 import android.os.Bundle;
 //FragmentPagerAdapter で使うために supportlibrary の fragment を使用
@@ -11,11 +12,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.content.Context;
+import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.util.Log;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
 public class _EnglishTop extends Fragment {
 
+    private TextToSpeech    tts;
+    private Button buttonSpeech;
 
     public _EnglishTop() {
 
@@ -41,6 +53,7 @@ public class _EnglishTop extends Fragment {
         engschButton.setOnClickListener(new ChangeView());
         emeButton.setOnClickListener(new ChangeView());
         teiButton.setOnClickListener(new ChangeView());
+
 
         return view;
     }

@@ -315,7 +315,6 @@ public class Eng_Text {
                     "ここは私の席だと思うのですが。",
                     "次の駅はなんですか？",
 
-
             };
 
     public static final String[] DIALOG_electrictrain =

@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:background="?android:attr/detailsElementBackground"
         >
-
     </FrameLayout>
 
 </LinearLayout>
