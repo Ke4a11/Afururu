@@ -2,6 +2,8 @@ package ke4a11.ecc.ac.jp.afururu.Map;
 
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -38,12 +40,12 @@ public class _MapTop extends Fragment {
     private static View view;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
-    public static _MapTop newInstance() {
-        _MapTop fragment = new _MapTop();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
-    }
+//    public static _MapTop newInstance() {
+//        _MapTop fragment = new _MapTop();
+//        Bundle args = new Bundle();
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
 
     private MapView mview;
     MapController MapCtrl;
@@ -69,6 +71,10 @@ public class _MapTop extends Fragment {
                 onGetLocation(v);
             }
         });
+
+
+
+
     }
 
 
@@ -129,7 +135,7 @@ public class _MapTop extends Fragment {
             }
         }
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-33.87365, 151.20689), 14.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(34.7, 135.504), 14.0f));
     }
 
     private void setUpMap() {
@@ -156,13 +162,37 @@ public class _MapTop extends Fragment {
         mMap.addMarker(options);
 
 
+        String search_key = getaddress();
+        Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
+        int maxResults = 1;
+        List<Address> lstAddr;
+        try {
+            // 位置情報の取得
+            lstAddr = gcoder.getFromLocationName(search_key,maxResults);
+            if (lstAddr != null && lstAddr.size() > 0) {
+                // 緯度/経度取得
+                Address setaddr = lstAddr.get(0);
+                double setlatitude = setaddr.getLatitude();
+                double setlongitude = setaddr.getLongitude();
+                LatLng setaddress = new LatLng(setlatitude,setlongitude);
+                options.position(setaddress);
+                options.title(getaddress());
+                mMap.addMarker(options);
 
-
-
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 
 
 
     }
 
+    public String getaddress(){
+        SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE );
+        String a = sp.getString("address","大阪市北区中崎西");
+        return a;
+    }
 }
