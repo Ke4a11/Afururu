@@ -27,6 +27,17 @@ import ke4a11.ecc.ac.jp.afururu.R;
 * 来月、先月を押した時に
 * 借りで入れた値が次の月にも適用されるのでなんとかするのと、
 * その月の日にちが見にくい
+*
+*
+* ＊＊＊＊＊文字列比較＊＊＊＊＊
+* http://www.itmedia.co.jp/enterprise/articles/0407/12/news003.html
+*
+* データベースで取り出して配列に比較をかけ、あったものだけ自分の配列に入れて表示時にそれを使う
+* カレンダーと同じ形の配列を用意してお金の入力があった時だけ同じ値に要素を入れる。
+*コード例）
+* String[][] matchesDB = new String[6][7];
+*
+*
 */
 
 public class Money_Calendar extends Fragment {

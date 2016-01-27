@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
@@ -26,6 +27,7 @@ TODO
  */
 
 public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
                     .add(R.id.item_detail_container, fragment)
                     .commit();
         }
+
     }
 
     @Override

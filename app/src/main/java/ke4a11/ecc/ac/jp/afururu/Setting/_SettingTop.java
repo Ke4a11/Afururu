@@ -1,7 +1,9 @@
 package ke4a11.ecc.ac.jp.afururu.Setting;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -17,88 +19,46 @@ import android.view.ViewGroup;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class _SettingTop extends Fragment {
-
-    public void onStart() {
-        super.onStart();
-
-        MyOpenHelper helper = new MyOpenHelper(getContext());
-        final SQLiteDatabase db = helper.getWritableDatabase();
-        final EditText nameText = (EditText) getActivity().findViewById(R.id.editName);
-        final EditText ageText = (EditText) getActivity().findViewById(R.id.editAge);
-        Button entryButton = (Button) getActivity().findViewById(R.id.insert);
-        entryButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                ContentValues insertValues = new ContentValues();
-                insertValues.put("name", name);
-                insertValues.put("age", age);
-                long id = db.insert("person", name, insertValues);
-            }
-        });
-        Button updateButton = (Button) getActivity().findViewById(R.id.update);
-        updateButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                if (name.equals("")) {
-
-                    Toast.makeText(getActivity(), "名前を入力してください。", Toast.LENGTH_SHORT).show();
-                } else {
-                    ContentValues updateValues = new ContentValues();
-                    updateValues.put("age", age);
-                    db.update("person", updateValues, "name=?", new String[]{name});
-                }
-            }
-        });
-
-        Button deleteButton = (Button) getActivity().findViewById(R.id.delete);
-        deleteButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                if (name.equals("")) {
-                    Toast.makeText(getActivity(), "名前を入力してください。",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    db.delete("person", "name=?", new String[]{name});
-                }
-            }
-        });
-
-        Button deleteAllButton = (Button) getActivity().findViewById(R.id.deleteAll);
-        deleteAllButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = nameText.getText().toString();
-                String age = ageText.getText().toString();
-                db.delete("person", null, null);
-            }
-        });
-
-        Button detaBaseButton = (Button) getActivity().findViewById(R.id.dataBase);
-        detaBaseButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dbIntent = new Intent(getActivity(),
-                        ShowDataBase.class);
-                startActivity(dbIntent);
-            }
-        });
-    }
+    //更新ボタン
+    Button updatebtn;
+    //住所のテキスト
+    EditText address_et;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setting_top, container, false);
+        View view = inflater.inflate(R.layout.fragment_setting_top, container, false);
+
+        address_et = (EditText)view.findViewById(R.id.editAge);
+
+        //更新ボタン
+        updatebtn = (Button)view.findViewById(R.id.update);
+        updatebtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //コードが長くなるため、一時的にbalanceの値を保持する変数
+                String tmp_address = address_et.getText().toString();
+
+                //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
+                SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
+                // プリファレンスに書き込むためのEditorオブジェクト取得
+                SharedPreferences.Editor editor = sp.edit();
+                // "address" というキーで名前を登録
+                editor.putString("address", tmp_address);
+
+                /*
+                他に追加 の設定があればここに記述
+                 */
+
+                // 書き込みの確定（実際にファイルに書き込む）
+                editor.commit();
+
+            }
+        });
+
+        return view;
+
     }
 
 }

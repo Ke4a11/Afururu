@@ -1,6 +1,8 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 //Import package
 
+import ke4a11.ecc.ac.jp.afururu.Money.dummy.DummyContent;
 import ke4a11.ecc.ac.jp.afururu.R;
 
 
@@ -40,6 +43,13 @@ import ke4a11.ecc.ac.jp.afururu.R;
 public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_List.OnFragmentInteractionListener{
 
     private Spinner spinner;
+
+    //追加予定のやつ
+    //private String[] DB_SELECTED_payout;
+    public String[] DB_SELECTED_date;
+    public String[] DB_SELECTED_shop;
+    public String[] DB_SELECTED_category;
+    public String[] DB_SELECTED_memo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +82,9 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
                 } else if (spinner.getSelectedItemPosition() == 1) {
                     //リスト表示
 
-                    /*
-                    ここにDummyContentで使う配列を打ち込む
-                     */
+                    //クラスロードのためインスタンス生成している
+                    //DummyContentで使用できるように設定する
+                    DummyContent dummyContent = new DummyContent(DB_SELECTED_date,DB_SELECTED_shop,DB_SELECTED_category,DB_SELECTED_memo);
 
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
@@ -95,30 +105,43 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     protected void onStart(){
         super.onStart();
 
-        /*
-
-
-        MyOpenHelper helper = new MyOpenHelper(this);
+        MoneyOpenHelper helper = new MoneyOpenHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
         // queryメソッドの実行例
-        //query(String テーブル名, String[] カラム, String whereの値, String[] whereの配列, String groupBy, String having, String orderBy)
-        Cursor c = db.query("person", new String[] { "name", "age" }, null, null, null, null, null);
+        Cursor c = db.query("ecc", new String[] { "date","shop", "category","memo"}, null,
+                null, null, null, null);
         boolean mov = c.moveToFirst();
 
+        //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
+        String[] date = new String[c.getCount()];
+        String[] shop = new String[c.getCount()];
+        String[] category = new String[c.getCount()];
+        String[] memo = new String[c.getCount()];
+
+
+        //selectで得た結果を配列に入れて、それをDummyContentのstaticに打ち込む準備
+        int i = 0;
         while (mov) {
-            TextView textView = new TextView(this);
-            textView.setText(String.format("%s : %s", c.getString(0),
-                    c.getString(1)));
+
+            date[i] = c.getString(0);
+            shop[i] = c.getString(1);
+            category[i] = c.getString(2);
+            memo[i] = c.getString(3);
+
+            i++;
+
             mov = c.moveToNext();
-            layout.addView(textView);
         }
 
+        //String[] DB_SELECTED_date 初期値を設定していないとnull array? になり値を代入できないので、こういう形になっている。
+        DB_SELECTED_date = date;
+        DB_SELECTED_shop = shop;
+        DB_SELECTED_category = category;
+        DB_SELECTED_memo = memo;
+
         c.close();
-        db.close()
-
-
-         */
+        db.close();
     }
 
     //Money_Listのアイテムのクリックをリスナーが感知したら？
@@ -133,10 +156,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
         detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
         startActivity(detailIntent);
-
     }
-
-
 
     //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
     public void testToast(View view){

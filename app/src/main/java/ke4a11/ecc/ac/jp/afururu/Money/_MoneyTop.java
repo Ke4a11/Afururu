@@ -115,6 +115,7 @@ public class _MoneyTop extends Fragment {
         //為替の再読みこみ
         if(moneySpinner != null){
             moneySpinner = Money_Setting.selectedSpinner;
+            getcsv();
         }
     }
 
