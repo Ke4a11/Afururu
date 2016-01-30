@@ -23,7 +23,7 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
     private HttpClient hClient;
     private HttpGet hGetMethod;
     private _MoneyTop moneyTop;
-
+/*
     private ServiceMoneyExchange serviceMoneyExchange;
 
     public AsynCsv(ServiceMoneyExchange service){
@@ -31,7 +31,7 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
         hClient = new DefaultHttpClient();
         hGetMethod = new HttpGet();
     }
-
+*/
     // コンストラクタ
     public AsynCsv(_MoneyTop fragment){
         moneyTop = fragment;

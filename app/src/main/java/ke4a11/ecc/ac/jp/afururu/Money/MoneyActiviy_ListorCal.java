@@ -1,6 +1,8 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,8 @@ import android.widget.Toast;
 //Import package
 
 import ke4a11.ecc.ac.jp.afururu.R;
+
+import ke4a11.ecc.ac.jp.afururu.Money.dummy.DummyContent;
 
 
 /*
@@ -37,9 +41,17 @@ import ke4a11.ecc.ac.jp.afururu.R;
 *
 * */
 
+
 public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_List.OnFragmentInteractionListener{
 
     private Spinner spinner;
+
+    //追加予定のやつ
+    //private String[] DB_SELECTED_payout;
+    public String[] DB_SELECTED_date;
+    public String[] DB_SELECTED_shop;
+    public String[] DB_SELECTED_category;
+    public String[] DB_SELECTED_memo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +83,11 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
                     ft.commit();
                 } else if (spinner.getSelectedItemPosition() == 1) {
                     //リスト表示
+
+                    //クラスロードのためインスタンス生成している
+                    //DummyContentで使用できるように設定する
+                    DummyContent dummyContent = new DummyContent(DB_SELECTED_date,DB_SELECTED_shop,DB_SELECTED_category,DB_SELECTED_memo);
+
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
@@ -84,8 +101,49 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        MoneyOpenHelper helper = new MoneyOpenHelper(this);
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        // queryメソッドの実行例
+        Cursor c = db.query("ecc", new String[] {"id","date","shop", "category","memo","price"}, null,
+                null, null, null, null);
+        boolean mov = c.moveToFirst();
+
+        //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
+        String[] date = new String[c.getCount()];
+        String[] shop = new String[c.getCount()];
+        String[] category = new String[c.getCount()];
+        String[] memo = new String[c.getCount()];
 
 
+        //selectで得た結果を配列に入れて、それをDummyContentのstaticに打ち込む準備
+        int i = 0;
+        while (mov) {
+
+            date[i] = c.getString(1);
+            shop[i] = c.getString(2);
+            category[i] = c.getString(3);
+            memo[i] = c.getString(4);
+
+            i++;
+
+            mov = c.moveToNext();
+        }
+
+        //String[] DB_SELECTED_date 初期値を設定していないとnull array? になり値を代入できないので、こういう形になっている。
+        DB_SELECTED_date = date;
+        DB_SELECTED_shop = shop;
+        DB_SELECTED_category = category;
+        DB_SELECTED_memo = memo;
+
+        c.close();
+        db.close();
     }
 
     //Money_Listのアイテムのクリックをリスナーが感知したら？
@@ -100,10 +158,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
         detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
         startActivity(detailIntent);
-
     }
-
-
 
     //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
     public void testToast(View view){

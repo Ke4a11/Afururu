@@ -1,12 +1,16 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ke4a11.ecc.ac.jp.afururu.R;
@@ -17,6 +21,9 @@ public class Money_ListorCal_Detail extends Fragment {
      *
      */
     public static final String ARG_ITEM_ID = "item_id";
+
+
+    Button upbtn;
 
     /**
      * クラスの指定
@@ -36,6 +43,7 @@ public class Money_ListorCal_Detail extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         //受け取った時に、ArgumentsにARG_ITEM_IDが入っているかチェックしてアプリが落ちるのを防ぐ。（なければ実行されない）
         if (getArguments().containsKey(ARG_ITEM_ID)) {
 
@@ -46,8 +54,9 @@ public class Money_ListorCal_Detail extends Fragment {
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
+                appBarLayout.setTitle("履歴の詳細");
             }
+
         }
     }
 
@@ -56,10 +65,40 @@ public class Money_ListorCal_Detail extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_money_listorcal_detail, container, false);
 
+        //moneyinputのボタンをとるための
+        final View inputView = inflater.inflate(R.layout.activity_money_input,container,false);
+
         //ちなみにxmlファイルはテキストビューのみ
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
+            ((TextView) rootView.findViewById(R.id.item_detail_date)).setText(mItem.date);
+            ((TextView) rootView.findViewById(R.id.item_detail_shop)).setText(mItem.shop);
+            ((TextView) rootView.findViewById(R.id.item_detail_category)).setText(mItem.category);
+            ((TextView) rootView.findViewById(R.id.item_detail_memo)).setText(mItem.memo);
+
         }
+
+        upbtn = (Button)rootView.findViewById(R.id.update_DB);
+        upbtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+               /*消すために試してみたやつ
+               Button btn=(Button)inputView.findViewById(R.id.addButton);
+                btn.setOnClickListener(this);
+                btn.setText("kokoko");
+                btn.setEnabled(false);*/
+
+                int a = Integer.parseInt(mItem.id);
+                Intent i = new Intent(getContext(),MoneyInputActivity.class);
+                i.putExtra("position", a);
+                startActivity(i);
+
+
+
+            }
+
+        });
 
         return rootView;
     }
