@@ -182,7 +182,7 @@ public class MoneyInputActivity extends AppCompatActivity {
         final TextView dateText = (TextView)findViewById(R.id.dateText);
         Time time = new Time("Asia/Tokyo");
         time.setToNow();
-        String date = time.year + "年" + (time.month+1) + "月" + time.monthDay + "日　";
+        String date = time.year + "/" + (time.month+1) + "/" + time.monthDay;
         dateText.setText(date);
         //押したときカレンダー表示
         dateText.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +192,7 @@ public class MoneyInputActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(MoneyInputActivity.this,new DatePickerDialog.OnDateSetListener() {
                     	public void onDateSet(DatePicker picker,	int year, int month,int day) {
-                        	dateText.setText(year + "年" + (month+1) + "月" + day + "日");
+                        	dateText.setText(year + "/" + (month+1) + "/" + day);
                      }
                }
                       ,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)

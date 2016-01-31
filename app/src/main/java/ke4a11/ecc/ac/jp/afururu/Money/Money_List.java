@@ -35,7 +35,7 @@ import ke4a11.ecc.ac.jp.afururu.Money.dummy.DummyContent;
 /*
 * *****簡単な説明*****
 * File>new>Fragment(List)選択で初期メソッドをほぼそのまま使用
-*
+*DummyContentのDummyItemクラスでreturn dateをしているのでITEMフィールドにdateが保持されている。それをArrayListで表示してるため日付が出てくる
 *
 * */
 

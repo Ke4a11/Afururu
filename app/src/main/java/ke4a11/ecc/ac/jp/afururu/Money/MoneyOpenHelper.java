@@ -11,7 +11,7 @@ public class MoneyOpenHelper extends SQLiteOpenHelper {
 
 
         public MoneyOpenHelper(Context context) {
-            super(context, "ShopMemoDB3", null, 2);
+            super(context, "InputPay", null, 2);
         }
 
         @Override

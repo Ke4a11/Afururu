@@ -34,16 +34,19 @@ public class DummyContent {
 
     //コンストラクタ
     public DummyContent(String[] a, String[] b, String[] c, String[] d){
+        ITEM_MAP.clear();   //値重複を防ぐため
+        ITEMS.clear();
+
         dummy_date = a;
         dummy_shop = b;
         dummy_category = c;
         dummy_memo = d;
 
-        for (int i = 1; i <= dummy_date.length -1; i++) {
+        for (int i = 0; i <= dummy_date.length -1; i++) {
             addItem(createDummyItem(i));
         }
 
-        dummy_date = null;
+        dummy_date = null;  //値重複を防ぐため
         dummy_shop = null;
         dummy_category = null;
         dummy_memo = null;
@@ -81,10 +84,6 @@ public class DummyContent {
         //return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
         return new DummyItem(String.valueOf(position), dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position]);
 
-        /*
-        makeDetailメソッドは押した場所（position）の分だけ繰り返される。
-
-         */
     }
 
     /**

@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,18 +60,16 @@ public class _MoneyTop extends Fragment {
 
         //ネットに繋がっているなら為替を持ってくる
         if(netWorkCheck(getContext().getApplicationContext())){
-        //    getcsv();
+            getcsv();
         }
 
         //ボタン作成
-        ImageButton calenderButton = (ImageButton)view.findViewById(R.id.calenderButton);
-        ImageButton graphButton =(ImageButton)view.findViewById(R.id.graphButton);
-        ImageButton exchangeButton =(ImageButton)view.findViewById(R.id.exchangeButton);
-        ImageButton settingButton = (ImageButton)view.findViewById(R.id.settingButton);
+        Button calenderButton = (Button)view.findViewById(R.id.calendarButton);
+        Button exchangeButton =(Button)view.findViewById(R.id.exchangeButton);
+        Button settingButton = (Button)view.findViewById(R.id.settingButton);
 
         //リスナー設定
         calenderButton.setOnClickListener(new ChangeView());
-        graphButton.setOnClickListener(new ChangeView());
         exchangeButton.setOnClickListener(new ChangeView());
         settingButton.setOnClickListener(new ChangeView());
 
@@ -82,10 +80,8 @@ public class _MoneyTop extends Fragment {
     //リスナーボタン押下時処理
     class ChangeView implements OnClickListener {
         public void onClick(View v){
-            if (v == getView().findViewById(R.id.calenderButton)) {
+            if (v == getView().findViewById(R.id.calendarButton)) {
                 moneyFlg = "cal";
-            }else if (v == getView().findViewById(R.id.graphButton)){
-                moneyFlg = "gra";
             }else if(v == getView().findViewById(R.id.exchangeButton)){
                 moneyFlg = "exc";
             }else if(v == getView().findViewById(R.id.settingButton)){
@@ -115,7 +111,10 @@ public class _MoneyTop extends Fragment {
         //為替の再読みこみ
         if(moneySpinner != null){
             moneySpinner = Money_Setting.selectedSpinner;
-            getcsv();
+            //ネットに繋がっていたら
+            if(netWorkCheck(getContext().getApplicationContext())){
+                getcsv();
+            }
         }
     }
 
@@ -123,7 +122,7 @@ public class _MoneyTop extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(),"Top onResume",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"Top onResume",Toast.LENGTH_SHORT).show();
     }
 
     /***
@@ -132,7 +131,7 @@ public class _MoneyTop extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Toast.makeText(getContext(),"Top onPause",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"Top onPause",Toast.LENGTH_SHORT).show();
     }
 
     //Settingで編集した今月の使う金を返す

@@ -1,6 +1,7 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,11 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import ke4a11.ecc.ac.jp.afururu.Money.dummy.DummyContent;
 import ke4a11.ecc.ac.jp.afururu.R;
 
 /*TODO
@@ -40,6 +44,15 @@ import ke4a11.ecc.ac.jp.afururu.R;
 *
 */
 
+/*
+* *****簡単な説明*****
+* コードの書き方が悪いのか、表示の部分をメソッド化できず
+* 先月・来月ボタンを押すと同じコードを描いてある。
+*
+* ArrayListの使い方はMoneyActivity_ListorCal周辺をみるといい
+*
+ */
+
 public class Money_Calendar extends Fragment {
 
     //フィールど
@@ -53,13 +66,18 @@ public class Money_Calendar extends Fragment {
     int showmonth=0;
 
     TextView txYM;
-    Button prevMonth;
-    Button nextMonth;
+    Button prevMonth,nextMonth;
+
+    //DateItemクラスが持っているカレンダーの情報がある
+    List<DateItem> DATEITEMS = new ArrayList<DateItem>();
+
+    //今月だけ表示のためのフラグ
+    Boolean calFlg = true;
 
     MCalendar mCalendar;
 
     public Money_Calendar() {
-
+        set_cal_info();
     }
 
     public static Money_Calendar newInstance() {
@@ -104,28 +122,67 @@ public class Money_Calendar extends Fragment {
                 }
                 num1++;
 
-                //ユーザが入力した値があったとした仮定
-                String a = "test";
-
                 resId = getResources().getIdentifier(name, "id", getActivity().getPackageName());
                 TextView textView1 = (TextView)v.findViewById(resId);
 
                 //テキストビューの背景を白色にして、画面自体の背景色と変えることで枠線があるように見せる
                 textView1.setBackgroundColor(Color.WHITE);
                 textView1.setHeight(100);
+                //textView1.setTextColor(Color.BLACK);
 
                 //日付のケタ数
                 len = Integer.toString(calendarMatrix[i][j]).length();
 
                 if (len == 1){
                     textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n");
+                    calFlg = false;//始めの一桁
                 }else{
                     textView1.setText(String.valueOf(calendarMatrix[i][j])  + "\n" + "\n");
+                    calFlg = true;
                 }
 
-                //testで値を入れている
-                if(name.equals("txDay14") && a != null){
-                    textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + a);
+                //確実に31日以降ならば白色にする
+                if (i == 5 && j > 2){
+                    textView1.setTextColor(Color.WHITE);
+                }else if(i == 0 && calFlg){
+                    //始めの１日が出るまでは真っ白
+                    textView1.setTextColor(Color.WHITE);
+                }else if (i > 3 && !calFlg){
+                    //来月の１日からは真っ白
+                    textView1.setTextColor(Color.WHITE);
+                }
+
+                /*
+                入力された値があった場合にtextviewに表示する
+                 */
+
+                String testdata = null;
+                String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
+
+                for (int n =0; n < DATEITEMS.size(); n++){
+                    //一度変数に入れないとifを全く受け付けなかったため
+                    int year = DATEITEMS.get(n).year;
+                    int month = DATEITEMS.get(n).month;
+                    String day = DATEITEMS.get(n).day;
+                    //最初のifに日にちまで入れると一行が長くなる上、読みにくくなる。何より変わらないと思うが、二つ目のifである日にちの比較に時間がかかりそう（適当）
+                    if (year ==showyear && month == showmonth){
+                        if (day.equals(date)){
+                            //同じ日にちの値をどうするか検討しなくてはいけない
+                            testdata = DummyContent.ITEMS.get(n).id;
+                        }
+                    }
+                }
+
+
+                if(testdata != null){
+                    textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
+                    textView1.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(),MoneyInputActivity.class);
+                            startActivity(i);
+                        }
+                    });
                     //textView1.setTextSize(10);
                 }
             }
@@ -161,28 +218,62 @@ public class Money_Calendar extends Fragment {
                         }
                         num1++;
 
-                        //ユーザが入力した値があったとした仮定
-                        String a = "test";
-
                         resId = getResources().getIdentifier(name, "id", getActivity().getPackageName());
                         TextView textView1 = (TextView)getView().findViewById(resId);
 
                         //テキストビューの背景を白色にして、画面自体の背景色と変えることで枠線があるように見せる
                         textView1.setBackgroundColor(Color.WHITE);
                         textView1.setHeight(100);
+                        textView1.setTextColor(Color.BLACK);
 
                         //日付のケタ数
                         len = Integer.toString(calendarMatrix[i][j]).length();
 
                         if (len == 1){
                             textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n");
+                            calFlg = false;
                         }else{
                             textView1.setText(String.valueOf(calendarMatrix[i][j])  + "\n" + "\n");
+                            calFlg = true;
                         }
 
-                        //testで値を入れている
-                        if(name.equals("txDay14") && a != null){
-                            textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + a);
+
+
+                        //確実に31日以降ならば白色にする
+                        if (i == 5 && j > 2){
+                            textView1.setTextColor(Color.WHITE);
+                        }else if(i == 0 && calFlg){
+                            //始めの１日が出るまでは真っ白
+                            textView1.setTextColor(Color.WHITE);
+                        }else if (i > 3 && !calFlg){
+                            //来月の１日からは真っ白
+                            textView1.setTextColor(Color.WHITE);
+                        }
+
+                        /*
+                        入力された値があった場合にtextviewに表示する
+                        */
+
+                        String testdata = null;
+
+                        for (int n =0; n < DATEITEMS.size(); n++){
+                            //一度変数に入れないとifを全く受け付けなかったため
+                            int year = DATEITEMS.get(n).year;
+                            int month = DATEITEMS.get(n).month;
+                            String day = DATEITEMS.get(n).day;
+                            String date = String.valueOf(calendarMatrix[i][j]);
+                            //最初のifに日にちまで入れると一行が長くなる上、読みにくくなる。何より変わらないと思うが、二つ目のifである日にちの比較に時間がかかりそう（適当）
+                            if (year ==showyear && month == showmonth){
+                                if (day.equals(date)){
+                                    //同じ日にちの値をどうするか検討しなくてはいけない
+                                    testdata = DummyContent.ITEMS.get(n).id;
+                                }
+                            }
+                        }
+
+
+                        if(testdata != null){
+                            textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                             //textView1.setTextSize(10);
                         }
                     }
@@ -221,19 +312,55 @@ public class Money_Calendar extends Fragment {
                         //テキストビューの背景を白色にして、画面自体の背景色と変えることで枠線があるように見せる
                         textView1.setBackgroundColor(Color.WHITE);
                         textView1.setHeight(100);
+                        textView1.setTextColor(Color.BLACK);
+
 
                         //日付のケタ数
                         len = Integer.toString(calendarMatrix[i][j]).length();
 
                         if (len == 1){
                             textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n");
+                            calFlg = false;
                         }else{
                             textView1.setText(String.valueOf(calendarMatrix[i][j])  + "\n" + "\n");
+                            calFlg = true;
                         }
 
-                        //testで値を入れている
-                        if(name.equals("txDay14") && a != null){
-                            textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + a);
+                        //確実に31日以降ならば白色にする
+                        if (i == 5 && j > 2){
+                            textView1.setTextColor(Color.WHITE);
+                        }else if(i == 0 && calFlg){
+                            //始めの１日が出るまでは真っ白
+                            textView1.setTextColor(Color.WHITE);
+                        }else if (i > 3 && !calFlg){
+                            //来月の１日からは真っ白
+                            textView1.setTextColor(Color.WHITE);
+                        }
+
+                        /*
+                        入力された値があった場合にtextviewに表示する
+                         */
+
+                        String testdata = null;
+
+                        for (int n =0; n < DATEITEMS.size(); n++){
+                            //一度変数に入れないとifを全く受け付けなかったため
+                            int year = DATEITEMS.get(n).year;
+                            int month = DATEITEMS.get(n).month;
+                            String day = DATEITEMS.get(n).day;
+                            String date = String.valueOf(calendarMatrix[i][j]);
+                            //最初のifに日にちまで入れると一行が長くなる上、読みにくくなる。何より変わらないと思うが、二つ目のifである日にちの比較に時間がかかりそう（適当）
+                            if (year ==showyear && month == showmonth){
+                                if (day.equals(date)){
+                                    //同じ日にちの値をどうするか検討しなくてはいけない
+                                    testdata = DummyContent.ITEMS.get(n).id;
+                                }
+                            }
+                        }
+
+
+                        if(testdata != null){
+                            textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                             //textView1.setTextSize(10);
                         }
                     }
@@ -248,6 +375,49 @@ public class Money_Calendar extends Fragment {
             for(int j = 0; j < 7; j++) {
                 calendarMatrix[i][j] = data[i][j];
             }
+        }
+    }
+
+    //DummyContentの持っているカレンダーの情報を取り出す
+    void set_cal_info(){
+        String[] tmp_date = new String[DummyContent.ITEMS.size()];
+
+        String[] tmp_year = new String[DummyContent.ITEMS.size()];
+        String[] tmp_month = new String[DummyContent.ITEMS.size()];
+        String[] tmp_day = new String[DummyContent.ITEMS.size()];
+
+        for(int i=0; i < DummyContent.ITEMS.size(); i++){
+            tmp_date[i] = DummyContent.ITEMS.get(i).date; //日付だけ取得
+            //ここにsplite。 / で切ったものを年月日で分けてtmp_~~ の各種変数に入れていく
+            String[] tmp_splite = tmp_date[i].split("/");
+            tmp_year[i] = tmp_splite[0];
+            tmp_month[i] = tmp_splite[1];
+            tmp_day[i] = tmp_splite[2];
+        }
+
+        for (int i=0; i < tmp_date.length; i++){
+            DATEITEMS.add(new DateItem(tmp_date[i],tmp_year[i],tmp_month[i],tmp_day[i]));
+        }
+
+    }
+
+    //ArrayList用クラス cal_info()にある
+    public static class DateItem {
+        public String date; //年月日全てのデータ
+        public int year;
+        public int month;
+        public String day; //textViewとの比較に使うため
+
+        public DateItem(String date,String year, String month, String day) {
+            this.date = date;
+            this.year = Integer.valueOf(year);
+            this.month = Integer.valueOf(month);
+            this.day = day;
+        }
+
+        @Override
+        public String toString() {
+            return date;
         }
     }
 

@@ -73,6 +73,10 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
+                //クラスロードのためインスタンス生成している
+                //DummyContentで使用できるように設定する
+                DummyContent dummyContent = new DummyContent(DB_SELECTED_date,DB_SELECTED_shop,DB_SELECTED_category,DB_SELECTED_memo);
+
                 if (spinner.getSelectedItemPosition() == 0) {
                     //カレンダー表示
                     FragmentManager fm = getSupportFragmentManager();
@@ -81,11 +85,6 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
                     ft.commit();
                 } else if (spinner.getSelectedItemPosition() == 1) {
                     //リスト表示
-
-                    //クラスロードのためインスタンス生成している
-                    //DummyContentで使用できるように設定する
-                    DummyContent dummyContent = new DummyContent(DB_SELECTED_date,DB_SELECTED_shop,DB_SELECTED_category,DB_SELECTED_memo);
-
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
@@ -108,12 +107,12 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         MoneyOpenHelper helper = new MoneyOpenHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        // queryメソッドの実行例
+        // queryメソッドの実行
         Cursor c = db.query("ecc", new String[] { "date","shop", "category","memo"}, null,
-                null, null, null, null);
+                null, null, null, "date desc"); //日付が新しいものから表示していく
         boolean mov = c.moveToFirst();
 
-        //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
+        //クッションの役割 詳しくはフィールドにセッティングするとこを参照
         String[] date = new String[c.getCount()];
         String[] shop = new String[c.getCount()];
         String[] category = new String[c.getCount()];
@@ -160,7 +159,8 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
     //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
     public void testToast(View view){
-        Toast.makeText(getApplicationContext(), "Test OK!", Toast.LENGTH_SHORT).show();
+        Intent it = new Intent(getApplicationContext(),MoneyInputActivity.class);
+        startActivity(it);
     }
 
 }
