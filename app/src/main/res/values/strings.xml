@@ -10,4 +10,5 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_money_input">MoneyInput</string>
+    <string name="getLocate">検索</string>
 </resources>
