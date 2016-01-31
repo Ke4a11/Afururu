@@ -1,6 +1,7 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ke4a11.ecc.ac.jp.afururu.R;
@@ -53,7 +55,6 @@ public class Money_ListorCal_Detail extends Fragment {
             if (appBarLayout != null) {
                 appBarLayout.setTitle("履歴の詳細");
             }
-
         }
     }
 
@@ -61,6 +62,9 @@ public class Money_ListorCal_Detail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_money_listorcal_detail, container, false);
+
+        //moneyinputのボタンをとるための
+        final View inputView = inflater.inflate(R.layout.activity_money_input,container,false);
 
         //ちなみにxmlファイルはテキストビューのみ
         if (mItem != null) {
@@ -73,14 +77,25 @@ public class Money_ListorCal_Detail extends Fragment {
 
         upbtn = (Button)rootView.findViewById(R.id.update_DB);
         upbtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                int a = Integer.parseInt(mItem.id);
 
+               /*消すために試してみたやつ
+               Button btn=(Button)inputView.findViewById(R.id.addButton);
+                btn.setOnClickListener(this);
+                btn.setText("kokoko");
+                btn.setEnabled(false);*/
+
+                int a = Integer.parseInt(mItem.id);
                 Intent i = new Intent(getContext(),MoneyInputActivity.class);
-                i.putExtra("position",a);
+                i.putExtra("position", a);
                 startActivity(i);
+
+
+
             }
+
         });
 
         return rootView;

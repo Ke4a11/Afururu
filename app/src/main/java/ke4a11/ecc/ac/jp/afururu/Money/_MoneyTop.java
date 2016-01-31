@@ -39,7 +39,6 @@ public class _MoneyTop extends Fragment {
     //残金ビュー
     private TextView balanceView;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -50,37 +50,36 @@ public class MoneyInputActivity extends AppCompatActivity {
         final EditText shopText = (EditText) findViewById(R.id.shopEdit);
         final EditText memoText = (EditText) findViewById(R.id.memoEdit);
         final TextView dateText = (TextView)findViewById(R.id.dateText);
+        final EditText priceText = (EditText)findViewById(R.id.priceEdit);
         Button entryButton = (Button) findViewById(R.id.addButton);
-       final Spinner spinner = (Spinner)findViewById(R.id.categorySpinner);
+        final Spinner spinner = (Spinner)findViewById(R.id.categorySpinner);
 
-       // ((Spinner) findViewById(R.id.categorySpinner)).setSelection(2);
 
         entryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-            /* 　memoTextでエンター押したらいけるよにしたため移動
                 String shop = shopText.getText().toString();
                 String memo = memoText.getText().toString();
                 String date = dateText.getText().toString();
-                 // 選択されているアイテムのIndexを取得
+                Integer price = Integer.parseInt(priceText.getText().toString());
+
+                // 選択されているアイテムのIndexを取得
                 //int idx = spinner.getSelectedItemPosition();
 
                 // 選択されているアイテムを取得
                 String category = (String)spinner.getSelectedItem();
-
                 ContentValues insertValues = new ContentValues();
                 insertValues.put("date",date);
                 insertValues.put("shop", shop);
                 insertValues.put("category",category);
                 insertValues.put("memo", memo);
-                long id = db.insert("ecc", date, insertValues);
+                insertValues.put("price",price);
+                long id = db.insert("ecc",date, insertValues);
 
-                */
+                //一つ目の引数をthisではなくContextにする　登録かんりょうのToast表示
+                Toast.makeText(getApplicationContext(),"登録完了",Toast.LENGTH_SHORT).show();
             }
         });
-
 
         Button showButton = (Button) findViewById(R.id.showButton);
         showButton.setOnClickListener(new View.OnClickListener() {
@@ -91,15 +90,37 @@ public class MoneyInputActivity extends AppCompatActivity {
             }
         });
 
-       /* Button dropButton = (Button) findViewById(R.id.dropButton);
-        dropButton.setOnClickListener(new View.OnClickListener() {
+
+        //UPDATEでの処理
+        Button updateButton = (Button)findViewById(R.id.updateButton);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sql = "drop table person;";
-                    db.execSQL(sql);
-
+                String shop = shopText.getText().toString();
+                String memo = memoText.getText().toString();
+                String date = dateText.getText().toString();
+                String category = (String)spinner.getSelectedItem();
+                if (shop.equals("")) {
+                    Toast.makeText(getApplicationContext(), "shopを入力してください。", Toast.LENGTH_SHORT).show();
+                } else {
+                    ContentValues updateValues = new ContentValues();
+                    updateValues.put("date",date);
+                    updateValues.put("shop", shop);
+                    updateValues.put("category",category);
+                    updateValues.put("memo", memo);
+                    db.update("ecc", updateValues, "=?", new String[]{shop});
+                }
             }
-        });*/
+        });
+
+        //DROPテーブル
+        Button dropButton = (Button)findViewById(R.id.dropButton);
+        dropButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                db.execSQL("DROP TABLE ECC");
+            }
+        });
 
         //spinner用のアダプターを作成
         ArrayAdapter<String> ad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
@@ -141,8 +162,7 @@ public class MoneyInputActivity extends AppCompatActivity {
                     InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
-
-                    //登録押したときの処理の内容
+                    /*登録押したときの処理の内容
                     String shop = shopText.getText().toString();
                     String memo = memoText.getText().toString();
                     String date = dateText.getText().toString();
@@ -157,7 +177,7 @@ public class MoneyInputActivity extends AppCompatActivity {
                     insertValues.put("shop", shop);
                     insertValues.put("category",category);
                     insertValues.put("memo", memo);
-                    long id = db.insert("ecc", date, insertValues);
+                    long id = db.insert("ecc", date, insertValues);*/
 
 
                     return true;
@@ -174,8 +194,6 @@ public class MoneyInputActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         //日付を表示する処理
         setContentView(R.layout.activity_money_input);
@@ -200,5 +218,13 @@ public class MoneyInputActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+/*
+        Button btn=(Button)findViewById(R.id.addButton);
+        //btn.setOnClickListener(this);
+        btn.setText("kokoko");
+        btn.setVisibility(View.GONE);
+*/
+
     }
 }

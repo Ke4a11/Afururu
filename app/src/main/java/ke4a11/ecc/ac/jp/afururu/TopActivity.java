@@ -46,7 +46,7 @@ public class TopActivity extends AppCompatActivity {
                 //        .setAction("Action", null).show();
 
                 //calc 画面の呼び出し
-                Intent i = new Intent(getApplicationContext(), MoneyInputActivity.class);
+                Intent i = new Intent(getApplicationContext(),MoneyInputActivity.class);
                 startActivity(i);
                 //animationの設定 styleに記述 manifestではなく、コードで指定
                 overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);

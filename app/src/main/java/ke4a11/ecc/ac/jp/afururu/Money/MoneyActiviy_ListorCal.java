@@ -57,14 +57,14 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         setContentView(R.layout.activity_money_activiy_listorcal);
 
         //spinner用のアダプターを作成
-        ArrayAdapter<String> ad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
 
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //アイテム追加
         ad.add("カレンダー");
         ad.add("リスト一覧");
-        spinner = (Spinner)findViewById(R.id.spinner_listorcal);
+        spinner = (Spinner) findViewById(R.id.spinner_listorcal);
 
         spinner.setAdapter(ad);
 
@@ -75,7 +75,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
                 //クラスロードのためインスタンス生成している
                 //DummyContentで使用できるように設定する
-                DummyContent dummyContent = new DummyContent(DB_SELECTED_date,DB_SELECTED_shop,DB_SELECTED_category,DB_SELECTED_memo);
+                DummyContent dummyContent = new DummyContent(DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo);
 
                 if (spinner.getSelectedItemPosition() == 0) {
                     //カレンダー表示
@@ -155,7 +155,10 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
         detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
         startActivity(detailIntent);
+
     }
+
+
 
     //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
     public void testToast(View view){
