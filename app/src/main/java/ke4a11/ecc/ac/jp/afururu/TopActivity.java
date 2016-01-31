@@ -10,9 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 //import package
 import com.astuetz.PagerSlidingTabStrip; //固定タブのためだけのライブラリ
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
 
 import ke4a11.ecc.ac.jp.afururu.Money.*;
 import ke4a11.ecc.ac.jp.afururu.English.*;
@@ -22,6 +26,12 @@ public class TopActivity extends AppCompatActivity {
 
     //フィールド
     ViewPager mViewPager;
+    //MAPで使う
+    public static String posinfo = "";
+    public static String info_A = "";
+    public static String info_B = "";
+    ArrayList<LatLng> markerPoints;
+    private Button btnFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +64,6 @@ public class TopActivity extends AppCompatActivity {
             }
         });
 
-        //サービスの起動
-        //Intent i = new Intent(this,ServiceMoneyExchange.class);
-        //startService(i);
     }
 
     //タブ作成メソッド
