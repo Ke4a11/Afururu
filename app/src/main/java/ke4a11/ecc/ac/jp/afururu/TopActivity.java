@@ -46,23 +46,23 @@ public class TopActivity extends AppCompatActivity {
         tabs.setViewPager(mViewPager);
         tabs.setIndicatorHeight(10);
         tabs.setIndicatorColor(0xff2196F3);
-
-        //FloatingButtonの作成と処理（リスナーと細かい処理は分けた方が良さげ）
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                //        .setAction("Action", null).show();
-
-                //calc 画面の呼び出し
-                Intent i = new Intent(getApplicationContext(),MoneyInputActivity.class);
-                startActivity(i);
-                //animationの設定 styleに記述 manifestではなく、コードで指定
-                overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
-
-            }
-        });
+//
+//        //FloatingButtonの作成と処理（リスナーと細かい処理は分けた方が良さげ）
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                //        .setAction("Action", null).show();
+//
+//                //calc 画面の呼び出し
+//                Intent i = new Intent(getApplicationContext(),MoneyInputActivity.class);
+//                startActivity(i);
+//                //animationの設定 styleに記述 manifestではなく、コードで指定
+//                overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
+//
+//            }
+//        });
 
     }
 
@@ -94,6 +94,26 @@ public class TopActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
+    public void testToast1(View view){
+        Intent i = new Intent(getApplicationContext(),MoneyActivity.class);
+        i.putExtra("moneyFlg","set");
+        startActivity(i);
+    }
+
+    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
+    public void testToast2(View view){
+        Intent it = new Intent(getApplicationContext(),MoneyActivity.class);
+        startActivity(it);
+    }
+
+    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
+    public void testToast3(View view){
+        Intent it = new Intent(getApplicationContext(),MoneyActivity.class);
+        startActivity(it);
     }
 
 

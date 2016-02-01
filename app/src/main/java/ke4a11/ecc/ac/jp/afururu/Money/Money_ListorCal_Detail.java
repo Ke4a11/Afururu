@@ -23,6 +23,7 @@ public class Money_ListorCal_Detail extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
 
+
     Button upbtn;
 
     /**

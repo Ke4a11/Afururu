@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
@@ -62,15 +63,24 @@ public class _MoneyTop extends Fragment {
             getcsv();
         }
 
+        BootstrapButton payoutButton = (BootstrapButton)view.findViewById(R.id.payoutButton);
+        payoutButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(),MoneyInputActivity.class);
+                startActivity(i);
+            }
+        });
+
         //ボタン作成
-        Button calenderButton = (Button)view.findViewById(R.id.calendarButton);
-        Button exchangeButton =(Button)view.findViewById(R.id.exchangeButton);
-        Button settingButton = (Button)view.findViewById(R.id.settingButton);
+//        Button calenderButton = (Button)view.findViewById(R.id.calendarButton);
+//        Button exchangeButton =(Button)view.findViewById(R.id.exchangeButton);
+//        Button settingButton = (Button)view.findViewById(R.id.settingButton);
 
         //リスナー設定
-        calenderButton.setOnClickListener(new ChangeView());
-        exchangeButton.setOnClickListener(new ChangeView());
-        settingButton.setOnClickListener(new ChangeView());
+//        calenderButton.setOnClickListener(new ChangeView());
+//        exchangeButton.setOnClickListener(new ChangeView());
+//        settingButton.setOnClickListener(new ChangeView());
 
 
         return view;
@@ -79,23 +89,23 @@ public class _MoneyTop extends Fragment {
     //リスナーボタン押下時処理
     class ChangeView implements OnClickListener {
         public void onClick(View v){
-            if (v == getView().findViewById(R.id.calendarButton)) {
-                moneyFlg = "cal";
-            }else if(v == getView().findViewById(R.id.exchangeButton)){
-                moneyFlg = "exc";
-            }else if(v == getView().findViewById(R.id.settingButton)){
-                moneyFlg = "set";
-            }
-
-            //カレンダーは別のアクティビティのため
-            if(moneyFlg.equals("cal")){
-                Intent i = new Intent(getActivity().getApplicationContext(),MoneyActiviy_ListorCal.class);
-                startActivity(i);
-            }else{
-                //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
-                Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
-                startActivity(i);
-            }
+//            if (v == getView().findViewById(R.id.calendarButton)) {
+//                moneyFlg = "cal";
+//            }else if(v == getView().findViewById(R.id.exchangeButton)){
+//                moneyFlg = "exc";
+//            }else if(v == getView().findViewById(R.id.settingButton)){
+//                moneyFlg = "set";
+//            }
+//
+//            //カレンダーは別のアクティビティのため
+//            if(moneyFlg.equals("cal")){
+//                Intent i = new Intent(getActivity().getApplicationContext(),MoneyActiviy_ListorCal.class);
+//                startActivity(i);
+//            }else{
+//                //Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
+//                Intent i = new Intent(getActivity().getApplicationContext(),MoneyActivity.class);
+//                startActivity(i);
+//            }
         }
     }
 
