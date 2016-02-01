@@ -43,7 +43,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editName"
-        android:text="ホームステイ先の住所" />
+        android:text="滞在先の住所" />
 
     <EditText
         android:id="@+id/editAge"
@@ -62,23 +62,23 @@
         android:layout_below="@+id/editAge"
         android:text="更新" />
 
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/update"
-        android:layout_alignBottom="@+id/update"
-        android:layout_toRightOf="@+id/update"
-        android:text="削除" />
+    <!--<Button-->
+        <!--android:id="@+id/delete"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/update"-->
+        <!--android:layout_alignBottom="@+id/update"-->
+        <!--android:layout_toRightOf="@+id/update"-->
+        <!--android:text="削除" />-->
 
-    <Button
-        android:id="@+id/deleteAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/delete"
-        android:layout_alignBottom="@+id/delete"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/delete"
-        android:text="すべて削除" />
+    <!--<Button-->
+        <!--android:id="@+id/deleteAll"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/delete"-->
+        <!--android:layout_alignBottom="@+id/delete"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_toRightOf="@+id/delete"-->
+        <!--android:text="すべて削除" />-->
 
 </RelativeLayout>

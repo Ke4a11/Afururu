@@ -7,6 +7,7 @@ import java.util.Queue;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,26 +23,33 @@ import android.widget.Toast;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
-/*TODO
-*
-* Toast表示は、連打すると消えなくなるのでなんとかする。音声再生ボタン押下時
-*
-*
- */
-
-public class English_Detail extends Fragment implements AdapterView.OnItemClickListener{
+public class English_Detail extends Fragment {
 
     public static String[] detailEngText;
     private String string;
     TextToSpeech tts;
     Button bt;
     TextView et;
+    public static String[] titleEngText;
 
+
+    public English_Detail() {
+        // Required empty public constructor
+    }
+
+    public static English_Detail newInstance(int index) {
+        English_Detail f = new English_Detail();
+        //フラグメントに、選択したアイテムの位置を持たせる
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        f.setArguments(args);
+        return f;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+//AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         // アラートダイアログのタイトルを設定します
         //alertDialogBuilder.setTitle("再生中...");
         // アラートダイアログのメッセージを設定します
@@ -71,6 +79,7 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
 
     }
 
+
     class SampleClickListenr implements View.OnClickListener {
 
         public void onClick(View v){
@@ -89,24 +98,7 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
 
     }
 
-    public English_Detail() {
-        // Required empty public constructor
-    }
-
-    public static English_Detail newInstance(int index) {
-        English_Detail f = new English_Detail();
-        //フラグメントに、選択したアイテムの位置を持たせる
-        Bundle args = new Bundle();
-        args.putInt("index", index);
-        f.setArguments(args);
-        return f;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
+    
 
 
 }

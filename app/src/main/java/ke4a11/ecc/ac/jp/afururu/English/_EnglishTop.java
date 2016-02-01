@@ -117,7 +117,6 @@ public class _EnglishTop extends Fragment {
                 startActivity(intent);
             }
 
-
         }
 
     }

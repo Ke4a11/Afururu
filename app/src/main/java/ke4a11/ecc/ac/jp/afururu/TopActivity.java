@@ -15,6 +15,10 @@ import android.widget.Button;
 //import package
 import com.astuetz.PagerSlidingTabStrip; //固定タブのためだけのライブラリ
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
@@ -116,5 +120,26 @@ public class TopActivity extends AppCompatActivity {
         startActivity(it);
     }
 
+    private GoogleMap googleMap;
 
+    private void initializeMap(){
+//        if(googleMap == null){
+//            googleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
+//
+//            if(googleMap == null){
+//                Toast.makeText(getApplicationContext(),
+//                        "Sorry!unable to create maps", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initializeMap();
+    }
+
+    public GoogleMap getGoogleMap(){
+        return googleMap;
+    }
 }
