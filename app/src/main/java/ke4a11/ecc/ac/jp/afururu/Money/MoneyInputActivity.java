@@ -30,6 +30,7 @@ import java.util.Calendar;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 import ke4a11.ecc.ac.jp.afururu.Setting.ShowDataBase;
+import ke4a11.ecc.ac.jp.afururu.TopActivity;
 
 public class MoneyInputActivity extends AppCompatActivity {
     //初期の値
@@ -67,7 +68,7 @@ public class MoneyInputActivity extends AppCompatActivity {
                 //int idx = spinner.getSelectedItemPosition();
 
                 // 選択されているアイテムを取得
-                String category = (String)spinner.getSelectedItem();
+                int category = spinner.getSelectedItemPosition();
                 ContentValues insertValues = new ContentValues();
                 insertValues.put("date",date);
                 insertValues.put("shop", shop);
@@ -78,6 +79,8 @@ public class MoneyInputActivity extends AppCompatActivity {
 
                 //一つ目の引数をthisではなくContextにする　登録かんりょうのToast表示
                 Toast.makeText(getApplicationContext(),"登録完了",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(), TopActivity.class);
+                startActivity(i);
             }
         });
 

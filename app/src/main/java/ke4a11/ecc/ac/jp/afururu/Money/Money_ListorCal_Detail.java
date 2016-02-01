@@ -25,6 +25,8 @@ public class Money_ListorCal_Detail extends Fragment {
 
     Button upbtn;
 
+    String[] spinnerText = {"食費","外食費","交通費"};
+
     /**
      * クラスの指定
      * mItem.id .content .details が参照できる。
@@ -66,13 +68,13 @@ public class Money_ListorCal_Detail extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_money_listorcal_detail, container, false);
 
         //moneyinputのボタンをとるための
-        final View inputView = inflater.inflate(R.layout.activity_money_input,container,false);
+     //   final View inputView = inflater.inflate(R.layout.activity_money_input,container,false);
 
         //ちなみにxmlファイルはテキストビューのみ
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.item_detail_date)).setText(mItem.date);
             ((TextView) rootView.findViewById(R.id.item_detail_shop)).setText(mItem.shop);
-            ((TextView) rootView.findViewById(R.id.item_detail_category)).setText(mItem.category);
+            ((TextView) rootView.findViewById(R.id.item_detail_category)).setText(spinnerText[mItem.category]);
             ((TextView) rootView.findViewById(R.id.item_detail_memo)).setText(mItem.memo);
 
         }
@@ -83,18 +85,17 @@ public class Money_ListorCal_Detail extends Fragment {
             @Override
             public void onClick(View v) {
 
-               /*消すために試してみたやつ
-               Button btn=(Button)inputView.findViewById(R.id.addButton);
-                btn.setOnClickListener(this);
-                btn.setText("kokoko");
-                btn.setEnabled(false);*/
-
-                int a = Integer.parseInt(mItem.id);
+                /*int a = Integer.parseInt(mItem.id);
                 Intent i = new Intent(getContext(),MoneyInputActivity.class);
                 i.putExtra("position", a);
+                startActivity(i);*/
+
+
+                int a = Integer.parseInt(mItem.id);
+                Intent i = new Intent(getContext(),MoneyUpdateActivity.class);
+
+                i.putExtra("position", a);
                 startActivity(i);
-
-
 
             }
 

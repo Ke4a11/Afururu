@@ -84,6 +84,12 @@
             android:name=".Money.ServiceMoneyExchange"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".Money.MoneyUpdateActivity"
+            android:label="@string/title_activity_money_update"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ public class MoneyShowDatabase extends AppCompatActivity{
 
         while (mov) {
             TextView textView = new TextView(this);
-            textView.setText(String.format("%d : %s : %s : %s : %s : %d", c.getInt(0), c.getString(1) ,c.getString(2), c.getString(3),c.getString(4),c.getInt(5)));
+            textView.setText(String.format("%d : %s : %s : %d : %s : %d", c.getInt(0), c.getString(1) ,c.getString(2), c.getInt(3),c.getString(4),c.getInt(5)));
             mov = c.moveToNext();
             layout.addView(textView);
         }

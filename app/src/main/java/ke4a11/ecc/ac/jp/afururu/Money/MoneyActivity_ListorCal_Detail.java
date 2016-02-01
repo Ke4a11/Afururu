@@ -26,7 +26,6 @@ TODO
  */
 
 public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

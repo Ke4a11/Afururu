@@ -50,7 +50,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     //private String[] DB_SELECTED_payout;
     public String[] DB_SELECTED_date;
     public String[] DB_SELECTED_shop;
-    public String[] DB_SELECTED_category;
+    public int[] DB_SELECTED_category;
     public String[] DB_SELECTED_memo;
 
     @Override
@@ -118,7 +118,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
         String[] date = new String[c.getCount()];
         String[] shop = new String[c.getCount()];
-        String[] category = new String[c.getCount()];
+        int[] category = new int[c.getCount()];
         String[] memo = new String[c.getCount()];
 
 
@@ -128,7 +128,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
             date[i] = c.getString(1);
             shop[i] = c.getString(2);
-            category[i] = c.getString(3);
+            category[i] = Integer.parseInt(c.getString(3));
             memo[i] = c.getString(4);
 
             i++;
