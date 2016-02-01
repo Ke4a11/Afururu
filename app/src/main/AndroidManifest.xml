@@ -49,10 +49,6 @@
         <activity android:name=".Money.MoneyActiviy_ListorCal" >
         </activity>
         <activity
-            android:name=".Setting.ShowDataBase"
-            android:label="@string/title_activity_show_data_base" >
-        </activity>
-        <activity
             android:name=".Money.ItemListActivity"
             android:label="@string/title_item_list"
             android:theme="@style/AppTheme.NoActionBar" >

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="fill_parent" android:orientation="vertical" tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Input"
+    android:weightSum="1" android:id="@+id/moneyinputlayout">
+
+
+
+    <EditText
+        android:layout_width="157dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:ems="5"
+        android:inputType="number"
+        android:id="@+id/priceEdit"
+        android:layout_gravity="right" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.78">
+        <!--Dateを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            　　
+
+            <!--日付label-->
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:text="Date"
+                android:id="@+id/date"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:background="#0288D1" />
+
+            <!--日付TextView-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/dateText"
+                android:clickable="true"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="#d1eefe" />
+
+
+        </LinearLayout>
+
+        <!--Categoryを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:text="Category"
+                android:id="@+id/category"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:background="#42a5f5" />
+
+            <Spinner android:id="@+id/categorySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|center_vertical|center_horizontal"
+                android:background="#d3eafc">
+            </Spinner>
+
+        </LinearLayout>
+        <!--Shopを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ebf9fe">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:text="Shop"
+                android:id="@+id/shop"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:background="#26c6fa" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/shopEdit"
+                android:inputType="text"
+                android:maxLength="200"/>
+
+        </LinearLayout>
+
+        <!--Memoを囲んでいるLinear-->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#daf5f2">
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="70dp"
+                android:text="Memo"
+                android:id="@+id/memo"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:background="#29a69a" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/memoEdit"
+                android:inputType="text"
+                android:maxLength="20"/>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="UPDATE"
+            android:id="@+id/updateButton"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DB確認！"
+            android:id="@+id/showButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="drop"
+            android:id="@+id/dropButton"
+            android:layout_gravity="right" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

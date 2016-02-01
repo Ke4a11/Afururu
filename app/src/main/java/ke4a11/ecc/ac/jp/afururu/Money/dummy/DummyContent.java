@@ -29,13 +29,13 @@ public class DummyContent {
     public static String[] dummy_payout;
     public static String[] dummy_date;
     public static String[] dummy_shop;
-    public static String[] dummy_category;
+    public static int[] dummy_category;
     public static String[] dummy_memo;
 
     //コンストラクタ
-    public DummyContent(String[] a, String[] b, String[] c, String[] d){
-        ITEM_MAP.clear();   //値重複を防ぐため
+    public DummyContent(String[] a, String[] b, int[] c, String[] d){
         ITEMS.clear();
+        ITEM_MAP.clear();
 
         dummy_date = a;
         dummy_shop = b;
@@ -84,6 +84,10 @@ public class DummyContent {
         //return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
         return new DummyItem(String.valueOf(position), dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position]);
 
+        /*
+        makeDetailメソッドは押した場所（position）の分だけ繰り返される。
+
+         */
     }
 
     /**
@@ -98,7 +102,7 @@ public class DummyContent {
 
         public String date;
         public String shop;
-        public String category;
+        public int category;
         public String memo;
 
         //この引数を家計簿に必要なものと合わせる。
@@ -109,7 +113,7 @@ public class DummyContent {
             this.details = details;
         }
 
-        public DummyItem(String id, String date, String shop, String category, String memo){
+        public DummyItem(String id, String date, String shop, int category, String memo){
             this.id = id; //主キーみたいな役割
             this.date = date;
             this.shop = shop;

@@ -48,7 +48,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     //private String[] DB_SELECTED_payout;
     public String[] DB_SELECTED_date;
     public String[] DB_SELECTED_shop;
-    public String[] DB_SELECTED_category;
+    public int[] DB_SELECTED_category;
     public String[] DB_SELECTED_memo;
 
     @Override
@@ -57,14 +57,14 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         setContentView(R.layout.activity_money_activiy_listorcal);
 
         //spinner用のアダプターを作成
-        ArrayAdapter<String> ad = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> ad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
 
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //アイテム追加
         ad.add("カレンダー");
         ad.add("リスト一覧");
-        spinner = (Spinner) findViewById(R.id.spinner_listorcal);
+        spinner = (Spinner)findViewById(R.id.spinner_listorcal);
 
         spinner.setAdapter(ad);
 
@@ -107,15 +107,15 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         MoneyOpenHelper helper = new MoneyOpenHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
-        // queryメソッドの実行
-        Cursor c = db.query("ecc", new String[] { "date","shop", "category","memo"}, null,
-                null, null, null, "date desc"); //日付が新しいものから表示していく
+        // queryメソッドの実行例
+        Cursor c = db.query("ecc", new String[] {"id","date","shop", "category","memo","price"}, null,
+                null, null, null, null);
         boolean mov = c.moveToFirst();
 
-        //クッションの役割 詳しくはフィールドにセッティングするとこを参照
+        //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
         String[] date = new String[c.getCount()];
         String[] shop = new String[c.getCount()];
-        String[] category = new String[c.getCount()];
+        int[] category = new int[c.getCount()];
         String[] memo = new String[c.getCount()];
 
 
@@ -123,10 +123,10 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         int i = 0;
         while (mov) {
 
-            date[i] = c.getString(0);
-            shop[i] = c.getString(1);
-            category[i] = c.getString(2);
-            memo[i] = c.getString(3);
+            date[i] = c.getString(1);
+            shop[i] = c.getString(2);
+            category[i] = Integer.parseInt(c.getString(3));
+            memo[i] = c.getString(4);
 
             i++;
 
@@ -155,15 +155,11 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
         detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
         startActivity(detailIntent);
-
     }
-
-
 
     //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
     public void testToast(View view){
-        Intent it = new Intent(getApplicationContext(),MoneyInputActivity.class);
-        startActivity(it);
+        Toast.makeText(getApplicationContext(), "Test OK!", Toast.LENGTH_SHORT).show();
     }
 
 }

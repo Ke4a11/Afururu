@@ -28,7 +28,6 @@ TODO
 
 public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +61,6 @@ public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
                     .add(R.id.item_detail_container, fragment)
                     .commit();
         }
-
     }
 
     @Override
