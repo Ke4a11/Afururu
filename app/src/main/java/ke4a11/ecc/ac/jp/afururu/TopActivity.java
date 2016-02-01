@@ -10,9 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.Toast;
 
 //import package
 import com.astuetz.PagerSlidingTabStrip; //固定タブのためだけのライブラリ
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
 
 import ke4a11.ecc.ac.jp.afururu.Money.*;
 import ke4a11.ecc.ac.jp.afururu.English.*;
@@ -22,6 +30,12 @@ public class TopActivity extends AppCompatActivity {
 
     //フィールド
     ViewPager mViewPager;
+    //MAPで使う
+    public static String posinfo = "";
+    public static String info_A = "";
+    public static String info_B = "";
+    ArrayList<LatLng> markerPoints;
+    private Button btnFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +60,14 @@ public class TopActivity extends AppCompatActivity {
                 //        .setAction("Action", null).show();
 
                 //calc 画面の呼び出し
-                Intent i = new Intent(getApplicationContext(),Money_Calc.class);
+                Intent i = new Intent(getApplicationContext(), MoneyInputActivity.class);
                 startActivity(i);
                 //animationの設定 styleに記述 manifestではなく、コードで指定
                 overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
 
             }
         });
+
     }
 
     //タブ作成メソッド
@@ -85,5 +100,26 @@ public class TopActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private GoogleMap googleMap;
 
+    private void initializeMap(){
+//        if(googleMap == null){
+//            googleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
+//
+//            if(googleMap == null){
+//                Toast.makeText(getApplicationContext(),
+//                        "Sorry!unable to create maps", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initializeMap();
+    }
+
+    public GoogleMap getGoogleMap(){
+        return googleMap;
+    }
 }

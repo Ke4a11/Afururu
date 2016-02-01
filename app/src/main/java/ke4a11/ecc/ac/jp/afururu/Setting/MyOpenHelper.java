@@ -2,13 +2,15 @@ package ke4a11.ecc.ac.jp.afururu.Setting;
 
 /**
  * Created by it on 2016/01/18.
- */import android.content.Context;
+ */
+
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyOpenHelper extends SQLiteOpenHelper {
     public MyOpenHelper(Context context) {
-        super(context, "NameAgeDB", null, 1);
+        super(context, "NameAge_DB", null, 1);
     }
 
     @Override

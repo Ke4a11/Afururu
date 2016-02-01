@@ -52,6 +52,37 @@
             android:name=".Setting.ShowDataBase"
             android:label="@string/title_activity_show_data_base" >
         </activity>
+        <activity
+            android:name=".Money.ItemListActivity"
+            android:label="@string/title_item_list"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".Money.MoneyActivity_ListorCal_Detail"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".Money.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ke4a11.ecc.ac.jp.afururu.Money.ItemListActivity" />
+        </activity>
+        <activity
+            android:name=".Setting.ShowDataBase"
+            android:label="@string/title_activity_show_data_base" >
+        </activity>
+        <activity
+            android:name=".Money.MoneyInputActivity"
+            android:label="@string/title_activity_money_input"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Money.MoneyShowDatabase"
+            android:label="@string/title_activity_show_data_base" />
     </application>
 
 </manifest>

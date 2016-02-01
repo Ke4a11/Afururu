@@ -6,6 +6,7 @@
     android:id="@+id/fragment_map"
     android:name="com.google.android.gms.maps.SupportMapFragment" >
         <LinearLayout
+            android:paddingTop="45dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -22,12 +23,19 @@
                 android:inputType="text"
 
                 />
+                <Button
+                    android:id="@+id/btnLocate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/getLocate" />
+        </LinearLayout>
+
             <Button
-                android:id="@+id/btnLocate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/getLocate" />
-        </LinearLayout>
+                android:id="@+id/gohomebutton"
+                android:text="帰宅"
+                />
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapview"
