@@ -11,10 +11,9 @@
 
     <ListView
         android:id="@+id/listView1"
-        android:layout_height="319dp"
+        android:layout_height="400dp"
         android:layout_width="match_parent"
-        android:background="#008099ff"
-        android:layout_weight="0.20">
+        android:background="#008099ff">
     </ListView>
 
     <ScrollView
@@ -27,9 +26,7 @@
         android:layout_height="100dp"
         android:layout_width="match_parent"
         android:background="?android:attr/detailsElementBackground"
-        android:layout_weight="0.02"
         >
-
 
     </FrameLayout>
     </ScrollView>

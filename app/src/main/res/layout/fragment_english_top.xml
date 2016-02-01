@@ -18,14 +18,14 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:id="@+id/engresButton"
-                    android:background="@drawable/restaurant" />
+                    android:id="@+id/enghotButton"
+                    android:background="@drawable/hotel" />
                 <ImageButton
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:id="@+id/enghotButton"
-                    android:background="@drawable/hotel" />
+                    android:id="@+id/engresButton"
+                    android:background="@drawable/resaaaaa" />
                 </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,6 +44,23 @@
                     android:id="@+id/engschButton"
                     android:background="@drawable/school" />
                 </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:id="@+id/emeButton"
+                    android:background="@drawable/eme1" />
+                <ImageButton
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:id="@+id/teiButton"
+                    android:background="@drawable/tei8" />
             </LinearLayout>
+        </LinearLayout>
         </ScrollView>
 </FrameLayout>
