@@ -97,22 +97,22 @@ public class TopActivity extends AppCompatActivity {
     }
 
 
-    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
-    public void testToast1(View view){
+    //moneysetting に移動する
+    public void toMoneySetting(View view){
         Intent i = new Intent(getApplicationContext(),MoneyActivity.class);
         i.putExtra("moneyFlg","set");
         startActivity(i);
     }
 
-    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
     public void testToast2(View view){
-        Intent it = new Intent(getApplicationContext(),MoneyActivity.class);
+        Intent it = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
         startActivity(it);
     }
 
-    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
+    //moneyexchange
     public void testToast3(View view){
         Intent it = new Intent(getApplicationContext(),MoneyActivity.class);
+        it.putExtra("moneyFlg","exc");
         startActivity(it);
     }
 

@@ -112,10 +112,10 @@ public class _MoneyTop extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getContext(),"Top onStart",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"Top onStart",Toast.LENGTH_SHORT).show();
 
         //残金読み込み
-        balanceView.setText(getBalance());
+        balanceView.setText("£" + getBalance());
 
         //為替の再読みこみ
         if(moneySpinner != null){

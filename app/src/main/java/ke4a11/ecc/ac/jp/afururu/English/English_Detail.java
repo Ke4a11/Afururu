@@ -18,10 +18,16 @@ import android.speech.tts.TextToSpeech;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.widget.Toast;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
-
+/*TODO
+*
+* Toast表示は、連打すると消えなくなるのでなんとかする。音声再生ボタン押下時
+*
+*
+ */
 
 public class English_Detail extends Fragment implements AdapterView.OnItemClickListener{
 
@@ -32,41 +38,6 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
     TextView et;
 
 
-
-    //extToSpeech tts = new TextToSpeech(getContext(),this);
-
-    class SampleClickListenr implements View.OnClickListener
-    {
-
-        public void onClick(View v){
-            String str = et.getText().toString();
-            if(str != null)
-            // アラートダイアログを表示します
-            {
-                tts.speak(str, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        }
-    }
-    class SampleInitListner implements TextToSpeech.OnInitListener
-    {
-        public void onInit(int status){}
-
-    }
-    public English_Detail() {
-        // Required empty public constructor
-    }
-    public static English_Detail newInstance(int index) {
-        English_Detail f = new English_Detail();
-        //フラグメントに、選択したアイテムの位置を持たせる
-        Bundle args = new Bundle();
-        args.putInt("index", index);
-        f.setArguments(args);
-        return f;
-    }
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,10 +45,10 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
         // アラートダイアログのタイトルを設定します
         //alertDialogBuilder.setTitle("再生中...");
         // アラートダイアログのメッセージを設定します
-       // alertDialogBuilder.setMessage("メッセージ");
+        // alertDialogBuilder.setMessage("メッセージ");
         //alertDialogBuilder.setCancelable(true);
         //AlertDialog alertDialog = alertDialogBuilder.create();
-       // alertDialog.show();
+        // alertDialog.show();
 
 
         //fragment_details.xmlをインフレート(膨らませる)してフラグメントに追加
@@ -98,8 +69,44 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
         // ボタンのClickListenerの登録
         return view;
 
+    }
+
+    class SampleClickListenr implements View.OnClickListener {
+
+        public void onClick(View v){
+            String str = et.getText().toString();
+            if(str != null)
+            // アラートダイアログを表示します
+            {
+                tts.speak(str, TextToSpeech.QUEUE_FLUSH, null);
+                Toast.makeText(getActivity().getApplicationContext(),"音声再生中です",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    class SampleInitListner implements TextToSpeech.OnInitListener {
+        public void onInit(int status){}
 
     }
+
+    public English_Detail() {
+        // Required empty public constructor
+    }
+
+    public static English_Detail newInstance(int index) {
+        English_Detail f = new English_Detail();
+        //フラグメントに、選択したアイテムの位置を持たせる
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        f.setArguments(args);
+        return f;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
 
 
 }

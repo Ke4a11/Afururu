@@ -42,7 +42,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_height="80dp"
                 android:clickable="true"
-                android:onClick="testToast1">
+                android:onClick="toMoneySetting">
 
                 <!-- 一行目 -->
                 <TextView
@@ -173,7 +173,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="昨日:"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical" />
                         <TextView
@@ -181,14 +181,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day1ago"
-                            android:text="test"
+                            android:text="¥180.1/£"
                             android:layout_weight="1"
-                            android:textSize="22sp"/>
+                            android:textSize="17sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="一昨日:"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp" />
@@ -197,13 +197,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day2ago"
-                            android:textSize="22sp"
+                            android:textSize="17sp"
+                            android:text="¥178.1/£"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="三日前:"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp" />
@@ -212,7 +213,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day3ago"
-                            android:textSize="22sp"
+                            android:textSize="17sp"
+                            android:text="¥181.1/£"
                             android:layout_weight="1"/>
 
                 </LinearLayout>
