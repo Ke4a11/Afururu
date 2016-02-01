@@ -12,6 +12,8 @@ import java.util.List;
 import org.json.JSONObject;
 import android.app.AlertDialog;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -67,6 +69,7 @@ import ke4a11.ecc.ac.jp.afururu.TopActivity;
 public class _MapTop extends Fragment {
 
 
+
     private static View view;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private MapView mview;
@@ -82,6 +85,7 @@ public class _MapTop extends Fragment {
     public static MarkerOptions options;
     public ProgressDialog progressDialog;
     public String travelMode = "driving";//default
+    LocationManager locationManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -118,10 +122,10 @@ public class _MapTop extends Fragment {
                     options = new MarkerOptions();
                     options.position(point);
                     if(markerPoints.size()==1){
-                        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_attach_money_black_24dp));
+                        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.sss1));
                         options.title("A");
                     }else if(markerPoints.size()==2){
-                        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_attach_money_black_24dp));
+                        options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ggg2));
                         options.title("B");
                     }
                     gMap.addMarker(options);
@@ -269,36 +273,6 @@ public class _MapTop extends Fragment {
     }
 
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_top, menu);
-        menu.add(0, MENU_A,   0, "Info");
-        menu.add(0, MENU_B,   0, "Legal Notices");
-        menu.add(0, MENU_c, 0, "Mode");
-    }
-
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch ( item.getItemId() )
-//        {
-//            case MENU_A:
-//                //show_mapInfo();
-//                return true;
-//            case MENU_B:
-//                //Legal Notices(免責事項)
-//                String LicenseInfo = GooglePlayServicesUtil.getOpenSourceSoftwareLicenseInfo(getActivity());
-//                AlertDialog.Builder LicenseDialog = new AlertDialog.Builder(getActivity());
-//                LicenseDialog.setTitle("Legal Notices");
-//                LicenseDialog.setMessage(LicenseInfo);
-//                LicenseDialog.show();
-//                return true;
-//            case MENU_c:
-//                //show_settings();
-//                return true;
-//
-//        }
-//        return false;
-//    }
     //リ･ルート検索
     private void re_routeSearch(){
         progressDialog.show();
@@ -334,11 +308,42 @@ public class _MapTop extends Fragment {
     public void onStart() {
         super.onStart();
         mview = (MapView)getActivity().findViewById(R.id.mapview);
+        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+
         Button searchButton = (Button)getActivity().findViewById(R.id.btnLocate);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onGetLocation(v);
+
+            }
+        });
+
+        Button gohomebutton = (Button)getActivity().findViewById(R.id.gohomebutton);
+        gohomebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                onGetLocation(v);
+                try {
+
+                    markerPoints.clear();
+                    Location myLocation = locationManager.getLastKnownLocation("gps");
+
+                    //現在地の追加
+                    markerPoints.add(new LatLng(myLocation.getLatitude(), myLocation.getLongitude()));
+                    Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
+                    List<Address> address =
+                    gcoder.getFromLocationName(getaddress(), 1);
+                    markerPoints.add(new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude()));
+//                    markerPoints.add(pref.getString("address", "1,1"));
+
+                    routeSearch();
+
+                }catch(SecurityException e){
+
+                }catch(IOException e){
+
+                }
             }
         });
 
