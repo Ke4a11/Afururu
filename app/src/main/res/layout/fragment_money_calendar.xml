@@ -112,11 +112,7 @@
                 android:id="@+id/txDay00"
                 android:layout_column="1"
                 android:layout_marginRight="2dp"
-                android:textColor="#FF0000"
-
-                android:clickable="true"
-                android:onClick="testToast"
-                />
+                android:textColor="#FF0000"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -227,7 +223,10 @@
                 android:id="@+id/txDay14"
                 android:layout_column="1"
                 android:layout_marginRight="2dp"
-                android:textColor="#FF0000" />
+                android:textColor="#FF0000"
+
+                android:clickable="true"
+                android:onClick="testToast"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

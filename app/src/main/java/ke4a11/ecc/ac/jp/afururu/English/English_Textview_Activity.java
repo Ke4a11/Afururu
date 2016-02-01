@@ -6,10 +6,13 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.content.Context;
 import android.graphics.Color;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -86,6 +89,13 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_english_textview);
+
+//色変えるー
+        FrameLayout frameLayout = new FrameLayout(this);
+        frameLayout.setBackgroundColor(Color.RED);
+
+
+
     }
 
     @Override
@@ -101,15 +111,25 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
         category.add("滞在中");
         category.add("クレーム");
         category.add("チェックアウト");
+
         //空港
         category.add("検問");
         category.add("飛行機内");
 
-        //学校
-        category.add("挨拶");
-        category.add("日常的な会話");
+        //日常
+        category.add("予定を決める");
+        category.add("道案内");
+
+        //緊急
+        category.add("緊急時");
+        category.add("病気");
+
+        //電車
+        category.add("電車に乗る時");
 
         //レストラン
+        category.add("注文");
+        category.add("お会計");
 
     }
 

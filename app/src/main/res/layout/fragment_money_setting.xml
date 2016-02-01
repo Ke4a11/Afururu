@@ -1,20 +1,107 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Setting">
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="今月使う金額"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_above="@+id/edit_balanceMoney"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="39dp" />
+
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:id="@+id/MoneySpinner"
         android:layout_gravity="left|top"
         android:spinnerMode="dialog"
-        android:background="#e9ff20" />
+        android:background="#e9ff20"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView1"
+        android:layout_alignParentTop="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:inputType="number"
+        android:id="@+id/edit_balanceMoney"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/resetbtn"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更新"
+        android:id="@+id/updatebtn"
+        android:layout_below="@+id/edit_balanceMoney"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="初期化"
+        android:id="@+id/resetbtn"
+        android:layout_alignTop="@+id/updatebtn"
+        android:layout_toEndOf="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_gravity="left|center_vertical" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="残金"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/textView1"
+        android:layout_alignEnd="@+id/radioButton" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="レート選択"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/MoneySpinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="55dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="データベース選択"
+        android:id="@+id/textView5"
+        android:layout_above="@+id/radioButton"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test1"
+        android:id="@+id/radioButton"
+        android:layout_above="@+id/radioButton2"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test2"
+        android:id="@+id/radioButton2"
+        android:layout_above="@+id/radioButton3"
+        android:layout_alignParentStart="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test3"
+        android:id="@+id/radioButton3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp" />
+
+
+</RelativeLayout>

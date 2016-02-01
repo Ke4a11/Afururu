@@ -122,44 +122,51 @@
             android:layout_marginTop="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Rate:"
-                    android:textSize="18sp"
-                    android:layout_gravity="center_vertical"/>
-
-                <!--通貨記号はここで一緒に行う-->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="¥ noRate"
-                    android:id="@+id/rate"
-                    android:textSize="30sp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="3"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rate:"
+                        android:textSize="18sp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"/>
+
+                    <!--通貨記号はここで一緒に行う-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥ noRate"
+                        android:id="@+id/rate"
+                        android:textSize="30sp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="2"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:weightSum="6"
                     android:layout_marginLeft="10dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1dAgo"
                             android:textSize="15sp"
+                            android:layout_weight="1"
                             android:layout_gravity="center_vertical" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -167,28 +174,43 @@
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day1ago"
                             android:text="test"
+                            android:layout_weight="1"
                             android:textSize="18sp"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2dAgo"
                             android:textSize="15sp"
-                            android:layout_gravity="center_vertical" />
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day2ago"
-                            android:textSize="18sp"/>
-                    </LinearLayout>
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3dAgo"
+                            android:textSize="15sp"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:id="@+id/day3ago"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
                 </LinearLayout>
             </LinearLayout>
+
+
         </android.support.v7.widget.CardView>
 
         <TextView
@@ -207,44 +229,52 @@
             android:layout_height="0dp"/>-->
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="top|bottom|center_horizontal">
 
-            <ImageButton
-                android:layout_width="82dp"
-                android:layout_height="69dp"
-                android:id="@+id/calenderButton"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_receipt_black_24dp"
-                android:background="#00000000"
-                android:layout_gravity="bottom" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="カレンダー/リスト表示"
+                android:id="@+id/calendarButton" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="為替計算"
+                android:id="@+id/exchangeButton" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Money設定"
+                android:id="@+id/settingButton" />
 
-            <ImageButton
-                android:layout_width="82dp"
-                android:layout_height="69dp"
-                android:id="@+id/graphButton"
-                android:layout_marginTop="20dp"
-                android:background="#00000000"
-                android:src="@drawable/ic_equalizer_black_24dp"
-                android:layout_gravity="bottom" />
-            <ImageButton
-                android:layout_width="82dp"
-                android:layout_height="69dp"
-                android:id="@+id/exchangeButton"
-                android:layout_marginTop="20dp"
-                android:background="#00000000"
-                android:src="@drawable/ic_attach_money_black_24dp"
-                android:layout_gravity="bottom" />
-            <ImageButton
-                android:layout_width="82dp"
-                android:layout_height="69dp"
-                android:id="@+id/settingButton"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_settings_black_24dp"
-                android:background="#00000000"
-                android:layout_gravity="bottom" />
+
+            <!--<ImageButton-->
+                <!--android:layout_width="82dp"-->
+                <!--android:layout_height="69dp"-->
+                <!--android:id="@+id/calenderButton"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:src="@drawable/ic_receipt_black_24dp"-->
+                <!--android:background="#00000000"-->
+                <!--android:layout_gravity="bottom" />-->
+            <!--<ImageButton-->
+                <!--android:layout_width="82dp"-->
+                <!--android:layout_height="69dp"-->
+                <!--android:id="@+id/exchangeButton"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:background="#00000000"-->
+                <!--android:src="@drawable/ic_attach_money_black_24dp"-->
+                <!--android:layout_gravity="bottom" />-->
+            <!--<ImageButton-->
+                <!--android:layout_width="82dp"-->
+                <!--android:layout_height="69dp"-->
+                <!--android:id="@+id/settingButton"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:src="@drawable/ic_settings_black_24dp"-->
+                <!--android:background="#00000000"-->
+                <!--android:layout_gravity="bottom" />-->
             </LinearLayout>
         </LinearLayout>
 </FrameLayout>

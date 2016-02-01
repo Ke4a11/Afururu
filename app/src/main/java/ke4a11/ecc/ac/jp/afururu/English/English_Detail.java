@@ -2,6 +2,7 @@ package ke4a11.ecc.ac.jp.afururu.English;
 
 
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import ke4a11.ecc.ac.jp.afururu.R;
 public class English_Detail extends Fragment {
 
     public static String[] detailEngText;
-
+    public static String[] titleEngText;
 
     public English_Detail() {
         // Required empty public constructor
@@ -39,7 +40,9 @@ public class English_Detail extends Fragment {
         //newInstance内のsetArgumentsで持った値を取得
         int index = getArguments().getInt("index", 0);
         //アイテムの位置より、内容を選択して表示
-        text.setText(detailEngText[index]);
+        text.setText(detailEngText[index] + "\n" + English_Textview_Activity.titleEngText[index]);
+        //表示したテキストの色を変える
+
         //インフレートしたプレビューを返して、フラグメントにビューを持たせる
         return view;
     }
