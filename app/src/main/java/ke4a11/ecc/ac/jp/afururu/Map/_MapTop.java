@@ -131,10 +131,10 @@ public class _MapTop extends Fragment {
                     options.position(point);
                     if (markerPoints.size() == 1) {
                         options.icon(BitmapDescriptorFactory.fromResource(R.drawable.sss1));
-                        options.title("A");
+                        options.title("Start");
                     } else if (markerPoints.size() == 2) {
                         options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ggg2));
-                        options.title("B");
+                        options.title("Goal");
                     }
                     mMap.addMarker(options);
                     mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
@@ -142,9 +142,9 @@ public class _MapTop extends Fragment {
                         public boolean onMarkerClick(Marker marker) {
                             // TODO Auto-generated method stub
                             String title = marker.getTitle();
-                            if (title.equals("A")) {
+                            if (title.equals("Start")) {
                                 marker.setSnippet(info_A);
-                            } else if (title.equals("B")) {
+                            } else if (title.equals("Goal")) {
                                 marker.setSnippet(info_B);
                             }
                             return false;
@@ -303,14 +303,14 @@ public class _MapTop extends Fragment {
         options = new MarkerOptions();
         options.position(origin);
         options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_cast_light));
-        options.title("A");
+        options.title("Start");
         options.draggable(true);
         mMap.addMarker(options);
         //B
         options = new MarkerOptions();
         options.position(dest);
         options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_play_light));
-        options.title("B");
+        options.title("Goal");
         options.draggable(true);
         mMap.addMarker(options);
         String url = getDirectionsUrl(origin, dest);
@@ -345,14 +345,21 @@ public class _MapTop extends Fragment {
                     markerPoints.clear();
                     Location myLocation = locationManager.getLastKnownLocation("gps");
 
+                    Double a = myLocation.getLatitude();
+                    Double b = myLocation.getLongitude();
+
                     //現在地の追加
-                    markerPoints.add(new LatLng(myLocation.getLatitude(), myLocation.getLongitude()));
+                    markerPoints.add(new LatLng(a,b));
                     Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
-                    List<Address> address =
-                            gcoder.getFromLocationName(getaddress(), 1);
+//                    Toast.makeText(getActivity().getApplicationContext(),""+markerPoints.get(0), Toast.LENGTH_LONG).show();
+                    Log.d("test", String.valueOf(markerPoints.get(0)));
+//                    Log.d("test", String.valueOf(markerPoints.get(1)));
+
+
+                    List<Address> address = gcoder.getFromLocationName(getaddress(), 1);
                     markerPoints.add(new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude()));
 //                    markerPoints.add(pref.getString("address", "1,1"));
-
+//                    Toast.makeText(getActivity().getApplicationContext(), "位置\n緯度:" + markerPoints.get(1) + "\n経度:" + markerPoints.get(2), Toast.LENGTH_LONG).show();
                     routeSearch();
 
                 } catch (SecurityException e) {
@@ -468,7 +475,7 @@ public class _MapTop extends Fragment {
             // 位置情報の取得
             lstAddr = gcoder.getFromLocationName(search_key, maxResults);
 
-            Log.v("size", Integer.toString(lstAddr.size()));
+//            Log.v("size", Integer.toString(lstAddr.size()));
 
             if (lstAddr != null && lstAddr.size() > 0) {
                 // 緯度/経度取得
@@ -476,8 +483,8 @@ public class _MapTop extends Fragment {
                 double setlatitude = setaddr.getLatitude();
                 double setlongitude = setaddr.getLongitude();
 
-                Log.v("lati", Double.toString(setlatitude));
-                Log.v("longi", Double.toString(setlongitude));
+//                Log.v("lati", Double.toString(setlatitude));
+//                Log.v("longi", Double.toString(setlongitude));
 
                 LatLng setaddress = new LatLng(setlatitude, setlongitude);
                 options.position(setaddress);//ピンの場所を指定
