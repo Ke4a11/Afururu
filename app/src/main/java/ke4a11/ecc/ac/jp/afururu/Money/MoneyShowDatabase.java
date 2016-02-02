@@ -8,11 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import ke4a11.ecc.ac.jp.afururu.R;
-//import ke4a11.ecc.ac.jp.afururu.Setting.MyOpenHelper;
 
-/**
- * Created by masahirohigashi on 16/01/19.
- */
 public class MoneyShowDatabase extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {

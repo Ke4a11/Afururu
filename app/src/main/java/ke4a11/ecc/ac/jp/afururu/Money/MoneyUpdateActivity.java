@@ -30,7 +30,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import ke4a11.ecc.ac.jp.afururu.R;
-import ke4a11.ecc.ac.jp.afururu.Setting.ShowDataBase;
 
 public class MoneyUpdateActivity extends AppCompatActivity {
     //初期の値

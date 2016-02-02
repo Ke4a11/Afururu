@@ -29,7 +29,6 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import ke4a11.ecc.ac.jp.afururu.R;
-import ke4a11.ecc.ac.jp.afururu.Setting.ShowDataBase;
 import ke4a11.ecc.ac.jp.afururu.TopActivity;
 
 public class MoneyInputActivity extends AppCompatActivity {
