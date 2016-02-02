@@ -50,6 +50,8 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     public String[] DB_SELECTED_shop;
     public int[] DB_SELECTED_category;
     public String[] DB_SELECTED_memo;
+    public  int[] DB_SELECTED_price;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +77,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
                 //クラスロードのためインスタンス生成している
                 //DummyContentで使用できるように設定する
-                DummyContent dummyContent = new DummyContent(DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo);
+                DummyContent dummyContent = new DummyContent(DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo , DB_SELECTED_price);
 
                 if (spinner.getSelectedItemPosition() == 0) {
                     //カレンダー表示
@@ -88,6 +90,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
+
                     ft.commit();
                 } else {
 
@@ -117,6 +120,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         String[] shop = new String[c.getCount()];
         int[] category = new int[c.getCount()];
         String[] memo = new String[c.getCount()];
+        int[] price = new int[c.getCount()];
 
 
         //selectで得た結果を配列に入れて、それをDummyContentのstaticに打ち込む準備
@@ -127,6 +131,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
             shop[i] = c.getString(2);
             category[i] = Integer.parseInt(c.getString(3));
             memo[i] = c.getString(4);
+            price[i]=c.getInt(5);
 
             i++;
 
@@ -138,6 +143,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
         DB_SELECTED_shop = shop;
         DB_SELECTED_category = category;
         DB_SELECTED_memo = memo;
+        DB_SELECTED_price = price;
 
         c.close();
         db.close();

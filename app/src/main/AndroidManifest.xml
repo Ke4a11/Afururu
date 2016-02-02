@@ -65,6 +65,23 @@
         <activity
             android:name=".Money.MoneyShowDatabase"
             android:label="@string/title_activity_show_data_base" />
+
+        <activity
+            android:name=".Money.MoneyActivity_ListorCal_Detail"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".Money.ItemListActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ke4a11.ecc.ac.jp.afururu.Money.ItemListActivity" />
+        </activity>
+
+        <activity
+            android:name=".Money.MoneyUpdateActivity"
+            android:label="@string/title_activity_money_update"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
     </application>
 
 </manifest>

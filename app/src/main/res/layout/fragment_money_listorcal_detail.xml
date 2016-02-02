@@ -5,18 +5,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-//日付
-    <TextView
+<!---->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date:"
+            android:id="@+id/textView6"
+            android:layout_weight="5"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/item_detail_date"
         style="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:textIsSelectable="true"
-        tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail" />
+        tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail"
+        android:layout_weight="5" />
 
-//お店
+
+    <!---->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price:"
+            android:id="@+id/textView7"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/item_detail_price"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail"
+        android:layout_weight="5" />
+
+    </LinearLayout>
+<!--お店-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Shop:"
+            android:gravity="center_vertical|center_horizontal" />
     <TextView
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/item_detail_shop"
@@ -26,8 +71,19 @@
         android:padding="16dp"
         android:textIsSelectable="true"
         tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail" />
-//カテゴリ
+
+    </LinearLayout>
+<!--カテゴリ-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="Category:"
+        android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/item_detail_category"
         style="?android:attr/textAppearanceLarge"
@@ -36,30 +92,39 @@
         android:padding="16dp"
         android:textIsSelectable="true"
         tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail" />
-//詳細
-    <TextView
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/item_detail"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail" />
-    //メモ
-    <TextView
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/item_detail_memo"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail" />
+
+    </LinearLayout>
+<!--//詳細-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Memo"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/item_detail_memo"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textIsSelectable="true"
+            tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_ListorCal_Detail" />
+
+
+    </LinearLayout>
+    <!--//メモ-->
+
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/update_DB"
         android:text="編集" />
+
 </LinearLayout>

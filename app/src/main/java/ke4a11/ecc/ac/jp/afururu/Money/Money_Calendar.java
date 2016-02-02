@@ -156,7 +156,7 @@ public class Money_Calendar extends Fragment {
                 入力された値があった場合にtextviewに表示する
                  */
 
-                String testdata = null;
+                int testdata = -1;
                 String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                 for (int n =0; n < DATEITEMS.size(); n++){
@@ -168,13 +168,13 @@ public class Money_Calendar extends Fragment {
                     if (year ==showyear && month == showmonth){
                         if (day.equals(date)){
                             //同じ日にちの値をどうするか検討しなくてはいけない
-                            testdata = DummyContent.ITEMS.get(n).id;
+                            testdata = DummyContent.ITEMS.get(n).price;
                         }
                     }
                 }
 
 
-                if(testdata != null){
+                if(testdata != -1){
                     textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                     textView1.setOnClickListener(new OnClickListener() {
                         @Override
@@ -387,6 +387,7 @@ public class Money_Calendar extends Fragment {
         String[] tmp_day = new String[DummyContent.ITEMS.size()];
 
         for(int i=0; i < DummyContent.ITEMS.size(); i++){
+
             tmp_date[i] = DummyContent.ITEMS.get(i).date; //日付だけ取得
             //ここにsplite。 / で切ったものを年月日で分けてtmp_~~ の各種変数に入れていく
             String[] tmp_splite = tmp_date[i].split("/");

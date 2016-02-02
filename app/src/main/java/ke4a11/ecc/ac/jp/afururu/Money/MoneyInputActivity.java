@@ -94,28 +94,6 @@ public class MoneyInputActivity extends AppCompatActivity {
         });
 
 
-        //UPDATEでの処理
-        Button updateButton = (Button)findViewById(R.id.updateButton);
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String shop = shopText.getText().toString();
-                String memo = memoText.getText().toString();
-                String date = dateText.getText().toString();
-                String category = (String)spinner.getSelectedItem();
-                if (shop.equals("")) {
-                    Toast.makeText(getApplicationContext(), "shopを入力してください。", Toast.LENGTH_SHORT).show();
-                } else {
-                    ContentValues updateValues = new ContentValues();
-                    updateValues.put("date",date);
-                    updateValues.put("shop", shop);
-                    updateValues.put("category",category);
-                    updateValues.put("memo", memo);
-                    db.update("ecc", updateValues, "=?", new String[]{shop});
-                }
-            }
-        });
-
         //DROPテーブル
         Button dropButton = (Button)findViewById(R.id.dropButton);
         dropButton.setOnClickListener(new View.OnClickListener(){

@@ -14,7 +14,9 @@
         android:ems="5"
         android:inputType="number"
         android:id="@+id/priceEdit"
-        android:layout_gravity="right" />
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:maxLength="6"/>
 
 
     <LinearLayout
@@ -38,7 +40,8 @@
                 android:id="@+id/date"
                 android:gravity="center"
                 android:textSize="25dp"
-                android:background="#0288D1" />
+                android:background="#58d102"
+                android:autoText="false" />
 
             <!--日付TextView-->
             <TextView
@@ -49,7 +52,7 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#d1eefe" />
+                android:background="#d6fed1" />
 
 
         </LinearLayout>
@@ -67,13 +70,14 @@
                 android:id="@+id/category"
                 android:textSize="25dp"
                 android:gravity="center"
-                android:background="#42a5f5" />
+                android:background="#42f56f" />
 
             <Spinner android:id="@+id/categorySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|center_vertical|center_horizontal"
-                android:background="#d3eafc">
+                android:background="#d3fcdc"
+                >
             </Spinner>
 
         </LinearLayout>
@@ -82,7 +86,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#ebf9fe">
+            android:background="#f9feeb">
 
             <TextView
                 android:layout_width="110dp"
@@ -91,7 +95,7 @@
                 android:id="@+id/shop"
                 android:textSize="25dp"
                 android:gravity="center"
-                android:background="#26c6fa" />
+                android:background="#bafa26" />
 
             <EditText
                 android:layout_width="fill_parent"
@@ -107,7 +111,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#daf5f2">
+            android:background="#daf5e9">
 
             <TextView
                 android:layout_width="110dp"
@@ -116,7 +120,7 @@
                 android:id="@+id/memo"
                 android:textSize="25dp"
                 android:gravity="center"
-                android:background="#29a69a" />
+                android:background="#29a674" />
 
             <EditText
                 android:layout_width="fill_parent"
