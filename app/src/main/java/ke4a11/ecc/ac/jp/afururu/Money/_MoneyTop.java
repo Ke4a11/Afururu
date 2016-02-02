@@ -4,6 +4,9 @@ package ke4a11.ecc.ac.jp.afururu.Money;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -39,6 +42,8 @@ public class _MoneyTop extends Fragment {
     private String moneySpinner ="gbp";
     //残金ビュー
     private TextView balanceView;
+    //支出ビュー
+    private TextView payoutView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,9 +53,10 @@ public class _MoneyTop extends Fragment {
 
         //残金ビューの生成
         balanceView = (TextView) view.findViewById(R.id.balance);
-
         //為替ビューの生成
         mView = (TextView)view.findViewById(R.id.rate);
+        //支出ビュー作成
+        payoutView = (TextView)view.findViewById(R.id.payout);
 
         //持ってくる為替の指定
         if(moneySpinner != null){
@@ -112,10 +118,10 @@ public class _MoneyTop extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getContext(),"Top onStart",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),"Top onStart",Toast.LENGTH_SHORT).show();
 
-        //残金読み込み
-        balanceView.setText(getBalance());
+        //残金ビューの表示,支出があれば支出チェックで計算している。
+        balanceView.setText("£" + getBalance());
 
         //為替の再読みこみ
         if(moneySpinner != null){
@@ -123,6 +129,49 @@ public class _MoneyTop extends Fragment {
             //ネットに繋がっていたら
             if(netWorkCheck(getContext().getApplicationContext())){
                 getcsv();
+            }
+        }
+
+        //支出の計算
+        MoneyOpenHelper helper = new MoneyOpenHelper(getActivity().getApplicationContext());
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        //テーブルの存在チェック、存在していなければ以降の処理も実行されない
+        String tableCheck = "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='ecc';";
+        Cursor cursor = db.rawQuery(tableCheck, null);
+        cursor.moveToFirst();
+
+        String a = cursor.getString(0);
+        //テーブルが存在すれば 1 なければ 0
+        if (a.equals("1")){
+            //rawQueryは他の使い方もある
+            //String sql = "select * from ecc where id = ? ;"
+            //.rawQuery( SQL文 , SQL文内の「?」を任意の値にかえる);
+            String sql = "select sum(price) from ecc;";
+            Cursor c = db.rawQuery(sql,null);
+
+            boolean isEof = c.moveToFirst();
+
+            int price;
+
+            //DBの入力があれば支出ビューに金額が表示される
+            if (isEof) {
+                price = c.getInt(0);
+                payoutView.setText("£" + String.valueOf(price));
+
+                //支出を元に残金ビューの値を計算
+                int n = Integer.parseInt(getBalance());
+                if (n != -9999){
+                    n -= price;
+                    balanceView.setText("£" + String.valueOf(n));
+                    balanceView.setTextColor(Color.parseColor("gray"));
+                    if (n < 0 && n != -9999){//マイナスなら文字を赤色で表示
+                        balanceView.setTextColor(Color.RED);
+                    }
+                }
+            }else{
+                payoutView.setText("支出はまだありません。");
+                payoutView.setTextSize(20);
             }
         }
     }
@@ -146,7 +195,7 @@ public class _MoneyTop extends Fragment {
     //Settingで編集した今月の使う金を返す
     public String getBalance(){
         SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE );
-        int a = sp.getInt("balance", -1);
+        int a = sp.getInt("balance", -9999);
         return String.valueOf(a);
     }
 

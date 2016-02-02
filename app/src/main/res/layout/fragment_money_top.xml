@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello! ___(ユーザ名)"
+            android:text="Hello!"
             android:id="@+id/greet"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="false"
@@ -42,7 +42,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_height="80dp"
                 android:clickable="true"
-                android:onClick="testToast1">
+                android:onClick="toMoneySetting">
 
                 <!-- 一行目 -->
                 <TextView
@@ -56,7 +56,7 @@
                 <ImageView
                     android:layout_width="200px"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/money1"/>
+                    android:src="@drawable/money2"/>
 
                 <!--ここのidを使ってコードで残金表示を行う-->
                 <TextView
@@ -88,7 +88,7 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="5dp"
                 android:clickable="true"
-                android:onClick="testToast2">
+                android:onClick="toListorCal">
                 <!-- 2行目 -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 <ImageView
                     android:layout_width="200px"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/money2"/>
+                    android:src="@drawable/money1"/>
 
                 <!--ここのidを使ってコードで使用金額表示を行う-->
                 <TextView
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:onClick="testToast3">
+                android:onClick="toMoneyExchange">
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -173,7 +173,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="昨日:"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical" />
                         <TextView
@@ -181,14 +181,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day1ago"
-                            android:text="test"
+                            android:text="¥182.1/£"
                             android:layout_weight="1"
-                            android:textSize="22sp"/>
+                            android:textSize="15sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="一昨日:"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp" />
@@ -197,13 +197,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day2ago"
-                            android:textSize="22sp"
+                            android:text="¥182.7/£"
+                            android:textSize="15sp"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="三日前:"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="10dp" />
@@ -212,7 +213,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
                             android:id="@+id/day3ago"
-                            android:textSize="22sp"
+                            android:text="¥184.1/£"
+                            android:textSize="15sp"
                             android:layout_weight="1"/>
 
                 </LinearLayout>
