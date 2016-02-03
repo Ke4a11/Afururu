@@ -31,9 +31,11 @@ public class DummyContent {
     public static String[] dummy_shop;
     public static int[] dummy_category;
     public static String[] dummy_memo;
+    public static int[] dummy_price;
+
 
     //コンストラクタ
-    public DummyContent(String[] a, String[] b, int[] c, String[] d){
+    public DummyContent(String[] a, String[] b, int[] c, String[] d,int[] e){
         ITEMS.clear();
         ITEM_MAP.clear();
 
@@ -41,6 +43,8 @@ public class DummyContent {
         dummy_shop = b;
         dummy_category = c;
         dummy_memo = d;
+        dummy_price = e;
+
 
         for (int i = 0; i <= dummy_date.length -1; i++) {
             addItem(createDummyItem(i));
@@ -50,6 +54,7 @@ public class DummyContent {
         dummy_shop = null;
         dummy_category = null;
         dummy_memo = null;
+        dummy_price = null;
 
     }
 
@@ -82,7 +87,7 @@ public class DummyContent {
     //DummyItem()メソッドの引数 と 一番下のDummyItemクラスのコンストラクタの引数に対応している
     private static DummyItem createDummyItem(int position) {
         //return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
-        return new DummyItem(String.valueOf(position), dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position]);
+        return new DummyItem(String.valueOf(position), dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position],dummy_price[position]);
 
         /*
         makeDetailメソッドは押した場所（position）の分だけ繰り返される。
@@ -104,6 +109,7 @@ public class DummyContent {
         public String shop;
         public int category;
         public String memo;
+        public int price;
 
         //この引数を家計簿に必要なものと合わせる。
         //メモ,店名,カテゴリ：String 金額：int
@@ -113,12 +119,13 @@ public class DummyContent {
             this.details = details;
         }
 
-        public DummyItem(String id, String date, String shop, int category, String memo){
+        public DummyItem(String id, String date, String shop, int category, String memo,int price){
             this.id = id; //主キーみたいな役割
             this.date = date;
             this.shop = shop;
             this.category = category;
             this.memo = memo;
+            this.price=price;
         }
 
         @Override

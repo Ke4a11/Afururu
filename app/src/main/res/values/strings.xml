@@ -9,7 +9,7 @@
     <string name="title_activity_show_data_base">ShowDataBase</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_money_input">gomi</string>
+    <string name="title_activity_money_input">MoneyInputActivity</string>
     <string name="title_activity_money_update">MoneyUpdateActivity</string>
     <string name="getLocate">検索</string>
 </resources>

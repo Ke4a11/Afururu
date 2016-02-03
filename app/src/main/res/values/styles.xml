@@ -35,4 +35,6 @@
         <item name="android:activityOpenExitAnimation">@animator/slide_out_under</item>
     </style>
 
+    <color name="my_spinner_text_color">#353535</color>
+
 </resources>
