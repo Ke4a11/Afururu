@@ -75,6 +75,7 @@ public class Money_ListorCal_Detail extends Fragment {
             ((TextView) rootView.findViewById(R.id.item_detail_shop)).setText(mItem.shop);
             ((TextView) rootView.findViewById(R.id.item_detail_category)).setText(spinnerText[mItem.category]);
             ((TextView) rootView.findViewById(R.id.item_detail_memo)).setText(mItem.memo);
+            ((TextView) rootView.findViewById(R.id.item_detail_price)).setText(mItem.price);
 
         }
 

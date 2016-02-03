@@ -74,6 +74,9 @@ public class Money_Calendar extends Fragment {
     //今月だけ表示のためのフラグ
     Boolean calFlg = true;
 
+    //同じ日にちに二回以上値の入力があった場合
+    int many = 1;
+
     MCalendar mCalendar;
 
     public Money_Calendar() {
@@ -156,7 +159,7 @@ public class Money_Calendar extends Fragment {
                 入力された値があった場合にtextviewに表示する
                  */
 
-                String testdata = null;
+                int testdata = -1;
                 String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                 for (int n =0; n < DATEITEMS.size(); n++){
@@ -168,13 +171,13 @@ public class Money_Calendar extends Fragment {
                     if (year ==showyear && month == showmonth){
                         if (day.equals(date)){
                             //同じ日にちの値をどうするか検討しなくてはいけない
-                            testdata = DummyContent.ITEMS.get(n).id;
+                            testdata = DummyContent.ITEMS.get(n).price;
                         }
                     }
                 }
 
-
-                if(testdata != null){
+                //testdataに値が代入されていたら
+                if(testdata != -1){
                     textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                     textView1.setOnClickListener(new OnClickListener() {
                         @Override
@@ -254,26 +257,33 @@ public class Money_Calendar extends Fragment {
                         入力された値があった場合にtextviewに表示する
                         */
 
-                        String testdata = null;
+                        int testdata = -1;
+                        String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                         for (int n =0; n < DATEITEMS.size(); n++){
                             //一度変数に入れないとifを全く受け付けなかったため
                             int year = DATEITEMS.get(n).year;
                             int month = DATEITEMS.get(n).month;
                             String day = DATEITEMS.get(n).day;
-                            String date = String.valueOf(calendarMatrix[i][j]);
                             //最初のifに日にちまで入れると一行が長くなる上、読みにくくなる。何より変わらないと思うが、二つ目のifである日にちの比較に時間がかかりそう（適当）
                             if (year ==showyear && month == showmonth){
                                 if (day.equals(date)){
                                     //同じ日にちの値をどうするか検討しなくてはいけない
-                                    testdata = DummyContent.ITEMS.get(n).id;
+                                    testdata = DummyContent.ITEMS.get(n).price;
                                 }
                             }
                         }
 
-
-                        if(testdata != null){
+                        //testdataに値が代入されていたら
+                        if(testdata != -1){
                             textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
+                            textView1.setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i = new Intent(getContext(), MoneyInputActivity.class);
+                                    startActivity(i);
+                                }
+                            });
                             //textView1.setTextSize(10);
                         }
                     }
@@ -339,28 +349,35 @@ public class Money_Calendar extends Fragment {
 
                         /*
                         入力された値があった場合にtextviewに表示する
-                         */
+                        */
 
-                        String testdata = null;
+                        int testdata = -1;
+                        String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                         for (int n =0; n < DATEITEMS.size(); n++){
                             //一度変数に入れないとifを全く受け付けなかったため
                             int year = DATEITEMS.get(n).year;
                             int month = DATEITEMS.get(n).month;
                             String day = DATEITEMS.get(n).day;
-                            String date = String.valueOf(calendarMatrix[i][j]);
                             //最初のifに日にちまで入れると一行が長くなる上、読みにくくなる。何より変わらないと思うが、二つ目のifである日にちの比較に時間がかかりそう（適当）
                             if (year ==showyear && month == showmonth){
                                 if (day.equals(date)){
                                     //同じ日にちの値をどうするか検討しなくてはいけない
-                                    testdata = DummyContent.ITEMS.get(n).id;
+                                    testdata = DummyContent.ITEMS.get(n).price;
                                 }
                             }
                         }
 
-
-                        if(testdata != null){
+                        //testdataに値が代入されていたら
+                        if(testdata != -1){
                             textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
+                            textView1.setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i = new Intent(getContext(), MoneyInputActivity.class);
+                                    startActivity(i);
+                                }
+                            });
                             //textView1.setTextSize(10);
                         }
                     }

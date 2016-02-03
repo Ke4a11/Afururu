@@ -55,7 +55,11 @@ public class MoneyUpdateActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         int id =i.getIntExtra("position",1);
+        //+1しないと一個ずれる
         id +=1;
+
+        //final型でないと、id登録できなかったのでString型に変換
+        final String ids = String.valueOf(id);
 
         Toast.makeText(getApplicationContext(),"idは"+id+"desu", Toast.LENGTH_SHORT).show();
 
@@ -72,12 +76,12 @@ public class MoneyUpdateActivity extends AppCompatActivity {
         boolean isEof = c.moveToFirst();
 
         while (isEof) {
-          //  price += String.format("%d : %s : %s : %s : %s : %d", c.getInt(0), c.getString(1) ,c.getString(2), c.getString(3),c.getString(4),c.getInt(5));
+            //price += String.format("%d : %s : %s : %s : %s : %d", c.getInt(0), c.getString(1) ,c.getString(2), c.getString(3),c.getString(4),c.getInt(5));
             shop +=String.format("%s",c.getString(1));
             memo +=String.format("%s",c.getString(2));
             category +=String.format("%d",c.getInt(3));
             date +=String.format("%s",c.getString(4));
-           //お金は五番目の引数
+            //お金は五番目の引数
             price +=String.format("%d",c.getInt(5));
             isEof = c.moveToNext();
         }
@@ -85,7 +89,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
         memoText.setText(memo);
         dateText.setText(date);
         priceText.setText(price);
-///カテゴリの表示をStringに変換
+        //カテゴリの表示をStringに変換
         String categorychange = category;
         int categorychanged = Integer.parseInt(categorychange);
 
@@ -123,6 +127,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                     updateValues.put("date", date);
                     updateValues.put("price", price);
                     updateValues.put("category",category);
+                    //String whereClause = "id = ?";
                     db.update("ecc", updateValues, "date=?", new String[]{date});
                 }
                 Intent i = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
@@ -228,7 +233,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                 final TextView dateText = (TextView) findViewById(R.id.dateText);
                 Time time = new Time("Asia/Tokyo");
                 time.setToNow();
-                String date = time.year + "年" + (time.month + 1) + "月" + time.monthDay + "日　";
+                String date = time.year + "/" + (time.month + 1) + "/" + time.monthDay;
                 dateText.setText(date);
                 //押したときカレンダー表示
                 dateText.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +243,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
 
                         DatePickerDialog dialog = new DatePickerDialog(MoneyUpdateActivity.this, new DatePickerDialog.OnDateSetListener() {
                             public void onDateSet(DatePicker picker, int year, int month, int day) {
-                                dateText.setText(year + "年" + (month + 1) + "月" + day + "日");
+                                dateText.setText(year + "/" + (month + 1) + "/" + day);
                             }
                         }
                                 , cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)
