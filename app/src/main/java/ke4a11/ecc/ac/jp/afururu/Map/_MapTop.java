@@ -13,12 +13,15 @@ import java.util.List;
 import org.json.JSONObject;
 
 import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,7 +29,6 @@ import android.view.MenuItem;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -77,10 +79,10 @@ import ke4a11.ecc.ac.jp.afururu.TopActivity;
 public class _MapTop extends Fragment {
 
 
-    private GoogleMap mMap = null; // Might be null if Google Play services APK is not available.
+    private static View view;
+    private static GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private MapView mview;
     MapController MapCtrl;
-
     //    GoogleMap mMap;
     private static final int MENU_A = 0;
     private static final int MENU_B = 1;
@@ -88,50 +90,37 @@ public class _MapTop extends Fragment {
     public static String posinfo = "";
     public static String info_A = "";
     public static String info_B = "";
-    ArrayList<LatLng> markerPoints;
+    public static ArrayList<LatLng> markerPoints;
     public static MarkerOptions options;
     public ProgressDialog progressDialog;
-//    public String travelMode = "WALKING";//default
+   // public String travelMode = "driving";//default
     LocationManager locationManager;
-//    public static boolean flg = true;
-
-    public static View view = null;
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        if (view == null) {
-            view = inflater.inflate(R.layout.fragment_map_top, container, false);
-        }
-        return view;
-    }
 
     @Override
-    public void onActivityCreated(Bundle bundle) {
-        super.onActivityCreated(bundle);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//
+        view = inflater.inflate(R.layout.fragment_map_top, container, false);
+//
         //プログレス
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("検索中です......");
         progressDialog.hide();
 
+
         //初期化
-        markerPoints = new ArrayList<>();
+        markerPoints = new ArrayList<LatLng>();
         SupportMapFragment mapfragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map1);
-
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-
-        if (mMap == null) {
-            mMap = mapfragment.getMap();
-        }
+        mMap = mapfragment.getMap();
+//        setUpMapIfNeeded();
 
         //初期位置
         LatLng location = new LatLng(34.802556297454004, 135.53884506225586);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 17));
 
         if (mMap != null) {
-            mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
             mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
             //クリックリスナー
             mMap.setOnMapClickListener(new OnMapClickListener() {
                 @Override
@@ -155,6 +144,7 @@ public class _MapTop extends Fragment {
                     mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
+                            // TODO Auto-generated method stub
                             String title = marker.getTitle();
                             if (title.equals("Start")) {
                                 marker.setSnippet(info_A);
@@ -171,6 +161,7 @@ public class _MapTop extends Fragment {
                 }
             });
         }
+        return view;
     }
 
 
@@ -189,7 +180,6 @@ public class _MapTop extends Fragment {
         String sensor = "sensor=false";
         //パラメータ
         String parameters = str_origin + "&" + str_dest + "&" + sensor + "&language=ja" + "&mode=" + "walking";
-        //02/02移動方法を徒歩に変更花井
         //JSON指定
         String output = "json";
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
@@ -333,12 +323,13 @@ public class _MapTop extends Fragment {
     }
 
 
+
     //ここより上は試作中
     @Override
     public void onStart() {
         super.onStart();
-
         mview = (MapView) getActivity().findViewById(R.id.mapview);
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         Button searchButton = (Button) getActivity().findViewById(R.id.btnLocate);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -356,36 +347,40 @@ public class _MapTop extends Fragment {
 //                onGetLocation(v);
                 try {
 
-//                    mMap.clear();
-//                    markerPoints.clear();
+                    mMap.clear();
+                    markerPoints.clear();
+                    Location myLocation = locationManager
+                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                            //locationManager.getLastKnownLocation("gps");
+                    if(myLocation != null) {
+                        Double a = myLocation.getLatitude();
+                        Double b = myLocation.getLongitude();
 
-                    Location myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        //現在地の追加
+                        markerPoints.add(new LatLng(a, b));
+                        Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
+                        Toast.makeText(getActivity().getApplicationContext(), "" + markerPoints.get(0), Toast.LENGTH_LONG).show();
+                        setMarker(new LatLng(a, b), R.drawable.sss1);
 
-                    Double a = myLocation.getLatitude();
-                    Double b = myLocation.getLongitude();
-
-                    //現在地の追加
-                    markerPoints.add(new LatLng(a, b));
-                    MarkerOptions options = new MarkerOptions();
-                    options.position(new LatLng(a, b));
-                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.sss1));
-                    mMap.addMarker(options);
-
-                    Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
-//                    Toast.makeText(getActivity().getApplicationContext(),""+markerPoints.get(0), Toast.LENGTH_LONG).show();
-                    Log.d("test", String.valueOf(markerPoints.get(0)));
+//                        Log.d("test", String.valueOf(markerPoints.get(0)));
 //                    Log.d("test", String.valueOf(markerPoints.get(1)));
 
-                    //プリファレンスの位置を追加
-                    List<Address> address = gcoder.getFromLocationName(getaddress(), 1);
-                    markerPoints.add(new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude()));
 
-                    options.position(new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude()));
-                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ggg2));
-                    mMap.addMarker(options);
+
+                        List<Address> address = gcoder.getFromLocationName(getaddress(), 1);
+                        LatLng homeLocation = new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude());
+                        markerPoints.add(homeLocation);
+                        setMarker(homeLocation, TopActivity.homeIcon);
 //                    markerPoints.add(pref.getString("address", "1,1"));
 //                    Toast.makeText(getActivity().getApplicationContext(), "位置\n緯度:" + markerPoints.get(1) + "\n経度:" + markerPoints.get(2), Toast.LENGTH_LONG).show();
-                    routeSearch();
+                        routeSearch();
+                    }else{
+                        Toast.makeText(getActivity(), "現在地の取得に失敗しました。", Toast.LENGTH_LONG).show();
+
+                        if(locationManager == null){
+                            Toast.makeText(getActivity(), "locationManagerもnull", Toast.LENGTH_LONG).show();
+                        }
+                    }
 
                 } catch (SecurityException e) {
 
@@ -397,34 +392,35 @@ public class _MapTop extends Fragment {
 
         });
 
-//        Button testButton = (Button)getActivity().findViewById((R.id.testbtn));
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String start = "東京駅";
-//                String destination = "スカイツリー";
-//
-//                // 電車:r
-//                String dir = "r";
-//                // 車:d
-//                //String dir = "d";
-//                // 歩き:w
-//                //String dir = "w";
-//
-//                Intent intent = new Intent();
-//                intent.setAction(Intent.ACTION_VIEW);
-//                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-//                intent.setData(Uri.parse("http://maps.google.com/maps?saddr=" + start + "&daddr=" + destination + "&dirflg=" + dir));
-//                startActivity(intent);
-//
-//
-//            }
-//        });
 
+
+    }
+
+    private void setMarker(LatLng location, Bitmap bitmap){
+
+        MarkerOptions options = new MarkerOptions();
+        options.position(location);
+        options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+
+        mMap.addMarker(options);
+    }
+    private void setMarker(LatLng location, int drawable){
+
+        MarkerOptions options = new MarkerOptions();
+        options.position(location);
+        options.icon(BitmapDescriptorFactory.fromResource(drawable));
+
+        mMap.addMarker(options);
     }
 
     public String getaddress() {
         SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
+        String a = sp.getString("address", "大阪市北区中崎西");
+        return a;
+    }
+
+    static public String getAddress(Context context){
+        SharedPreferences sp = context.getSharedPreferences("Setting", Context.MODE_PRIVATE);
         String a = sp.getString("address", "大阪市北区中崎西");
         return a;
     }
@@ -462,8 +458,23 @@ public class _MapTop extends Fragment {
     public void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-        onActivityCreated(null);
+        try {
+            MarkerOptions options = new MarkerOptions();
+            Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
+            List<Address> address = gcoder.getFromLocationName(getaddress(), 1);
+            LatLng location = new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude());
+            markerPoints.add(location);
+            options.position(location);
+            options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ggg2));
+            mMap.addMarker(options);
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
+
+
 
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
@@ -481,8 +492,8 @@ public class _MapTop extends Fragment {
 
     private void setUpMap() {
         Log.d("method", "setUpMap");
-        mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
-        mMap.setMyLocationEnabled(true);//現在地へ飛ぶボタン
+//        mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
+//        mMap.setMyLocationEnabled(true);//現在地へ飛ぶボタン
         LatLng osaka = new LatLng(34.7, 135.504);//大阪
         CameraPosition.Builder camerapos = new CameraPosition.Builder();//表示位置の作成
         camerapos.target(osaka);//カメラの表示位置の指定
@@ -521,6 +532,10 @@ public class _MapTop extends Fragment {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static GoogleMap getMap(){
+        return mMap;
     }
 
 }

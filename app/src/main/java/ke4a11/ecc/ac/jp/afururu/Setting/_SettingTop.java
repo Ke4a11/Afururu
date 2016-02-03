@@ -64,6 +64,8 @@ public class _SettingTop extends Fragment {
             }
         });
 
+
+
         return view;
 
     }
