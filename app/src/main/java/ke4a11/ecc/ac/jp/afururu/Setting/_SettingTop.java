@@ -42,21 +42,22 @@ public class _SettingTop extends Fragment {
             public void onClick(View v) {
                 //コードが長くなるため、一時的にbalanceの値を保持する変数
                 String tmp_address = address_et.getText().toString();
+                String tmp_name = name_et.getText().toString();
 
                 //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
                 SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
                 // プリファレンスに書き込むためのEditorオブジェクト取得
                 SharedPreferences.Editor editor = sp.edit();
                 // "address" というキーで名前を登録
-                editor.putString("name", name_et.getText().toString());
+                editor.putString("name", tmp_name);
                 editor.putString("address", tmp_address);
 
-                /*
-                他に追加 の設定があればここに記述
-                 */
+
 
                 // 書き込みの確定（実際にファイルに書き込む）
                 editor.commit();
+
+                Toast.makeText(getActivity(),"更新完了しました！" + tmp_name, Toast.LENGTH_LONG).show();
 
             }
         });

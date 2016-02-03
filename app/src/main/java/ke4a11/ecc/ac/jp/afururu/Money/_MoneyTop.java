@@ -40,6 +40,9 @@ public class _MoneyTop extends Fragment {
     private String moneySpinner ="gbp";
     //残金ビュー
     private TextView balanceView;
+    //名前ビュー
+    private TextView NameView;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +52,8 @@ public class _MoneyTop extends Fragment {
 
         //残金ビューの生成
         balanceView = (TextView) view.findViewById(R.id.balance);
+        //名前ビューの生成
+        NameView = (TextView)view.findViewById(R.id.greet);
 
         //為替ビューの生成
         mView = (TextView)view.findViewById(R.id.rate);
@@ -126,6 +131,9 @@ public class _MoneyTop extends Fragment {
                 getcsv();
             }
         }
+
+        //ユーザー名取得
+        NameView.setText("Hello!" + getUser());
     }
 
 
@@ -149,6 +157,13 @@ public class _MoneyTop extends Fragment {
         SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE );
         int a = sp.getInt("balance", -1);
         return String.valueOf(a);
+    }
+
+    //Settingで編集した名前を返す
+    public String getUser(){
+        SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE );
+        String a = sp.getString("name", "ゲストユーザーさん！");
+        return a;
     }
 
     //ネットに繋がっているかチェックするメソッド
