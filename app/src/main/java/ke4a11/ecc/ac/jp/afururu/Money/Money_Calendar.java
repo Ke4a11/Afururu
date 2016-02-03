@@ -349,7 +349,7 @@ public class Money_Calendar extends Fragment {
 
                         /*
                         入力された値があった場合にtextviewに表示する
-                        */
+                         */
 
                         int testdata = -1;
                         String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため

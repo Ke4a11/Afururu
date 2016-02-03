@@ -1,12 +1,17 @@
 package ke4a11.ecc.ac.jp.afururu;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,10 +19,20 @@ import android.widget.Button;
 
 //import package
 import com.astuetz.PagerSlidingTabStrip; //固定タブのためだけのライブラリ
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
+import ke4a11.ecc.ac.jp.afururu.Map._MapTop;
 import ke4a11.ecc.ac.jp.afururu.Money.*;
 import ke4a11.ecc.ac.jp.afururu.English.*;
 
@@ -32,6 +47,7 @@ public class TopActivity extends AppCompatActivity {
     public static String info_B = "";
     ArrayList<LatLng> markerPoints;
     private Button btnFilter;
+    public static Bitmap homeIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,29 +56,53 @@ public class TopActivity extends AppCompatActivity {
 
         setViews();
 
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.house3);
+//                        bitmap.
+
+        homeIcon = Bitmap.createScaledBitmap(bitmap,50,50,false);
+
         //タブストリップの作成
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 2){
+                    try {
+                        MarkerOptions options = new MarkerOptions();
+                        Geocoder gcoder = new Geocoder(TopActivity.this, Locale.getDefault());
+                        List<Address> address = gcoder.getFromLocationName(_MapTop.getAddress(TopActivity.this), 1);
+                        LatLng location = new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude());
+                        _MapTop. markerPoints.add(location);
+                        options.position(location);
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.house3);
+//                        bitmap.
+
+                        Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap,50,50,false);
+
+                        options.icon(BitmapDescriptorFactory.fromBitmap(bitmap2));
+                        _MapTop.getMap().addMarker(options);
+
+
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(mViewPager);
         tabs.setIndicatorHeight(10);
         tabs.setIndicatorColor(0xff2196F3);
-//
-//        //FloatingButtonの作成と処理（リスナーと細かい処理は分けた方が良さげ）
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                //        .setAction("Action", null).show();
-//
-//                //calc 画面の呼び出し
-//                Intent i = new Intent(getApplicationContext(),MoneyInputActivity.class);
-//                startActivity(i);
-//                //animationの設定 styleに記述 manifestではなく、コードで指定
-//                overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
-//
-//            }
-//        });
 
     }
 
@@ -115,6 +155,11 @@ public class TopActivity extends AppCompatActivity {
         Intent it = new Intent(getApplicationContext(),MoneyActivity.class);
         it.putExtra("moneyFlg","exc");
         startActivity(it);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        _MapTop.flg = true;
     }
 
 

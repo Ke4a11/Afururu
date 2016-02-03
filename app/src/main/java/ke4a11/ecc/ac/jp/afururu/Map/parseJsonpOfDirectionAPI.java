@@ -26,7 +26,7 @@ public class parseJsonpOfDirectionAPI {
     public List<List<HashMap<String,String>>> parse(JSONObject jObject){
         String temp = "";
 
-        List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String,String>>>() ;
+        List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String,String>>>();
         JSONArray jsonRoutes = null;
         JSONArray jsonLegs = null;
         JSONArray jsonSteps = null;
@@ -36,14 +36,14 @@ public class parseJsonpOfDirectionAPI {
             jsonRoutes = jObject.getJSONArray("routes");
 
             for(int i=0;i<jsonRoutes.length();i++){
-                jsonLegs = ( (JSONObject)jsonRoutes.get(i)).getJSONArray("legs");
+                jsonLegs = ((JSONObject)jsonRoutes.get(i)).getJSONArray("legs");
 
-//スタート地点・住所
+                //スタート地点・住所
                 String s_address = (String)((JSONObject)(JSONObject)jsonLegs.get(i)).getString("start_address");
 
                 ma.info_A = s_address;
 
-//到着地点・住所
+                //到着地点・住所
                 String e_address = (String)((JSONObject)(JSONObject)jsonLegs.get(i)).getString("end_address");
 
                 ma.info_B = e_address;
@@ -85,11 +85,11 @@ public class parseJsonpOfDirectionAPI {
                             path.add(hm);
                         }
                     }
-//ルート座標
+                    //ルート座標
                     routes.add(path);
                 }
 
-//ルート情報
+                //ルート情報
                 ma.posinfo = temp;
             }
 

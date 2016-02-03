@@ -28,16 +28,15 @@ public class _EnglishTop extends Fragment {
 
     private TextToSpeech    tts;
     private Button buttonSpeech;
-
-    public _EnglishTop() {
-
-    }
-
+    private static View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_english_top, container, false);
+
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_english_top, container, false);
+        }
 
         //ボタン作成
         ImageButton engresButton = (ImageButton)view.findViewById(R.id.engresButton);
@@ -53,7 +52,6 @@ public class _EnglishTop extends Fragment {
         engschButton.setOnClickListener(new ChangeView());
         emeButton.setOnClickListener(new ChangeView());
         teiButton.setOnClickListener(new ChangeView());
-
 
         return view;
     }
@@ -116,7 +114,6 @@ public class _EnglishTop extends Fragment {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
-
 
         }
 

@@ -7,6 +7,7 @@ import java.util.Queue;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,43 +19,24 @@ import android.speech.tts.TextToSpeech;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.widget.Toast;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
-
-
-public class English_Detail extends Fragment implements AdapterView.OnItemClickListener{
+public class English_Detail extends Fragment {
 
     public static String[] detailEngText;
     private String string;
     TextToSpeech tts;
     Button bt;
     TextView et;
+    public static String[] titleEngText;
 
 
-
-    //extToSpeech tts = new TextToSpeech(getContext(),this);
-
-    class SampleClickListenr implements View.OnClickListener
-    {
-
-        public void onClick(View v){
-            String str = et.getText().toString();
-            if(str != null)
-            // アラートダイアログを表示します
-            {
-                tts.speak(str, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        }
-    }
-    class SampleInitListner implements TextToSpeech.OnInitListener
-    {
-        public void onInit(int status){}
-
-    }
     public English_Detail() {
         // Required empty public constructor
     }
+
     public static English_Detail newInstance(int index) {
         English_Detail f = new English_Detail();
         //フラグメントに、選択したアイテムの位置を持たせる
@@ -63,21 +45,18 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
         f.setArguments(args);
         return f;
     }
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+//AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         // アラートダイアログのタイトルを設定します
         //alertDialogBuilder.setTitle("再生中...");
         // アラートダイアログのメッセージを設定します
-       // alertDialogBuilder.setMessage("メッセージ");
+        // alertDialogBuilder.setMessage("メッセージ");
         //alertDialogBuilder.setCancelable(true);
         //AlertDialog alertDialog = alertDialogBuilder.create();
-       // alertDialog.show();
+        // alertDialog.show();
 
 
         //fragment_details.xmlをインフレート(膨らませる)してフラグメントに追加
@@ -98,8 +77,28 @@ public class English_Detail extends Fragment implements AdapterView.OnItemClickL
         // ボタンのClickListenerの登録
         return view;
 
+    }
+
+
+    class SampleClickListenr implements View.OnClickListener {
+
+        public void onClick(View v){
+            String str = et.getText().toString();
+            if(str != null)
+            // アラートダイアログを表示します
+            {
+                tts.speak(str, TextToSpeech.QUEUE_FLUSH, null);
+                Toast.makeText(getActivity().getApplicationContext(),"音声再生中です",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    class SampleInitListner implements TextToSpeech.OnInitListener {
+        public void onInit(int status){}
 
     }
+
+    
 
 
 }

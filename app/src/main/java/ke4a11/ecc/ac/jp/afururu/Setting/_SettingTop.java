@@ -24,13 +24,16 @@ public class _SettingTop extends Fragment {
     Button updatebtn;
     //住所のテキスト
     EditText address_et;
+    EditText name_et;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting_top, container, false);
 
+
         address_et = (EditText)view.findViewById(R.id.editAge);
+        name_et = (EditText)view.findViewById(R.id.editName);
 
         //更新ボタン
         updatebtn = (Button)view.findViewById(R.id.update);
@@ -45,6 +48,7 @@ public class _SettingTop extends Fragment {
                 // プリファレンスに書き込むためのEditorオブジェクト取得
                 SharedPreferences.Editor editor = sp.edit();
                 // "address" というキーで名前を登録
+                editor.putString("name", name_et.getText().toString());
                 editor.putString("address", tmp_address);
 
                 /*
@@ -53,9 +57,14 @@ public class _SettingTop extends Fragment {
 
                 // 書き込みの確定（実際にファイルに書き込む）
                 editor.commit();
+                SharedPreferences shp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
+                String a = shp.getString("address", "大阪市北区中崎西");
+                Toast.makeText(getActivity(),a, Toast.LENGTH_LONG).show();
 
             }
         });
+
+
 
         return view;
 
