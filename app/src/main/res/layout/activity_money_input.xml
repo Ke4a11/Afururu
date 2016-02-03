@@ -2,10 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="fill_parent" android:orientation="vertical" tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Input"
-    android:weightSum="1" android:id="@+id/moneyinputlayout">
-
-
-
+    android:weightSum="1" android:id="@+id/moneyinputlayout"
+    android:background="#AFEEEE"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用金額を入力してください。"
+        android:textColor="#000000"
+        android:textSize="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="200dp"
+        >
     <EditText
         android:layout_width="157dp"
         android:layout_height="wrap_content"
@@ -17,6 +28,14 @@
         android:layout_gravity="right"
         android:maxLength="6"
         android:textSize="25sp" />
+    <TextView
+        android:id="@+id/currency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="£"
+        android:textColor="#000000"
+        android:textSize="20dp"/>
+    </LinearLayout>
 
 
     <LinearLayout
@@ -25,23 +44,30 @@
         android:orientation="vertical"
         android:layout_weight="0.78">
         <!--Dateを囲んでいるLinear-->
-        <LinearLayout
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="1">
-            　　
-
             <!--日付label-->
             <TextView
                 android:layout_width="110dp"
                 android:layout_height="70dp"
-                android:text="Date"
+                android:text="日付"
+                android:textColor="#000000"
                 android:id="@+id/date"
                 android:gravity="center"
                 android:textSize="25dp"
-                android:background="#0288D1" />
-
+                android:background="#E0FFFF" />
             <!--日付TextView-->
             <TextView
                 android:layout_width="match_parent"
@@ -51,49 +77,68 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#d1eefe" />
-
-
+                android:background="#ffffff" />
         </LinearLayout>
-
+        </android.support.v7.widget.CardView>
         <!--Categoryを囲んでいるLinear-->
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="110dp"
                 android:layout_height="70dp"
-                android:text="Category"
+                android:text="カテゴリー"
+                android:textColor="#000000"
                 android:id="@+id/category"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:gravity="center"
-                android:background="#42a5f5" />
-
+                android:background="#E0FFFF" />
             <Spinner android:id="@+id/categorySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center|center_vertical|center_horizontal"
-                android:background="#d3eafc">
+                >
             </Spinner>
 
         </LinearLayout>
+        </android.support.v7.widget.CardView>
+
         <!--Shopを囲んでいるLinear-->
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            >
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#ebf9fe">
+            android:background="#ffffff">
 
             <TextView
                 android:layout_width="110dp"
                 android:layout_height="70dp"
-                android:text="Shop"
+                android:text="店名"
+                android:textColor="#000000"
                 android:id="@+id/shop"
                 android:textSize="25dp"
                 android:gravity="center"
-                android:background="#26c6fa" />
+                android:background="#E0FFFF" />
 
             <EditText
                 android:layout_width="fill_parent"
@@ -103,39 +148,46 @@
                 android:maxLength="20"/>
 
         </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <!--Memoを囲んでいるLinear-->
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#daf5f2">
-
+            android:background="#ffffff">
             <TextView
                 android:layout_width="110dp"
                 android:layout_height="70dp"
-                android:text="Memo"
+                android:text="メモ"
+                android:textColor="#000000"
                 android:id="@+id/memo"
                 android:textSize="25dp"
                 android:gravity="center"
-                android:background="#29a69a" />
-
+                android:background="#E0FFFF" />
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/memoEdit"
                 android:inputType="text"
                 android:maxLength="20"/>
-
         </LinearLayout>
-
+        </android.support.v7.widget.CardView>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="登録"
             android:id="@+id/addButton"
             android:layout_gravity="center_horizontal" />
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
