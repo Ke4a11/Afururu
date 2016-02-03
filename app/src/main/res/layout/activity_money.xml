@@ -8,20 +8,9 @@
     android:id="@+id/money_top_screen"
     tools:context="ke4a11.ecc.ac.jp.afururu.Money.MoneyActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ListorCalSpinner" />
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/money_calc_screen"></FrameLayout>
-    </LinearLayout>
 
 </FrameLayout>

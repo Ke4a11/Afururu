@@ -189,7 +189,11 @@ public class MoneyInputActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(MoneyInputActivity.this,new DatePickerDialog.OnDateSetListener() {
                     	public void onDateSet(DatePicker picker,	int year, int month,int day) {
-                        	dateText.setText(year + "/" + (month+1) + "/" + day);
+                            if(day < 10){
+                                dateText.setText(year + "/" + (month+1) + "/0" + day);
+                            }else{
+                                dateText.setText(year + "/" + (month+1) + "/" + day);
+                            }
                      }
                }
                       ,cal.get(Calendar.YEAR),cal.get(Calendar.MONTH),cal.get(Calendar.DAY_OF_MONTH)

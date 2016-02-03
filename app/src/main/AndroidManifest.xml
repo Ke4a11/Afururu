@@ -61,15 +61,15 @@
             android:name=".Money.MoneyInputActivity"
             android:label="@string/title_activity_money_input"
             android:theme="@style/AppTheme.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Money.MoneyShowDatabase"
             android:label="@string/title_activity_show_data_base" />
+        <activity
+            android:name=".Money.MoneyUpdateActivity"
+            android:label="@string/title_activity_money_update"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

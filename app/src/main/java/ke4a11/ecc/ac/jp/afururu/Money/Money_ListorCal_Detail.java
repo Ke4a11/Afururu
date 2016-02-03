@@ -17,12 +17,8 @@ import ke4a11.ecc.ac.jp.afururu.R;
 import ke4a11.ecc.ac.jp.afururu.Money.dummy.DummyContent;
 
 public class Money_ListorCal_Detail extends Fragment {
-    /**
-     *
-     */
+
     public static final String ARG_ITEM_ID = "item_id";
-
-
 
     Button upbtn;
 
@@ -35,10 +31,6 @@ public class Money_ListorCal_Detail extends Fragment {
      */
     private DummyContent.DummyItem mItem;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public Money_ListorCal_Detail() {
     }
 
@@ -75,7 +67,7 @@ public class Money_ListorCal_Detail extends Fragment {
             ((TextView) rootView.findViewById(R.id.item_detail_shop)).setText(mItem.shop);
             ((TextView) rootView.findViewById(R.id.item_detail_category)).setText(spinnerText[mItem.category]);
             ((TextView) rootView.findViewById(R.id.item_detail_memo)).setText(mItem.memo);
-            ((TextView) rootView.findViewById(R.id.item_detail_price)).setText(mItem.price);
+            ((TextView) rootView.findViewById(R.id.item_detail_price)).setText(String.valueOf(mItem.price));
 
         }
 
@@ -90,13 +82,11 @@ public class Money_ListorCal_Detail extends Fragment {
                 i.putExtra("position", a);
                 startActivity(i);*/
 
-
                 int a = Integer.parseInt(mItem.id);
                 Intent i = new Intent(getContext(),MoneyUpdateActivity.class);
 
                 i.putExtra("position", a);
                 startActivity(i);
-
             }
 
         });

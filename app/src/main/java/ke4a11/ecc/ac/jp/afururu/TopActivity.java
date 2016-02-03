@@ -57,7 +57,7 @@ public class TopActivity extends AppCompatActivity {
         setViews();
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.house3);
-//                        bitmap.
+        //              bitmap.
 
         homeIcon = Bitmap.createScaledBitmap(bitmap,50,50,false);
 

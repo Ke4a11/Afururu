@@ -67,7 +67,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
         String memo="";
         String date="";
         String price = "";
-         String category="";
+        String category="";
 
 
         String sqlstr = "select * from ecc where id =" + id + ";";

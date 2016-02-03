@@ -83,12 +83,14 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_listorcal, Money_Calendar.newInstance());
+                    //ft.addToBackStack(null);    //戻るボタン対応
                     ft.commit();
                 } else if (spinner.getSelectedItemPosition() == 1) {
                     //リスト表示
                     FragmentManager fm = getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
+                    //ft.addToBackStack(null);    //戻るボタン対応
                     ft.commit();
                 } else {
 
@@ -110,7 +112,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
         // queryメソッドの実行例
         Cursor c = db.query("ecc", new String[] {"id","date","shop", "category","memo","price"}, null,
-                null, null, null, null);
+                null, null, null, "date DESC");
         boolean mov = c.moveToFirst();
 
         //クッションの役割 詳しくはフィールドにセッティング７るとこを参照

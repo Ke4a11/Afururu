@@ -1,6 +1,8 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -34,9 +36,10 @@ public class MoneyActivity extends AppCompatActivity {
             ToMoney_Exchange();
         }else if(_MoneyTop.moneyFlg.equals("set")){
             ToMoney_Setting();
+        }else if (_MoneyTop.moneyFlg.equals("gra")){
+            ToMoney_Graph();
         }
     }
-
     //added
     public void ToMoney_Exchange(){
         FragmentManager fm = getSupportFragmentManager();
@@ -48,6 +51,12 @@ public class MoneyActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.money_top_screen,Money_Setting.newInstance());
+        ft.commit();
+    }
+    public void ToMoney_Graph(){
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.money_top_screen,Money_Graph.newInstance());
         ft.commit();
     }
 }

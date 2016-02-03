@@ -79,6 +79,16 @@ public class _MoneyTop extends Fragment {
             }
         });
 
+        BootstrapButton graphButton = (BootstrapButton)view.findViewById(R.id.graphBtn);
+        graphButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moneyFlg = "gra";
+                Intent i = new Intent(getContext(),MoneyActivity.class);
+                startActivity(i);
+            }
+        });
+
         //ボタン作成
 //        Button calenderButton = (Button)view.findViewById(R.id.calendarButton);
 //        Button exchangeButton =(Button)view.findViewById(R.id.exchangeButton);
