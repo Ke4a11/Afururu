@@ -98,9 +98,11 @@ public class _MapTop extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//
-        view = inflater.inflate(R.layout.fragment_map_top, container, false);
-//
+
+        if(TopActivity.getInflateFlag()) {
+            view = inflater.inflate(R.layout.fragment_map_top, container, false);
+            TopActivity.setInfalateFlag(false);
+        }
         //プログレス
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -119,6 +121,7 @@ public class _MapTop extends Fragment {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 17));
 
         if (mMap != null) {
+
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
             //クリックリスナー
@@ -350,9 +353,15 @@ public class _MapTop extends Fragment {
                     mMap.clear();
                     markerPoints.clear();
                     Location myLocation = locationManager
-                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                            //locationManager.getLastKnownLocation("gps");
-                    if(myLocation != null) {
+                            .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                    if (myLocation == null) {
+                        myLocation = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    }
+
+                    //locationManager.getLastKnownLocation("gps");
+                    if (myLocation != null) {
                         Double a = myLocation.getLatitude();
                         Double b = myLocation.getLongitude();
 
@@ -366,7 +375,6 @@ public class _MapTop extends Fragment {
 //                    Log.d("test", String.valueOf(markerPoints.get(1)));
 
 
-
                         List<Address> address = gcoder.getFromLocationName(getaddress(), 1);
                         LatLng homeLocation = new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude());
                         markerPoints.add(homeLocation);
@@ -374,10 +382,10 @@ public class _MapTop extends Fragment {
 //                    markerPoints.add(pref.getString("address", "1,1"));
 //                    Toast.makeText(getActivity().getApplicationContext(), "位置\n緯度:" + markerPoints.get(1) + "\n経度:" + markerPoints.get(2), Toast.LENGTH_LONG).show();
                         routeSearch();
-                    }else{
+                    } else {
                         Toast.makeText(getActivity(), "現在地の取得に失敗しました。", Toast.LENGTH_LONG).show();
 
-                        if(locationManager == null){
+                        if (locationManager == null) {
                             Toast.makeText(getActivity(), "locationManagerもnull", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -471,6 +479,8 @@ public class _MapTop extends Fragment {
 
         }catch (IOException e){
             e.printStackTrace();
+        } catch (IndexOutOfBoundsException e){
+            Toast.makeText(getActivity(), "住所を取得できませんでした", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -531,6 +541,8 @@ public class _MapTop extends Fragment {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (IndexOutOfBoundsException e){
+            Toast.makeText(getActivity(), "住所を取得できませんでした", Toast.LENGTH_LONG).show();
         }
     }
 
