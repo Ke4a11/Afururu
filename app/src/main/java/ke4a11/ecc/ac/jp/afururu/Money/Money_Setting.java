@@ -101,6 +101,7 @@ public class Money_Setting extends Fragment {
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //アイテム追加
+
         ad.add("イギリス(pound)");
         ad.add("ユーロ(euro)");
         ad.add("アメリカドル(usdollar)");
