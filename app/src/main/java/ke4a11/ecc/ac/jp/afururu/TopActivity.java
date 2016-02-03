@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import ke4a11.ecc.ac.jp.afururu.Map._MapTop;
 import ke4a11.ecc.ac.jp.afururu.Money.*;
 import ke4a11.ecc.ac.jp.afururu.English.*;
 
@@ -50,23 +52,6 @@ public class TopActivity extends AppCompatActivity {
         tabs.setViewPager(mViewPager);
         tabs.setIndicatorHeight(10);
         tabs.setIndicatorColor(0xff2196F3);
-//
-//        //FloatingButtonの作成と処理（リスナーと細かい処理は分けた方が良さげ）
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                //        .setAction("Action", null).show();
-//
-//                //calc 画面の呼び出し
-//                Intent i = new Intent(getApplicationContext(),MoneyInputActivity.class);
-//                startActivity(i);
-//                //animationの設定 styleに記述 manifestではなく、コードで指定
-//                overridePendingTransition(R.animator.slide_in_under, R.animator.slide_out_under);
-//
-//            }
-//        });
 
     }
 
@@ -120,26 +105,11 @@ public class TopActivity extends AppCompatActivity {
         startActivity(it);
     }
 
-    private GoogleMap googleMap;
-
-    private void initializeMap(){
-//        if(googleMap == null){
-//            googleMap = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.fragment_map)).getMap();
-//
-//            if(googleMap == null){
-//                Toast.makeText(getApplicationContext(),
-//                        "Sorry!unable to create maps", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initializeMap();
+//        _MapTop.flg = true;
     }
 
-    public GoogleMap getGoogleMap(){
-        return googleMap;
-    }
 }

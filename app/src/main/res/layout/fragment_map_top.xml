@@ -3,8 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_map"
-    android:name="com.google.android.gms.maps.SupportMapFragment" >
+    android:id="@+id/fragment_map1"
+    class="com.google.android.gms.maps.SupportMapFragment"
+        android:name="ke4a11.ecc.ac.jp.afururu.Map._MapTop">
         <LinearLayout
             android:paddingTop="45dp"
             android:layout_width="match_parent"

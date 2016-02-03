@@ -26,6 +26,7 @@ import android.view.MenuItem;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -76,10 +77,10 @@ import ke4a11.ecc.ac.jp.afururu.TopActivity;
 public class _MapTop extends Fragment {
 
 
-    private static View view;
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap mMap = null; // Might be null if Google Play services APK is not available.
     private MapView mview;
     MapController MapCtrl;
+
     //    GoogleMap mMap;
     private static final int MENU_A = 0;
     private static final int MENU_B = 1;
@@ -90,32 +91,46 @@ public class _MapTop extends Fragment {
     ArrayList<LatLng> markerPoints;
     public static MarkerOptions options;
     public ProgressDialog progressDialog;
-    public String travelMode = "driving";//default
+//    public String travelMode = "WALKING";//default
     LocationManager locationManager;
+//    public static boolean flg = true;
+
+    public static View view = null;
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_map_top, container, false);
+        }
+        return view;
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//
-        view = inflater.inflate(R.layout.fragment_map_top, container, false);
-//
+    public void onActivityCreated(Bundle bundle) {
+        super.onActivityCreated(bundle);
+
         //プログレス
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("検索中です......");
         progressDialog.hide();
 
-
         //初期化
-        markerPoints = new ArrayList<LatLng>();
-        SupportMapFragment mapfragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map);
-        mMap = mapfragment.getMap();
-//        setUpMapIfNeeded();
+        markerPoints = new ArrayList<>();
+        SupportMapFragment mapfragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map1);
+
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        if (mMap == null) {
+            mMap = mapfragment.getMap();
+        }
 
         //初期位置
         LatLng location = new LatLng(34.802556297454004, 135.53884506225586);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 17));
 
         if (mMap != null) {
+            mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
             mMap.setMyLocationEnabled(true);
             //クリックリスナー
             mMap.setOnMapClickListener(new OnMapClickListener() {
@@ -140,7 +155,6 @@ public class _MapTop extends Fragment {
                     mMap.setOnMarkerClickListener(new OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-                            // TODO Auto-generated method stub
                             String title = marker.getTitle();
                             if (title.equals("Start")) {
                                 marker.setSnippet(info_A);
@@ -157,7 +171,6 @@ public class _MapTop extends Fragment {
                 }
             });
         }
-        return view;
     }
 
 
@@ -175,7 +188,8 @@ public class _MapTop extends Fragment {
         String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
         String sensor = "sensor=false";
         //パラメータ
-        String parameters = str_origin + "&" + str_dest + "&" + sensor + "&language=ja" + "&mode=" + travelMode;
+        String parameters = str_origin + "&" + str_dest + "&" + sensor + "&language=ja" + "&mode=" + "walking";
+        //02/02移動方法を徒歩に変更花井
         //JSON指定
         String output = "json";
         String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
@@ -323,8 +337,8 @@ public class _MapTop extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         mview = (MapView) getActivity().findViewById(R.id.mapview);
-        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
 
         Button searchButton = (Button) getActivity().findViewById(R.id.btnLocate);
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -342,22 +356,33 @@ public class _MapTop extends Fragment {
 //                onGetLocation(v);
                 try {
 
-                    markerPoints.clear();
-                    Location myLocation = locationManager.getLastKnownLocation("gps");
+//                    mMap.clear();
+//                    markerPoints.clear();
+
+                    Location myLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
                     Double a = myLocation.getLatitude();
                     Double b = myLocation.getLongitude();
 
                     //現在地の追加
-                    markerPoints.add(new LatLng(a,b));
+                    markerPoints.add(new LatLng(a, b));
+                    MarkerOptions options = new MarkerOptions();
+                    options.position(new LatLng(a, b));
+                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.sss1));
+                    mMap.addMarker(options);
+
                     Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
 //                    Toast.makeText(getActivity().getApplicationContext(),""+markerPoints.get(0), Toast.LENGTH_LONG).show();
                     Log.d("test", String.valueOf(markerPoints.get(0)));
 //                    Log.d("test", String.valueOf(markerPoints.get(1)));
 
-
+                    //プリファレンスの位置を追加
                     List<Address> address = gcoder.getFromLocationName(getaddress(), 1);
                     markerPoints.add(new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude()));
+
+                    options.position(new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude()));
+                    options.icon(BitmapDescriptorFactory.fromResource(R.drawable.ggg2));
+                    mMap.addMarker(options);
 //                    markerPoints.add(pref.getString("address", "1,1"));
 //                    Toast.makeText(getActivity().getApplicationContext(), "位置\n緯度:" + markerPoints.get(1) + "\n経度:" + markerPoints.get(2), Toast.LENGTH_LONG).show();
                     routeSearch();
@@ -437,13 +462,14 @@ public class _MapTop extends Fragment {
     public void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        onActivityCreated(null);
     }
 
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map))
+            mMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.fragment_map1))
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
@@ -496,4 +522,5 @@ public class _MapTop extends Fragment {
             e.printStackTrace();
         }
     }
+
 }

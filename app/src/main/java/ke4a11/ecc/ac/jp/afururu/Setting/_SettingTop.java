@@ -57,6 +57,9 @@ public class _SettingTop extends Fragment {
 
                 // 書き込みの確定（実際にファイルに書き込む）
                 editor.commit();
+                SharedPreferences shp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
+                String a = shp.getString("address", "大阪市北区中崎西");
+                Toast.makeText(getActivity(),a, Toast.LENGTH_LONG).show();
 
             }
         });
