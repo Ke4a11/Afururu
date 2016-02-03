@@ -1,9 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Exchange">
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Calc"
+    android:id="@+id/money_calcTop">
+    <TextView
+        android:id="@+id/display1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="金額を入力してください。"/>
 
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Money_Exchange" />
+    <!-- イギリス　 -->
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="50dp">
+            <Spinner
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:id="@+id/kawase"
+                android:layout_gravity="left|top"
+                android:spinnerMode="dialog"
+                android:background="#e9ff20"
+                />
+            <EditText
+                android:id="@+id/edituk"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"/>
+            <TextView
+                android:id="@+id/balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￡"
+                android:autoText="false"
+                android:textSize="25sp"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <!-- 日本 -->
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:background="@drawable/jp111"/>
+            <EditText
+                android:id="@+id/editjp"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"/>
+            <TextView
+                android:id="@+id/balance1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="円"
+                android:autoText="false"
+                android:textSize="25sp"
+                android:layout_gravity="center_vertical" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textColor="#f39800"
+        android:gravity="right"
+        android:background="#ffffff"/>
 
 </LinearLayout>
