@@ -58,28 +58,33 @@ public class Money_Setting extends Fragment {
         updatebtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //入力した値を保持するため
-                edit_balance.setText(edit_balance.getText().toString());
 
-                //コードが長くなるため、一時的にbalanceの値を保持する変数
-                int tmp_balance = Integer.parseInt(edit_balance.getText().toString());
+                //edit_balanceに何も入力されていない場合
+                if (edit_balance.getText().toString().equals("")){
+                    edit_balance.setText("0");
+                    Toast.makeText(getActivity().getApplicationContext(),"残金に値を入力してください。",Toast.LENGTH_SHORT).show();
+                }else {
 
-                //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
-                SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE);
-                // プリファレンスに書き込むためのEditorオブジェクト取得
-                Editor editor = sp.edit();
-                // "balance" というキーで名前を登録
-                editor.putInt("balance", tmp_balance);
+                    //コードが長くなるため、一時的にbalanceの値を保持する変数
+                    int tmp_balance = Integer.parseInt(edit_balance.getText().toString());
+
+                    //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
+                    SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE);
+                    // プリファレンスに書き込むためのEditorオブジェクト取得
+                    Editor editor = sp.edit();
+                    // "balance" というキーで名前を登録
+                    editor.putInt("balance", tmp_balance);
 
                 /*
                 他に追加 の設定があればここに記述
                  */
 
-                // 書き込みの確定（実際にファイルに書き込む）
-                editor.commit();
+                    // 書き込みの確定（実際にファイルに書き込む）
+                    editor.commit();
 
+                    Toast.makeText(getContext(),"更新完了しました！",Toast.LENGTH_SHORT).show();
+                }
 
-                Toast.makeText(getContext(),"更新完了しました！",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -128,7 +133,15 @@ public class Money_Setting extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getContext(), "Setting onStart", Toast.LENGTH_SHORT).show();
+
+        //設定した残金の表示
+        SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE);
+        int a = sp.getInt("balance", -9999);
+        if (a == -9999){
+            edit_balance.setText("金額を入力してください");
+        }else{
+            edit_balance.setText(String.valueOf(a));
+        }
     }
 
     public static Money_Setting newInstance() {
