@@ -8,6 +8,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -48,7 +50,7 @@ import java.util.Locale;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 import ke4a11.ecc.ac.jp.afururu.TopActivity;
-
+import ke4a11.ecc.ac.jp.afururu.Money._MoneyTop;
 
 public class _MapTop extends Fragment {
 
@@ -72,6 +74,14 @@ public class _MapTop extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
+        if(netWorkCheck(getActivity())){
+
+        }else{
+            view = inflater.inflate(R.layout.default_map, container, false);
+            return view;
+        }
 //
         try{
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
@@ -507,6 +517,17 @@ public class _MapTop extends Fragment {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        }
+    }
+
+    //ネットに繋がっているかチェックするメソッド
+    private boolean netWorkCheck(Context context){
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        if (info != null){
+            return info.isConnected(); //繋がっている
+        }else{
+            return false; //繋がっていない
         }
     }
 
