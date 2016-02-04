@@ -87,7 +87,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
           //ft.addToBackStack(null);    //戻るボタン対応
           ft.commit();
         } else if (spinner.getSelectedItemPosition() == 1) {
-          
+
           DB_Select(false);
 
           //リスト表示
@@ -129,12 +129,12 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
     if (flg){
       //カレンダー
-      String sql = "select id,date,category,memo,sum(price) from ecc group by date;";
+      String sql = "select id,date,shop,category,memo,sum(price) from ecc group by date;";
       c = db.rawQuery(sql,null);
     }else{
       //リスト
       c = db.query("ecc", new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
-              null, null, null, "date DESC");
+              null, null, null, "date ASC");
     }
 
 
@@ -153,7 +153,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
       date[i] = c.getString(1);
       shop[i] = c.getString(2);
-      category[i] = Integer.parseInt(c.getString(3));
+      category[i] = c.getInt(3);
       memo[i] = c.getString(4);
       price[i] = c.getString(5);
 
