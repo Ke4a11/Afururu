@@ -163,11 +163,11 @@ public class _MoneyTop extends Fragment {
 
             boolean isEof = c.moveToFirst();
 
-            int price;
+            float price;
 
             //DBの入力があれば支出ビューに金額が表示される
             if (isEof) {
-                price = c.getInt(0);
+                price = c.getFloat(0);
                 payoutView.setText("£" + String.valueOf(price));
 
                 //支出を元に残金ビューの値を計算

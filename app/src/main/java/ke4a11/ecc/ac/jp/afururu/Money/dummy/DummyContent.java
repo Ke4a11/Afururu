@@ -30,10 +30,10 @@ public class DummyContent {
     public static String[] dummy_shop;
     public static int[] dummy_category;
     public static String[] dummy_memo;
-    public static int[] dummy_price;
+    public static String[] dummy_price;
 
     //コンストラクタ
-    public DummyContent(String[] a, String[] b, int[] c, String[] d , int[] e){
+    public DummyContent(String[] a, String[] b, int[] c, String[] d , String[] e){
         ITEMS.clear();
         ITEM_MAP.clear();
 
@@ -86,10 +86,6 @@ public class DummyContent {
         //return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
         return new DummyItem(String.valueOf(position), dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position],dummy_price[position]);
 
-        /*
-        makeDetailメソッドは押した場所（position）の分だけ繰り返される。
-
-         */
     }
 
     /**
@@ -106,7 +102,7 @@ public class DummyContent {
         public String shop;
         public int category;
         public String memo;
-        public int price;
+        public String price;
 
         //この引数を家計簿に必要なものと合わせる。
         //メモ,店名,カテゴリ：String 金額：int
@@ -116,7 +112,7 @@ public class DummyContent {
             this.details = details;
         }
 
-        public DummyItem(String id, String date, String shop, int category, String memo,int price){
+        public DummyItem(String id, String date, String shop, int category, String memo,String price){
             this.id = id; //主キーみたいな役割
             this.date = date;
             this.shop = shop;

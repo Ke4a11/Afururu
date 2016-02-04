@@ -40,131 +40,142 @@ import ke4a11.ecc.ac.jp.afururu.R;
 *
 * */
 
-public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_List.OnFragmentInteractionListener{
+public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_List.OnFragmentInteractionListener {
 
-    private Spinner spinner;
+  private Spinner spinner;
 
-    //追加予定のやつ
-    //private String[] DB_SELECTED_payout;
-    public String[] DB_SELECTED_date;
-    public String[] DB_SELECTED_shop;
-    public int[] DB_SELECTED_category;
-    public String[] DB_SELECTED_memo;
-    public int[] DB_SELECTED_price;
+  //追加予定のやつ
+  //private String[] DB_SELECTED_payout;
+  public String[] DB_SELECTED_date;
+  public String[] DB_SELECTED_shop;
+  public int[] DB_SELECTED_category;
+  public String[] DB_SELECTED_memo;
+  public String[] DB_SELECTED_price;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_money_activiy_listorcal);
+  private Cursor c;
 
-        //spinner用のアダプターを作成
-        ArrayAdapter<String> ad = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_money_activiy_listorcal);
 
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    //spinner用のアダプターを作成
+    ArrayAdapter<String> ad = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
 
-        //アイテム追加
-        ad.add("カレンダー");
-        ad.add("リスト一覧");
-        spinner = (Spinner)findViewById(R.id.spinner_listorcal);
+    ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setAdapter(ad);
+    //アイテム追加
+    ad.add("カレンダー");
+    ad.add("リスト一覧");
+    spinner = (Spinner) findViewById(R.id.spinner_listorcal);
 
-        //スピナーのリスナの設定
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    spinner.setAdapter(ad);
 
-                //クラスロードのためインスタンス生成している
-                //DummyContentで使用できるように設定する
-                DummyContent dummyContent = new DummyContent(DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo,DB_SELECTED_price);
+    //スピナーのリスナの設定
+    spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (spinner.getSelectedItemPosition() == 0) {
-                    //カレンダー表示
-                    FragmentManager fm = getSupportFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragment_listorcal, Money_Calendar.newInstance());
-                    //ft.addToBackStack(null);    //戻るボタン対応
-                    ft.commit();
-                } else if (spinner.getSelectedItemPosition() == 1) {
-                    //リスト表示
-                    FragmentManager fm = getSupportFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
-                    //ft.addToBackStack(null);    //戻るボタン対応
-                    ft.commit();
-                } else {
+        if (spinner.getSelectedItemPosition() == 0) {
 
-                }
-            }
+          DB_Select(true);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
+          //カレンダー表示
+          FragmentManager fm = getSupportFragmentManager();
+          FragmentTransaction ft = fm.beginTransaction();
+          ft.replace(R.id.fragment_listorcal, Money_Calendar.newInstance());
+          //ft.addToBackStack(null);    //戻るボタン対応
+          ft.commit();
+        } else if (spinner.getSelectedItemPosition() == 1) {
+          
+          DB_Select(false);
 
-    @Override
-    protected void onStart(){
-        super.onStart();
+          //リスト表示
+          FragmentManager fm = getSupportFragmentManager();
+          FragmentTransaction ft = fm.beginTransaction();
+          ft.replace(R.id.fragment_listorcal, Money_List.newInstance());
+          //ft.addToBackStack(null);    //戻るボタン対応
+          ft.commit();
+        } else {
 
-        MoneyOpenHelper helper = new MoneyOpenHelper(this);
-        SQLiteDatabase db = helper.getReadableDatabase();
-
-        // queryメソッドの実行例
-        Cursor c = db.query("ecc", new String[] {"id","date","shop", "category","memo","price"}, null,
-                null, null, null, "date DESC");
-        boolean mov = c.moveToFirst();
-
-        //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
-        String[] date = new String[c.getCount()];
-        String[] shop = new String[c.getCount()];
-        int[] category = new int[c.getCount()];
-        String[] memo = new String[c.getCount()];
-        int[] price = new int[c.getCount()];
-
-        //selectで得た結果を配列に入れて、それをDummyContentのstaticに打ち込む準備
-        int i = 0;
-        while (mov) {
-
-            date[i] = c.getString(1);
-            shop[i] = c.getString(2);
-            category[i] = Integer.parseInt(c.getString(3));
-            memo[i] = c.getString(4);
-            price[i] = c.getInt(5);
-
-            i++;
-
-            mov = c.moveToNext();
         }
+      }
 
-        //String[] DB_SELECTED_date 初期値を設定していないとnull array? になり値を代入できないので、こういう形になっている。
-        DB_SELECTED_date = date;
-        DB_SELECTED_shop = shop;
-        DB_SELECTED_category = category;
-        DB_SELECTED_memo = memo;
-        DB_SELECTED_price = price;
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+      }
+    });
 
-        c.close();
-        db.close();
+  }
+
+  //Money_Listのアイテムのクリックをリスナーが感知したら？
+  @Override
+  public void onFragmentInteraction(String id) {
+    //implementsしているため必ず必要
+
+    Intent detailIntent = new Intent(this, MoneyActivity_ListorCal_Detail.class);
+    //Money_ListorCal_Detail の初めのif文で受け取って処理しているため必ず必要。
+    //具体的な処理は、Money_ListorCal_Detailの変数である、mItemにデータを入れるため
+    //DummyContent中のITEM_MAPのキーを特定させるために String id を使う。
+    //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
+    detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
+    startActivity(detailIntent);
+  }
+
+  void DB_Select(boolean flg){
+
+    MoneyOpenHelper helper = new MoneyOpenHelper(getApplicationContext());
+    SQLiteDatabase db = helper.getReadableDatabase();
+
+    if (flg){
+      //カレンダー
+      String sql = "select id,date,category,memo,sum(price) from ecc group by date;";
+      c = db.rawQuery(sql,null);
+    }else{
+      //リスト
+      c = db.query("ecc", new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
+              null, null, null, "date DESC");
     }
 
-    //Money_Listのアイテムのクリックをリスナーが感知したら？
-    @Override
-    public void onFragmentInteraction(String id) {
-        //implementsしているため必ず必要
 
-        Intent detailIntent = new Intent(this,MoneyActivity_ListorCal_Detail.class);
-        //Money_ListorCal_Detail の初めのif文で受け取って処理しているため必ず必要。
-        //具体的な処理は、Money_ListorCal_Detailの変数である、mItemにデータを入れるため
-        //DummyContent中のITEM_MAPのキーを特定させるために String id を使う。
-        //ARG_ITEM_IDはここをいじると、他のクラスでも値の変更をしないといけないので定数にしている。
-        detailIntent.putExtra(Money_ListorCal_Detail.ARG_ITEM_ID, id);
-        startActivity(detailIntent);
+    boolean mov = c.moveToFirst();
+
+    //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
+    String[] date = new String[c.getCount()];
+    String[] shop = new String[c.getCount()];
+    int[] category = new int[c.getCount()];
+    String[] memo = new String[c.getCount()];
+    String[] price = new String[c.getCount()];
+
+    //selectで得た結果を配列に入れて、それをDummyContentのstaticに打ち込む準備
+    int i = 0;
+    while (mov) {
+
+      date[i] = c.getString(1);
+      shop[i] = c.getString(2);
+      category[i] = Integer.parseInt(c.getString(3));
+      memo[i] = c.getString(4);
+      price[i] = c.getString(5);
+
+      i++;
+
+      mov = c.moveToNext();
     }
 
-    //textview のクリックイベントのテスト、xmlにクリックのリスナー？を設定している
-    public void testToast(View view){
-        Toast.makeText(getApplicationContext(), "Test OK!", Toast.LENGTH_SHORT).show();
-    }
+    //String[] DB_SELECTED_date 初期値を設定していないとnull array? になり値を代入できないので、こういう形になっている。
+    DB_SELECTED_date = date;
+    DB_SELECTED_shop = shop;
+    DB_SELECTED_category = category;
+    DB_SELECTED_memo = memo;
+    DB_SELECTED_price = price;
+
+    c.close();
+    db.close();
+
+    //クラスロードのためインスタンス生成している
+    //DummyContentで使用できるように設定する
+    DummyContent dummyContent = new DummyContent(DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo, DB_SELECTED_price);
+
+  }
 
 }

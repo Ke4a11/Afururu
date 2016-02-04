@@ -159,7 +159,7 @@ public class Money_Calendar extends Fragment {
                 入力された値があった場合にtextviewに表示する
                  */
 
-                int testdata = -1;
+                String testdata = "-1";
                 String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                 for (int n =0; n < DATEITEMS.size(); n++){
@@ -177,7 +177,7 @@ public class Money_Calendar extends Fragment {
                 }
 
                 //testdataに値が代入されていたら
-                if(testdata != -1){
+                if(!testdata.equals("-1")){
                     textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                     textView1.setOnClickListener(new OnClickListener() {
                         @Override
@@ -257,7 +257,7 @@ public class Money_Calendar extends Fragment {
                         入力された値があった場合にtextviewに表示する
                         */
 
-                        int testdata = -1;
+                        String testdata = "-1";
                         String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                         for (int n =0; n < DATEITEMS.size(); n++){
@@ -275,7 +275,7 @@ public class Money_Calendar extends Fragment {
                         }
 
                         //testdataに値が代入されていたら
-                        if(testdata != -1){
+                        if(!testdata.equals("-1")){
                             textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                             textView1.setOnClickListener(new OnClickListener() {
                                 @Override
@@ -351,7 +351,7 @@ public class Money_Calendar extends Fragment {
                         入力された値があった場合にtextviewに表示する
                          */
 
-                        int testdata = -1;
+                        String testdata = "-1";
                         String date = String.valueOf(calendarMatrix[i][j]); //一度変数に入れないとif文で使えないため
 
                         for (int n =0; n < DATEITEMS.size(); n++){
@@ -369,7 +369,7 @@ public class Money_Calendar extends Fragment {
                         }
 
                         //testdataに値が代入されていたら
-                        if(testdata != -1){
+                        if(!testdata.equals("-1")){
                             textView1.setText(String.valueOf(String.format("%1$2d",calendarMatrix[i][j]))  + "\n" + "\n" + testdata);
                             textView1.setOnClickListener(new OnClickListener() {
                                 @Override

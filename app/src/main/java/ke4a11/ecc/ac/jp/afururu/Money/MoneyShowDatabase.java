@@ -20,7 +20,6 @@ public class MoneyShowDatabase extends AppCompatActivity{
         setContentView(layout);
         MoneyOpenHelper helper = new MoneyOpenHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
-
         // queryメソッドの実行例
         Cursor c = db.query("ecc", new String[] {"id","date","shop", "category","memo","price"}, null,
                 null, null, null, null);
@@ -28,10 +27,11 @@ public class MoneyShowDatabase extends AppCompatActivity{
 
         while (mov) {
             TextView textView = new TextView(this);
-            textView.setText(String.format("%d : %s : %s : %d : %s : %d", c.getInt(0), c.getString(1) ,c.getString(2), c.getInt(3),c.getString(4),c.getInt(5)));
+            textView.setText(String.format("%d : %s : %s : %d : %s : %s", c.getInt(0), c.getString(1) ,c.getString(2), c.getInt(3),c.getString(4),c.getString(5)));
             mov = c.moveToNext();
             layout.addView(textView);
         }
+
 
         c.close();
         db.close();

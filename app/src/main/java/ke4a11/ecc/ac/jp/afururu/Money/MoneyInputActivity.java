@@ -7,10 +7,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -61,7 +58,9 @@ public class MoneyInputActivity extends AppCompatActivity {
                 String shop = shopText.getText().toString();
                 String memo = memoText.getText().toString();
                 String date = dateText.getText().toString();
-                Integer price = Integer.parseInt(priceText.getText().toString());
+                //金額入力で小数点２位以下切り捨て
+                Float f = Float.parseFloat(priceText.getText().toString());
+                String price = String.format("%.2f",f);
 
                 // 選択されているアイテムのIndexを取得
                 //int idx = spinner.getSelectedItemPosition();

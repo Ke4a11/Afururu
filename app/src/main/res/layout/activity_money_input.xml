@@ -27,7 +27,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:ems="5"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:id="@+id/priceEdit"
             android:layout_gravity="right"
             android:maxLength="6"
