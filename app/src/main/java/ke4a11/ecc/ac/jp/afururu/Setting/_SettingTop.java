@@ -37,11 +37,22 @@ public class _SettingTop extends Fragment {
 
         //更新ボタン
         updatebtn = (Button)view.findViewById(R.id.update);
+
+
         updatebtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                if(address_et.getText().toString().equals("")){
+                    Toast.makeText(getActivity(),"住所を入力してください",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 //コードが長くなるため、一時的にbalanceの値を保持する変数
                 String tmp_address = address_et.getText().toString();
+
 
                 //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
                 SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
