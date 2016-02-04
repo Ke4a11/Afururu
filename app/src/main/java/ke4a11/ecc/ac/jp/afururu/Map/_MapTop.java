@@ -73,7 +73,12 @@ public class _MapTop extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //
-        view = inflater.inflate(R.layout.fragment_map_top, container, false);
+        try{
+            view = inflater.inflate(R.layout.fragment_map_top, container, false);
+        }catch(Exception ex){
+           // Log.d("IllegalArgumentException", ".IllegalArgumentException");
+        }
+
 //
         //プログレス
         progressDialog = new ProgressDialog(getActivity());
