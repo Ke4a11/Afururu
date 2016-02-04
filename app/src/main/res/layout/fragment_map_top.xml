@@ -1,21 +1,21 @@
-
-    <fragment
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_map1"
+    android:name="ke4a11.ecc.ac.jp.afururu.Map._MapTop"
     class="com.google.android.gms.maps.SupportMapFragment"
-        android:name="ke4a11.ecc.ac.jp.afururu.Map._MapTop">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="45dp">
+
         <LinearLayout
-            android:paddingTop="45dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/editAddr"
                 android:layout_width="0dp"
@@ -24,32 +24,32 @@
                 android:inputType="text"
 
                 />
-                <Button
-                    android:id="@+id/btnLocate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/getLocate" />
-        </LinearLayout>
 
             <Button
+                android:id="@+id/btnLocate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/gohomebutton"
-                android:text="帰宅"
-                />
-
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="true"
-                android:clickable="true"
-                android:apiKey="@string/google_maps_key"
-
-                >
-
-            </com.google.android.gms.maps.MapView>
-
+                android:text="@string/getLocate" />
         </LinearLayout>
-    </fragment>
+
+        <Button
+            android:id="@+id/gohomebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="帰宅" />
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:apiKey="@string/google_maps_key"
+            android:clickable="true"
+            android:enabled="true"
+
+            >
+
+        </com.google.android.gms.maps.MapView>
+
+    </LinearLayout>
+</fragment>
 

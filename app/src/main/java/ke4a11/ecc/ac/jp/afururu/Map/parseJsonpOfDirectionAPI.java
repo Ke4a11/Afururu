@@ -23,10 +23,10 @@ public class parseJsonpOfDirectionAPI {
 
     TopActivity ma;
 
-    public List<List<HashMap<String,String>>> parse(JSONObject jObject){
+    public List<List<HashMap<String, String>>> parse(JSONObject jObject) {
         String temp = "";
 
-        List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String,String>>>();
+        List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String, String>>>();
         JSONArray jsonRoutes = null;
         JSONArray jsonLegs = null;
         JSONArray jsonSteps = null;
@@ -35,42 +35,42 @@ public class parseJsonpOfDirectionAPI {
 
             jsonRoutes = jObject.getJSONArray("routes");
 
-            for(int i=0;i<jsonRoutes.length();i++){
-                jsonLegs = ((JSONObject)jsonRoutes.get(i)).getJSONArray("legs");
+            for (int i = 0; i < jsonRoutes.length(); i++) {
+                jsonLegs = ((JSONObject) jsonRoutes.get(i)).getJSONArray("legs");
 
                 //スタート地点・住所
-                String s_address = (String)((JSONObject)(JSONObject)jsonLegs.get(i)).getString("start_address");
+                String s_address = (String) ((JSONObject) (JSONObject) jsonLegs.get(i)).getString("start_address");
 
                 ma.info_A = s_address;
 
                 //到着地点・住所
-                String e_address = (String)((JSONObject)(JSONObject)jsonLegs.get(i)).getString("end_address");
+                String e_address = (String) ((JSONObject) (JSONObject) jsonLegs.get(i)).getString("end_address");
 
                 ma.info_B = e_address;
 
-                String distance_txt = (String)((JSONObject)((JSONObject)jsonLegs.get(i)).get("distance")).getString("text");
+                String distance_txt = (String) ((JSONObject) ((JSONObject) jsonLegs.get(i)).get("distance")).getString("text");
 
                 temp += distance_txt + "<br><br>";
 
-                String distance_val = (String)((JSONObject)((JSONObject)jsonLegs.get(i)).get("distance")).getString("value");
+                String distance_val = (String) ((JSONObject) ((JSONObject) jsonLegs.get(i)).get("distance")).getString("value");
 
                 temp += distance_val + "<br><br>";
 
                 List path = new ArrayList<HashMap<String, String>>();
 
 
-                for(int j=0;j<jsonLegs.length();j++){
-                    jsonSteps = ( (JSONObject)jsonLegs.get(j)).getJSONArray("steps");
+                for (int j = 0; j < jsonLegs.length(); j++) {
+                    jsonSteps = ((JSONObject) jsonLegs.get(j)).getJSONArray("steps");
 
 
-                    for(int k=0;k<jsonSteps.length();k++){
+                    for (int k = 0; k < jsonSteps.length(); k++) {
                         String polyline = "";
-                        polyline = (String)((JSONObject)((JSONObject)jsonSteps.get(k)).get("polyline")).get("points");
+                        polyline = (String) ((JSONObject) ((JSONObject) jsonSteps.get(k)).get("polyline")).get("points");
 
 
-                        String instructions = (String)((JSONObject)(JSONObject)jsonSteps.get(k)).getString("html_instructions");
-                        String duration_value = (String)((JSONObject)((JSONObject)jsonSteps.get(k)).get("duration")).getString("value");
-                        String duration_txt = (String)((JSONObject)((JSONObject)jsonSteps.get(k)).get("duration")).getString("text");
+                        String instructions = (String) ((JSONObject) (JSONObject) jsonSteps.get(k)).getString("html_instructions");
+                        String duration_value = (String) ((JSONObject) ((JSONObject) jsonSteps.get(k)).get("duration")).getString("value");
+                        String duration_txt = (String) ((JSONObject) ((JSONObject) jsonSteps.get(k)).get("duration")).getString("text");
 
                         temp += instructions + "/" + duration_value + " m /" + duration_txt + "<br><br>";
 
@@ -78,10 +78,10 @@ public class parseJsonpOfDirectionAPI {
                         List<LatLng> list = decodePoly(polyline);
 
 
-                        for(int l=0;l<list.size();l++){
+                        for (int l = 0; l < list.size(); l++) {
                             HashMap<String, String> hm = new HashMap<String, String>();
-                            hm.put("lat", Double.toString(((LatLng)list.get(l)).latitude) );
-                            hm.put("lng", Double.toString(((LatLng)list.get(l)).longitude) );
+                            hm.put("lat", Double.toString(((LatLng) list.get(l)).latitude));
+                            hm.put("lng", Double.toString(((LatLng) list.get(l)).longitude));
                             path.add(hm);
                         }
                     }
@@ -95,7 +95,7 @@ public class parseJsonpOfDirectionAPI {
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }catch (Exception e){
+        } catch (Exception e) {
         }
 
         return routes;
