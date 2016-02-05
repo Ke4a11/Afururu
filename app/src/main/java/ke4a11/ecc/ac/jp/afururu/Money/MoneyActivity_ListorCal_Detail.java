@@ -54,11 +54,6 @@ public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
                 Intent i = getIntent();
                 int id =i.getIntExtra("position", 1);
 
-                if(id!=0){
-                    //数合わせ
-                    id += 1;
-                }
-
                 final String ids = String.valueOf(id);
                 db.delete("ecc","id=?",new String[]{ids});
 

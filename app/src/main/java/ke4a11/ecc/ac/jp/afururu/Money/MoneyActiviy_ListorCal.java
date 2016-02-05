@@ -134,7 +134,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
       c = db.rawQuery(sql,null);
     }else{
       //リスト
-      String sql = "select id,date,shop,category,memo,price from ecc;";
+      String sql = "select id,date,shop,category,memo,price from ecc order by date DESC;";
 //      c = db.query("ecc", new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
 //              null, null, null, "date ASC");
       c = db.rawQuery(sql,null);
