@@ -42,24 +42,32 @@ public class _SettingTop extends Fragment {
             public void onClick(View v) {
                 //コードが長くなるため、一時的にbalanceの値を保持する変数
                 String tmp_address = address_et.getText().toString();
+                String tmp_name = name_et.getText().toString();
 
-                //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
-                SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
-                // プリファレンスに書き込むためのEditorオブジェクト取得
-                SharedPreferences.Editor editor = sp.edit();
-                // "address" というキーで名前を登録
-                editor.putString("name", name_et.getText().toString());
-                editor.putString("address", tmp_address);
+                //入力チェック
+                if (tmp_name.equals("")){
+                    name_et.setText("");
+                    Toast.makeText(getActivity().getApplicationContext(),"名前を入力してください。",Toast.LENGTH_SHORT).show();
+                }else if (tmp_address.equals("")){
+                    address_et.setText("");
+                    Toast.makeText(getActivity().getApplicationContext(),"住所を入力してください。",Toast.LENGTH_SHORT).show();
+                }else{
+                    //問題なければ実行
 
-                /*
-                他に追加 の設定があればここに記述
-                 */
+                    //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
+                    SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
+                    // プリファレンスに書き込むためのEditorオブジェクト取得
+                    SharedPreferences.Editor editor = sp.edit();
+                    // "address" というキーで名前を登録
+                    editor.putString("name", tmp_name);
+                    editor.putString("address", tmp_address);
 
-                // 書き込みの確定（実際にファイルに書き込む）
-                editor.commit();
-                SharedPreferences shp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE);
-                String a = shp.getString("address", "大阪市北区中崎西");
-                Toast.makeText(getActivity(),a, Toast.LENGTH_LONG).show();
+                    // 書き込みの確定（実際にファイルに書き込む）
+                    editor.commit();
+
+                    Toast.makeText(getActivity(),"更新完了しました。", Toast.LENGTH_LONG).show();
+
+                }
 
             }
         });
@@ -68,6 +76,27 @@ public class _SettingTop extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+
+        SharedPreferences sp = getContext().getSharedPreferences("Setting",Context.MODE_PRIVATE);
+        String a = sp.getString("name", "");
+        String b = sp.getString("address","");
+
+        if (a.equals("")){
+            name_et.setText("名前を入力してください。");
+        }else{
+            name_et.setText(a);
+        }
+
+        if (b.equals("")){
+            address_et.setText("住所を入力してください。");
+        }else{
+            address_et.setText(b);
+        }
     }
 
 }

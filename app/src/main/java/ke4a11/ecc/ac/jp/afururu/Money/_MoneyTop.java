@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
+import org.w3c.dom.Text;
+
 import ke4a11.ecc.ac.jp.afururu.R;
 
 /**
@@ -45,6 +47,8 @@ public class _MoneyTop extends Fragment {
     private TextView balanceView;
     //支出ビュー
     private TextView payoutView;
+    //名前ビュー
+    private TextView NameView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +62,8 @@ public class _MoneyTop extends Fragment {
         mView = (TextView)view.findViewById(R.id.rate);
         //支出ビュー作成
         payoutView = (TextView)view.findViewById(R.id.payout);
+        //名前ビューの作成
+        NameView = (TextView)view.findViewById(R.id.greet);
 
         //持ってくる為替の指定
         if(moneySpinner != null){
@@ -70,7 +76,7 @@ public class _MoneyTop extends Fragment {
             getcsv();
         }
 
-        BootstrapButton payoutButton = (BootstrapButton)view.findViewById(R.id.payoutButton);
+        Button payoutButton = (Button)view.findViewById(R.id.payoutButton);
         payoutButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +104,7 @@ public class _MoneyTop extends Fragment {
     class ChangeView implements OnClickListener {
         public void onClick(View v){
            if (v == getView().findViewById(R.id.remmoney)) {
-                moneyFlg = "rem";
+                moneyFlg = "set";
             }else if(v == getView().findViewById(R.id.exchangeButton)){
                 moneyFlg = "exc";
             }
@@ -120,6 +126,8 @@ public class _MoneyTop extends Fragment {
         super.onStart();
         //Toast.makeText(getContext(),"Top onStart",Toast.LENGTH_SHORT).show();
 
+        //名前セット
+        NameView.setText("Hello! " + getUser() + " さん");
         //残金ビューの表示,支出があれば支出チェックで計算している。
         balanceView.setText("£" + getBalance());
 
@@ -197,6 +205,12 @@ public class _MoneyTop extends Fragment {
         SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE );
         int a = sp.getInt("balance", -9999);
         return String.valueOf(a);
+    }
+
+    public String getUser(){
+        SharedPreferences sp = getContext().getSharedPreferences("Setting",Context.MODE_PRIVATE);
+        String a = sp.getString("name","ゲストユーザー");
+        return a;
     }
 
     //ネットに繋がっているかチェックするメソッド

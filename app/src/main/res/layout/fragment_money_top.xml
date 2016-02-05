@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Hello!"
             android:id="@+id/greet"
+            android:textSize="20sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="false"
             android:autoText="false"
