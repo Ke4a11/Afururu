@@ -85,7 +85,7 @@ public class TopActivity extends AppCompatActivity {
 
                         //Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap,50,50,false);
 
-                        options.icon(BitmapDescriptorFactory.fromBitmap(bitmap2));
+                        //options.icon(BitmapDescriptorFactory.fromBitmap(bitmap2));
                         _MapTop.getMap().addMarker(options);
 
 
@@ -166,7 +166,7 @@ public class TopActivity extends AppCompatActivity {
 //        }else{
             //English_Textview_Activity.visited = false;
 //        }
-        Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
     }
 
     public static boolean getInflateFlag(){

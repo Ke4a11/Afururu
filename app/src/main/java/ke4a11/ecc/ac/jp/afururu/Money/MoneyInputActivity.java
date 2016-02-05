@@ -66,7 +66,7 @@ public class MoneyInputActivity extends AppCompatActivity {
                 String date = dateText.getText().toString();
                 //金額入力で小数点２位以下切り捨て
                 Float f = Float.parseFloat(priceText.getText().toString());
-                String price = String.format("%.2f",f);
+                String stringprice = String.format("%.2f",f);
 
                 // 選択されているアイテムのIndexを取得
                 //int idx = spinner.getSelectedItemPosition();

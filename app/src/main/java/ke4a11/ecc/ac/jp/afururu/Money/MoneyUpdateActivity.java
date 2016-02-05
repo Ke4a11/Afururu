@@ -127,28 +127,28 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                 int category = spinner.getSelectedItemPosition();
                 if (shop.equals("")) {
 
-                String stringprice = priceText.getText().toString();
+                    String stringprice = priceText.getText().toString();
 
-                if(stringprice == null||stringprice.equals("")) {
-                    Toast.makeText(MoneyUpdateActivity.this, "金額を入力してください", Toast.LENGTH_SHORT).show();
-                }else if (shop == null || shop.equals("")) {
-                    Toast.makeText(MoneyUpdateActivity.this, "SHOPを入力してください", Toast.LENGTH_SHORT).show();
-                }else if(memo==null||memo.equals("")){
-                    Toast.makeText(MoneyUpdateActivity.this,"MEMOを入力してください",Toast.LENGTH_SHORT).show();
-                }else {
-                    int category = spinner.getSelectedItemPosition();
-                    ContentValues updateValues = new ContentValues();
-                    updateValues.put("shop", shop);
-                    updateValues.put("memo", memo);
-                    updateValues.put("date", date);
-                    updateValues.put("price", stringprice);
-                    updateValues.put("category",category);
-                   // String whereClause = "id = ?";
-                    db.update("ecc", updateValues, "id=?" , new String[]{ids});
-               Intent i = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
-                    startActivity(i);
+                    if (stringprice == null || stringprice.equals("")) {
+                        Toast.makeText(MoneyUpdateActivity.this, "金額を入力してください", Toast.LENGTH_SHORT).show();
+                    } else if (shop == null || shop.equals("")) {
+                        Toast.makeText(MoneyUpdateActivity.this, "SHOPを入力してください", Toast.LENGTH_SHORT).show();
+                    } else if (memo == null || memo.equals("")) {
+                        Toast.makeText(MoneyUpdateActivity.this, "MEMOを入力してください", Toast.LENGTH_SHORT).show();
+                    } else {
+                        int cat = spinner.getSelectedItemPosition();
+                        ContentValues updateValues = new ContentValues();
+                        updateValues.put("shop", shop);
+                        updateValues.put("memo", memo);
+                        updateValues.put("date", date);
+                        updateValues.put("price", stringprice);
+                        updateValues.put("category", cat);
+                        // String whereClause = "id = ?";
+                        db.update("ecc", updateValues, "id=?", new String[]{ids});
+                        Intent i = new Intent(getApplicationContext(), MoneyActiviy_ListorCal.class);
+                        startActivity(i);
+                    }
                 }
-
             }
         });
 
