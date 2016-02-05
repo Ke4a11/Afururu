@@ -36,7 +36,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Money.MoneyActivity" >
+        <activity android:name=".English.ExpandableListViewActivity">
+        </activity>
+        <activity android:name=".Money.MoneyActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".Map.MapActivity" >
         </activity>
@@ -46,7 +49,9 @@
         </activity>
         <activity android:name=".English.English_Textview_Activity" >
         </activity>
-        <activity android:name=".Money.MoneyActiviy_ListorCal" >
+        <activity
+            android:name=".Money.MoneyActiviy_ListorCal"
+            android:label="@string/MoneyActivity_ListorCal" >
         </activity>
         <activity
             android:name=".Money.MoneyActivity_ListorCal_Detail"

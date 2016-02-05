@@ -5,14 +5,20 @@
     android:weightSum="1" android:id="@+id/moneyinputlayout">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="変更した値を入力してください。"
+        android:textColor="#000000"
+        android:textSize="20dp"/>
 
     <EditText
         android:layout_width="157dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:ems="5"
-        android:inputType="number"
+        android:ems="6"
+        android:inputType="numberDecimal"
         android:id="@+id/priceEdit"
         android:layout_gravity="right"
         android:gravity="right"
@@ -24,133 +30,147 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="0.78">
-        <!--Dateを囲んでいるLinear-->
-        <LinearLayout
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            　　
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp">
 
-            <!--日付label-->
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:text="Date"
-                android:id="@+id/date"
-                android:gravity="center"
-                android:textSize="25dp"
-                android:background="#58d102"
-                android:autoText="false" />
-
-            <!--日付TextView-->
-            <TextView
+            <!--Dateを囲んでいるLinear-->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/dateText"
-                android:clickable="true"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="#d6fed1" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+                <!--日付label-->
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:text="日付"
+                    android:id="@+id/date"
+                    android:gravity="center"
+                    android:textSize="25dp"
+                    android:background="#d3fcdc"
+                    android:autoText="false" />
+                <!--日付TextView-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/dateText"
+                    android:clickable="true"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-
-        </LinearLayout>
-
-        <!--Categoryを囲んでいるLinear-->
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp">
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:text="Category"
-                android:id="@+id/category"
-                android:textSize="25dp"
-                android:gravity="center"
-                android:background="#42f56f" />
+            <!--Categoryを囲んでいるLinear-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:text="カテゴリー"
+                    android:id="@+id/category"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:background="#d3fcdc"/>
+                <Spinner android:id="@+id/categorySpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|center_vertical|center_horizontal"                    >
+                </Spinner>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-            <Spinner android:id="@+id/categorySpinner"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center|center_vertical|center_horizontal"
-                android:background="#d3fcdc"
-                >
-            </Spinner>
-
-        </LinearLayout>
-        <!--Shopを囲んでいるLinear-->
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#f9feeb">
-
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:text="Shop"
-                android:id="@+id/shop"
-                android:textSize="25dp"
-                android:gravity="center"
-                android:background="#bafa26" />
-
-            <EditText
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp">
+            <!--Shopを囲んでいるLinear-->
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/shopEdit"
-                android:inputType="text"
-                android:maxLength="200"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:text="店名"
+                    android:id="@+id/shop"
+                    android:textSize="25dp"
+                    android:gravity="center"
+                    android:background="#d3fcdc"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shopEdit"
+                    android:inputType="text"
+                    android:maxLength="200"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
-        </LinearLayout>
-
-        <!--Memoを囲んでいるLinear-->
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#daf5e9">
-
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="70dp"
-                android:text="Memo"
-                android:id="@+id/memo"
-                android:textSize="25dp"
-                android:gravity="center"
-                android:background="#29a674" />
-
-            <EditText
+            card_view:cardCornerRadius="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="1dp">
+            <!--Memoを囲んでいるLinear-->
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/memoEdit"
-                android:inputType="text"
-                android:maxLength="20"/>
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="70dp"
+                    android:text="メモ"
+                    android:id="@+id/memo"
+                    android:textSize="25dp"
+                    android:gravity="center"
+                    android:background="#d3fcdc"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/memoEdit"
+                    android:inputType="text"
+                    android:maxLength="20"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="UPDATE"
+            android:text="更新完了"
             android:id="@+id/updateButton"
             android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DB確認！"
-            android:id="@+id/showButton" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="drop"
-            android:id="@+id/dropButton"
-            android:layout_gravity="right" />
-
 
     </LinearLayout>
 

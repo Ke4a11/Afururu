@@ -66,16 +66,13 @@ public class Money_Calendar extends Fragment {
     int showmonth=0;
 
     TextView txYM;
-    Button prevMonth,nextMonth;
+    Button prevMonth,nextMonth,inputbtn;
 
     //DateItemクラスが持っているカレンダーの情報がある
     List<DateItem> DATEITEMS = new ArrayList<DateItem>();
 
     //今月だけ表示のためのフラグ
     Boolean calFlg = true;
-
-    //同じ日にちに二回以上値の入力があった場合
-    int many = 1;
 
     MCalendar mCalendar;
 
@@ -98,9 +95,17 @@ public class Money_Calendar extends Fragment {
         //ボタン作成とリスナ
         prevMonth = (Button)v.findViewById(R.id.PrevMonth);
         nextMonth = (Button)v.findViewById(R.id.NextMonth);
+        inputbtn = (Button)v.findViewById(R.id.inputbutton);
 
         prevMonth.setOnClickListener(new Changemonth());
         nextMonth.setOnClickListener(new Changemonth());
+        inputbtn.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity().getApplicationContext(),MoneyInputActivity.class);
+                startActivity(i);
+            }
+        });
 
         //初期設定
         Calendar cal = Calendar.getInstance();
@@ -170,6 +175,9 @@ public class Money_Calendar extends Fragment {
                     //最初のifに日にちまで入れると一行が長くなる上、読みにくくなる。何より変わらないと思うが、二つ目のifである日にちの比較に時間がかかりそう（適当）
                     if (year ==showyear && month == showmonth){
                         if (day.equals(date)){
+                            //同じ日にちの値をどうするか検討しなくてはいけない
+                            testdata = DummyContent.ITEMS.get(n).price;
+                        }else if(day.equals("0" + date)){
                             //同じ日にちの値をどうするか検討しなくてはいけない
                             testdata = DummyContent.ITEMS.get(n).price;
                         }
@@ -268,6 +276,9 @@ public class Money_Calendar extends Fragment {
                                 if (day.equals(date)){
                                     //同じ日にちの値をどうするか検討しなくてはいけない
                                     testdata = DummyContent.ITEMS.get(n).price;
+                                }else if(day.equals("0" + date)){
+                                    //同じ日にちの値をどうするか検討しなくてはいけない
+                                    testdata = DummyContent.ITEMS.get(n).price;
                                 }
                             }
                         }
@@ -362,6 +373,9 @@ public class Money_Calendar extends Fragment {
                                 if (day.equals(date)){
                                     //同じ日にちの値をどうするか検討しなくてはいけない
                                     testdata = DummyContent.ITEMS.get(n).price;
+                                }else if(day.equals("0" + date)){
+                                    //同じ日にちの値をどうするか検討しなくてはいけない
+                                    testdata = DummyContent.ITEMS.get(n).price;
                                 }
                             }
                         }
@@ -408,10 +422,6 @@ public class Money_Calendar extends Fragment {
             tmp_year[i] = tmp_splite[0];
             tmp_month[i] = tmp_splite[1];
             tmp_day[i] = tmp_splite[2];
-            if (tmp_day[i].startsWith("0")){
-                tmp_day[i] = tmp_day[i].substring(1,1);
-                String a = null;
-            }
         }
 
         for (int i=0; i < tmp_date.length; i++){

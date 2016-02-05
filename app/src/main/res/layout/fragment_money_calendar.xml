@@ -491,4 +491,14 @@
             </TableRow>
         </TableLayout>
     </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="支出入力"
+        android:layout_marginTop="5dp"
+        android:id="@+id/inputbutton"
+        android:layout_gravity="center_horizontal" />
+
+
 </LinearLayout>

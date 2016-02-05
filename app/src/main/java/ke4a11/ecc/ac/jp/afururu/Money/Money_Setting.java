@@ -63,6 +63,9 @@ public class Money_Setting extends Fragment {
                 if (edit_balance.getText().toString().equals("")){
                     edit_balance.setText("0");
                     Toast.makeText(getActivity().getApplicationContext(),"残金に値を入力してください。",Toast.LENGTH_SHORT).show();
+                }else if (edit_balance.getText().toString().equals("残金に値を入力してください。")){
+                    edit_balance.setText("0");
+                    Toast.makeText(getActivity().getApplicationContext(),"値を入力してください。",Toast.LENGTH_SHORT).show();
                 }else {
 
                     //コードが長くなるため、一時的にbalanceの値を保持する変数
@@ -96,6 +99,8 @@ public class Money_Setting extends Fragment {
                 //EnteredBalance とい名前のテキスト(xml)ファイルを作成 key-valueで保存される
                 SharedPreferences sp = getContext().getSharedPreferences("EnteredBalance", Context.MODE_PRIVATE);
                 sp.edit().clear().commit();
+                Toast.makeText(getContext(), "初期化完了しました！", Toast.LENGTH_SHORT).show();
+
             }
         });
 

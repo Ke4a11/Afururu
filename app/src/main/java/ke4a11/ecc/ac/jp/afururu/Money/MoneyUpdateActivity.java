@@ -56,24 +56,15 @@ public class MoneyUpdateActivity extends AppCompatActivity {
         Intent i = getIntent();
         int id =i.getIntExtra("position",1);
 
-        //+1しないと一個ずれる
-        if(id!=0){
-            //+1しないと一個ずれる
-            //id +=1;
-        }
-
-
         //final型でないとid登録できなかったのでStringがたに変換
         final String ids = String.valueOf(id);
 
-        //Toast.makeText(getApplicationContext(),"idは"+id+"desu", Toast.LENGTH_SHORT).show();
         //String空文字追加
         String shop ="";
         String memo="";
         String date="";
         String price = "";
         String category="";
-
 
         String sqlstr = "select * from ecc where id =" + ids + ";";
         Cursor c=db.rawQuery(sqlstr,null);
@@ -94,26 +85,8 @@ public class MoneyUpdateActivity extends AppCompatActivity {
         memoText.setText(memo);
         dateText.setText(date);
         priceText.setText(price);
-        //カテゴリの表示をStringに変換
-        String categorychange = category;
-
-//        if(!categorychange.equals("")){
-//        }
-
-        int categorychanged = Integer.parseInt(categorychange);
-
-        Toast.makeText(getApplicationContext(),"", Toast.LENGTH_SHORT).show();
-
-
-        Button showButton = (Button) findViewById(R.id.showButton);
-        showButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent dbIntent = new Intent(getApplicationContext(),MoneyShowDatabase.class);
-                startActivity(dbIntent);
-            }
-        });
-
+        //カテゴリの表示をintに変換
+        int categorychanged = Integer.parseInt(category);
 
         //UPDATEでの処理
         final Button updateButton = (Button) findViewById(R.id.updateButton);
@@ -154,17 +127,6 @@ public class MoneyUpdateActivity extends AppCompatActivity {
             }
         });
 
-                //DROPテーブル
-                Button dropButton = (Button) findViewById(R.id.dropButton);
-                dropButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        db.execSQL("DROP TABLE ECC");
-
-                    }
-                });
-
-
                 //spinner用のアダプターを作成
                 //??コンテキストに変更
                 ArrayAdapter<String> ad = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item);
@@ -182,11 +144,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                         selectedSpinner = rateName[spinner.getSelectedItemPosition()];
-
-                        //selectedSpinner = (String)spinner.getSelectedItem();
-                        //Toast.makeText(getContext(),Integer.toString(spinner.getSelectedItemPosition()),Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -242,11 +200,8 @@ public class MoneyUpdateActivity extends AppCompatActivity {
             protected void onCreate(@Nullable Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
 
-                Intent i = getIntent();
-                int id =i.getIntExtra("position",1);
-
-                Toast.makeText(getApplicationContext(),"idは"+id+"desu", Toast.LENGTH_SHORT).show();
-
+                //Intent i = getIntent();
+                //int id =i.getIntExtra("position",1);
 
                 //日付を表示する処理
                 setContentView(R.layout.activity_money_update);
@@ -278,18 +233,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                                 , cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)
                         );
                         dialog.show();
-
-
-
                     }
                 });
-
-/*
-        Button btn=(Button)findViewById(R.id.addButton);
-        //btn.setOnClickListener(this);
-        btn.setText("kokoko");
-        btn.setVisibility(View.GONE);
-*/
-
             }
         }
