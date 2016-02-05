@@ -26,6 +26,7 @@ public DummyItem
  */
 public class DummyContent {
 
+    public static String[] dummy_primary;
     public static String[] dummy_date;
     public static String[] dummy_shop;
     public static int[] dummy_category;
@@ -33,10 +34,11 @@ public class DummyContent {
     public static String[] dummy_price;
 
     //コンストラクタ
-    public DummyContent(String[] a, String[] b, int[] c, String[] d , String[] e){
+    public DummyContent(String[] x,String[] a, String[] b, int[] c, String[] d , String[] e){
         ITEMS.clear();
         ITEM_MAP.clear();
 
+        dummy_primary = x;
         dummy_date = a;
         dummy_shop = b;
         dummy_category = c;
@@ -47,6 +49,7 @@ public class DummyContent {
             addItem(createDummyItem(i));
         }
 
+        dummy_primary = null;
         dummy_date = null;  //値重複を防ぐため
         dummy_shop = null;
         dummy_category = null;
@@ -78,13 +81,13 @@ public class DummyContent {
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);  //ここにはコンテントの Item + position の値が入る
-        ITEM_MAP.put(item.id, item); //item.id は position だけなので、数字のみ
+        ITEM_MAP.put(item.primary, item); //item.id は position だけなので、数字のみ
     }
 
     //DummyItem()メソッドの引数 と 一番下のDummyItemクラスのコンストラクタの引数に対応している
     private static DummyItem createDummyItem(int position) {
         //return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
-        return new DummyItem(String.valueOf(position), dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position],dummy_price[position]);
+        return new DummyItem(dummy_primary[position], dummy_date[position],dummy_shop[position],dummy_category[position],dummy_memo[position],dummy_price[position]);
 
     }
 
@@ -98,6 +101,7 @@ public class DummyContent {
         public String details;
 
 
+        public String primary;
         public String date;
         public String shop;
         public int category;
@@ -112,8 +116,8 @@ public class DummyContent {
             this.details = details;
         }
 
-        public DummyItem(String id, String date, String shop, int category, String memo,String price){
-            this.id = id; //主キーみたいな役割
+        public DummyItem(String primary, String date, String shop, int category, String memo,String price){
+            this.primary = primary; //主キーみたいな役割
             this.date = date;
             this.shop = shop;
             this.category = category;

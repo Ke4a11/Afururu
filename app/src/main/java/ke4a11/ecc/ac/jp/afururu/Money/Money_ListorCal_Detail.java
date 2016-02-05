@@ -26,7 +26,7 @@ public class Money_ListorCal_Detail extends Fragment {
 
     /**
      * クラスの指定
-     * mItem.id .content .details が参照できる。
+     * mItem.primary .content .details が参照できる。
      * これを使えば、データベースを読み込んで...などしなくてもいけそう
      */
     private DummyContent.DummyItem mItem;
@@ -82,7 +82,7 @@ public class Money_ListorCal_Detail extends Fragment {
                 i.putExtra("position", a);
                 startActivity(i);*/
 
-                int a = Integer.parseInt(mItem.id);
+                int a = Integer.parseInt(mItem.primary);
                 Intent i = new Intent(getContext(),MoneyUpdateActivity.class);
 
                 i.putExtra("position", a);

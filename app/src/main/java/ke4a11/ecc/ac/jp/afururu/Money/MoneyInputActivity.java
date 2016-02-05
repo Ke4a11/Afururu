@@ -65,9 +65,11 @@ public class MoneyInputActivity extends AppCompatActivity {
                 String memo = memoText.getText().toString();
                 String date = dateText.getText().toString();
                 //金額入力で小数点２位以下切り捨て
-                Float f = Float.parseFloat(priceText.getText().toString());
-                String stringprice = String.format("%.2f",f);
-
+                String stringprice = null;
+                if (!priceText.getText().toString().equals("")){
+                    Float f = Float.parseFloat(priceText.getText().toString());
+                    stringprice = String.format("%.2f",f);
+                }
                 // 選択されているアイテムのIndexを取得
                 //int idx = spinner.getSelectedItemPosition();
                 //入力してくださいメッセージの連続
@@ -97,21 +99,13 @@ public class MoneyInputActivity extends AppCompatActivity {
             }
         });
 
+        //DB確認
         Button showButton = (Button) findViewById(R.id.showButton);
         showButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent dbIntent = new Intent(getApplicationContext(),MoneyShowDatabase.class);
                 startActivity(dbIntent);
-            }
-        });
-
-        //DROPテーブル
-        Button dropButton = (Button)findViewById(R.id.dropButton);
-        dropButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                db.execSQL("DROP TABLE ECC");
             }
         });
 
@@ -175,7 +169,12 @@ public class MoneyInputActivity extends AppCompatActivity {
         final TextView dateText = (TextView)findViewById(R.id.dateText);
         Time time = new Time("Asia/Tokyo");
         time.setToNow();
-        String date = time.year + "/" + (time.month+1) + "/" + time.monthDay;
+        String date;
+        if (time.monthDay < 10){
+            date = time.year + "/" + (time.month+1) + "/0" + time.monthDay;
+        }else{
+            date = time.year + "/" + (time.month+1) + "/" + time.monthDay;
+        }
         dateText.setText(date);
         //押したときカレンダー表示
         dateText.setOnClickListener(new View.OnClickListener() {

@@ -46,6 +46,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
   //追加予定のやつ
   //private String[] DB_SELECTED_payout;
+  public String[] DB_SELECTED_primary;
   public String[] DB_SELECTED_date;
   public String[] DB_SELECTED_shop;
   public int[] DB_SELECTED_category;
@@ -133,14 +134,17 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
       c = db.rawQuery(sql,null);
     }else{
       //リスト
-      c = db.query("ecc", new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
-              null, null, null, "date ASC");
+      String sql = "select id,date,shop,category,memo,price from ecc;";
+//      c = db.query("ecc", new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
+//              null, null, null, "date ASC");
+      c = db.rawQuery(sql,null);
     }
 
 
     boolean mov = c.moveToFirst();
 
     //クッションの役割 詳しくはフィールドにセッティング７るとこを参照
+    String[] primary = new String[c.getCount()];
     String[] date = new String[c.getCount()];
     String[] shop = new String[c.getCount()];
     int[] category = new int[c.getCount()];
@@ -151,6 +155,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     int i = 0;
     while (mov) {
 
+      primary[i] = c.getString(0);
       date[i] = c.getString(1);
       shop[i] = c.getString(2);
       category[i] = c.getInt(3);
@@ -163,6 +168,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     }
 
     //String[] DB_SELECTED_date 初期値を設定していないとnull array? になり値を代入できないので、こういう形になっている。
+    DB_SELECTED_primary = primary;
     DB_SELECTED_date = date;
     DB_SELECTED_shop = shop;
     DB_SELECTED_category = category;
@@ -174,7 +180,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
     //クラスロードのためインスタンス生成している
     //DummyContentで使用できるように設定する
-    DummyContent dummyContent = new DummyContent(DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo, DB_SELECTED_price);
+    DummyContent dummyContent = new DummyContent(DB_SELECTED_primary, DB_SELECTED_date, DB_SELECTED_shop, DB_SELECTED_category, DB_SELECTED_memo, DB_SELECTED_price);
 
   }
 

@@ -103,7 +103,7 @@ public class Money_List extends Fragment implements AbsListView.OnItemClickListe
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != mListener) {
             //Activityにあるメソッドの呼び出し。引数に押した場所のid(ITEM_MAPの添字に使う)を渡している。
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).primary);
 
             //Toast.makeText(getActivity(),position+1 + "を押しました。",Toast.LENGTH_SHORT).show();
         }

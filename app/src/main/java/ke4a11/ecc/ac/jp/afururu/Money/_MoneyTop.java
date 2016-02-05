@@ -95,7 +95,7 @@ public class _MoneyTop extends Fragment {
         payoutButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getContext(),MoneyInputActivity.class);
+                Intent i = new Intent(getContext(), MoneyInputActivity.class);
                 startActivity(i);
             }
         });
@@ -223,7 +223,7 @@ public class _MoneyTop extends Fragment {
 
     public String getUser(){
         SharedPreferences sp = getContext().getSharedPreferences("Setting",Context.MODE_PRIVATE);
-        String a = sp.getString("name","ゲストユーザー");
+        String a = sp.getString("name", "ゲストユーザー");
         return a;
     }
 
@@ -247,9 +247,11 @@ public class _MoneyTop extends Fragment {
     //rate に現在のレートを代入
     void setCurrency(String data){
         //小数第１位のみ表示　２位以下切り捨て
-        String d = data;
-        Float f = Float.parseFloat(d);
-        data = String.format("%.1f",f);
+        if (!data.equals("")){
+            String d = data;
+            Float f = Float.parseFloat(d);
+            data = String.format("%.1f",f);
+        }
 
 
         //日付をスラッシュ区切りでプライマリーキーとdataをDBに登録
@@ -269,7 +271,7 @@ public class _MoneyTop extends Fragment {
         insertValues.put("date", String.valueOf(sDate));
         insertValues.put("todayrate", data);
 
-        long id = db.insert("currency",data, insertValues);
+        long id = db.insert("currency", data, insertValues);
 
         //持ってくる為替の指定
             moneySpinner = Money_Setting.selectedSpinner;

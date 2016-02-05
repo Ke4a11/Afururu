@@ -240,8 +240,6 @@ public class Money_Calendar extends Fragment {
                             calFlg = true;
                         }
 
-
-
                         //確実に31日以降ならば白色にする
                         if (i == 5 && j > 2){
                             textView1.setTextColor(Color.WHITE);
@@ -410,6 +408,10 @@ public class Money_Calendar extends Fragment {
             tmp_year[i] = tmp_splite[0];
             tmp_month[i] = tmp_splite[1];
             tmp_day[i] = tmp_splite[2];
+            if (tmp_day[i].startsWith("0")){
+                tmp_day[i] = tmp_day[i].substring(1,1);
+                String a = null;
+            }
         }
 
         for (int i=0; i < tmp_date.length; i++){

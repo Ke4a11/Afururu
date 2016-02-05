@@ -6,7 +6,6 @@
     android:orientation="vertical" tools:context="ke4a11.ecc.ac.jp.afururu.Money.Money_Input"
     android:weightSum="1"
     android:id="@+id/moneyinputlayout"
-    android:background="#AFEEEE"
     >
 
     <TextView
@@ -32,13 +31,13 @@
             android:layout_gravity="right"
             android:maxLength="6"
             android:textSize="25sp" />
-        <TextView
-            android:id="@+id/currency"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="£"
-            android:textColor="#000000"
-            android:textSize="20dp"/>
+        <!--<TextView-->
+            <!--android:id="@+id/currency"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="£"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="20dp"/>-->
     </LinearLayout>
 
     <LinearLayout
@@ -193,19 +192,19 @@
             android:layout_height="wrap_content"
             android:text="DB確認！"
             android:id="@+id/showButton" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="UPDATE"
-            android:id="@+id/updateButton"
-            android:layout_gravity="center_horizontal" />
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="UPDATE"-->
+            <!--android:id="@+id/updateButton"-->
+            <!--android:layout_gravity="center_horizontal" />-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="drop"
-            android:id="@+id/dropButton"
-            android:layout_gravity="right" />
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="drop"-->
+            <!--android:id="@+id/dropButton"-->
+            <!--android:layout_gravity="right" />-->
 
 
     </LinearLayout>

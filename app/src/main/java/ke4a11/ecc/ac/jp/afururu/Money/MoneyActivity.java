@@ -14,7 +14,7 @@ import ke4a11.ecc.ac.jp.afururu.R;
 
 /*
 *  *****簡単な説明*****
-*  fragmentのreplaceのカレンダーのみR.id.money_calc_screenになっている。
+*  fragmentのreplaceのカレンダーのみR.primary.money_calc_screenになっている。
 *  これは表示形式をリストとカレンダーにするのだが、その選択をこのスピナーで選択してもらうため
 *
 */
