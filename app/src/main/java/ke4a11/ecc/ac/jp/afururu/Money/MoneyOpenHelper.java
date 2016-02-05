@@ -9,15 +9,27 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MoneyOpenHelper extends SQLiteOpenHelper {
 
+    static final String CREATE_TABLE_ECC =
+            "create table ecc(" + "id integer primary key autoincrement," + " shop text not null," + " memo text not null,"
+                                            +" category integer not null," + " date text not null," + "price integer not null" + ");";
+
+    static final String CREATE_TABLE_CURRENCY =
+            "create table currency("+ "date text not null,"+" todayrate integer not null"+");";
+
 
         public MoneyOpenHelper(Context context) {
-            super(context, "ShopMemoDB5", null, 2);
+            super(context, "ShopMemoDB8", null, 2);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("create table ecc(" + "id integer primary key," + " shop text not null," + " memo text not null,"
-                    +" category integer not null," + " date text not null," + "price integer not null" + ");");
+
+            db.execSQL(CREATE_TABLE_ECC);
+            db.execSQL(CREATE_TABLE_CURRENCY);
+
+
+           // db.execSQL("create table ecc(" + "id integer primary key autoincrement," + " shop text not null," + " memo text not null,"
+           // +" category integer not null," + " date text not null," + "price integer not null" + ");");
         }
 
         @Override

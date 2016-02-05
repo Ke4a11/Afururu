@@ -37,6 +37,8 @@ public class MoneyShowDatabase extends AppCompatActivity{
             layout.addView(textView);
         }
 
+
+
         c.close();
         db.close();
     }
