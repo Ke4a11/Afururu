@@ -2,7 +2,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_map1"
-    android:name="ke4a11.ecc.ac.jp.afururu.Map._MapTop"
     class="com.google.android.gms.maps.SupportMapFragment"
         android:name="ke4a11.ecc.ac.jp.afururu.Map._MapTop">
         <LinearLayout

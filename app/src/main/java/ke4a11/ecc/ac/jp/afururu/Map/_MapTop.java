@@ -75,28 +75,14 @@ public class _MapTop extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
-//        if(netWorkCheck(getActivity())){
 //
+//        if(netWorkCheck(getActivity())){
 //        }else{
-//            view = inflater.inflate(R.layout.default_map, container, false);
+//
 //            return view;
 //        }
-//        ここあしたいじる
-//
         try{
-//            ここ
-            if(netWorkCheck(getActivity())){
-
-            }else{
-                view = inflater.inflate(R.layout.default_map, container, false);
-                return view;
-            }
-//            ここまで
-
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
-
         }catch(Exception ex){
 
            // Log.d("IllegalArgumentException", ".IllegalArgumentException");
