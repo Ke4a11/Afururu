@@ -6,38 +6,39 @@
     android:id="@+id/fragment_map1"
     class="com.google.android.gms.maps.SupportMapFragment"
         android:name="ke4a11.ecc.ac.jp.afururu.Map._MapTop">
-        <LinearLayout
-            android:paddingTop="45dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+
             <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="40dp"
+                    android:text=""/>
             <EditText
                 android:id="@+id/editAddr"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:inputType="text"
-
                 />
                 <Button
                     android:id="@+id/btnLocate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/getLocate" />
-        </LinearLayout>
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/gohomebutton"
                 android:text="帰宅"
                 />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:text=""/>
 
+            </LinearLayout>
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapview"
                 android:layout_width="match_parent"
@@ -50,6 +51,6 @@
 
             </com.google.android.gms.maps.MapView>
 
-        </LinearLayout>
+
     </fragment>
 
