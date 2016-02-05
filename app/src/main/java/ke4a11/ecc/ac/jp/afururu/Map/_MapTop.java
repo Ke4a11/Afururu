@@ -1,5 +1,42 @@
 package ke4a11.ecc.ac.jp.afururu.Map;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.maps.MapController;
+
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,71 +46,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.json.JSONObject;
-
-import android.app.AlertDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationManager;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-
-import android.app.ProgressDialog;
-import android.app.FragmentManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.location.Address;
-import android.location.Geocoder;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
-
-import java.io.IOException;
-import java.util.List;
 import java.util.Locale;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 import ke4a11.ecc.ac.jp.afururu.TopActivity;
+import ke4a11.ecc.ac.jp.afururu.Money._MoneyTop;
 
 
 public class _MapTop extends Fragment {
@@ -93,16 +70,39 @@ public class _MapTop extends Fragment {
     public static ArrayList<LatLng> markerPoints;
     public static MarkerOptions options;
     public ProgressDialog progressDialog;
-   // public String travelMode = "driving";//default
+    // public String travelMode = "driving";//default
     LocationManager locationManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if(TopActivity.getInflateFlag()) {
+
+//        if(netWorkCheck(getActivity())){
+//
+//        }else{
+//            view = inflater.inflate(R.layout.default_map, container, false);
+//            return view;
+//        }
+//        ここあしたいじる
+//
+        try{
+//            ここ
+            if(netWorkCheck(getActivity())){
+
+            }else{
+                view = inflater.inflate(R.layout.default_map, container, false);
+                return view;
+            }
+//            ここまで
+
             view = inflater.inflate(R.layout.fragment_map_top, container, false);
-            TopActivity.setInfalateFlag(false);
+
+        }catch(Exception ex){
+
+           // Log.d("IllegalArgumentException", ".IllegalArgumentException");
         }
+
+//
         //プログレス
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -121,7 +121,6 @@ public class _MapTop extends Fragment {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 17));
 
         if (mMap != null) {
-
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setZoomControlsEnabled(true);//拡大縮小ボタン表示
             //クリックリスナー
@@ -326,7 +325,6 @@ public class _MapTop extends Fragment {
     }
 
 
-
     //ここより上は試作中
     @Override
     public void onStart() {
@@ -353,13 +351,7 @@ public class _MapTop extends Fragment {
                     mMap.clear();
                     markerPoints.clear();
                     Location myLocation = locationManager
-                            .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                    if (myLocation == null) {
-                        myLocation = locationManager
-                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    }
-
+                            .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     //locationManager.getLastKnownLocation("gps");
                     if (myLocation != null) {
                         Double a = myLocation.getLatitude();
@@ -382,10 +374,10 @@ public class _MapTop extends Fragment {
 //                    markerPoints.add(pref.getString("address", "1,1"));
 //                    Toast.makeText(getActivity().getApplicationContext(), "位置\n緯度:" + markerPoints.get(1) + "\n経度:" + markerPoints.get(2), Toast.LENGTH_LONG).show();
                         routeSearch();
-                    } else {
+                    }else{
                         Toast.makeText(getActivity(), "現在地の取得に失敗しました。", Toast.LENGTH_LONG).show();
 
-                        if (locationManager == null) {
+                        if(locationManager == null){
                             Toast.makeText(getActivity(), "locationManagerもnull", Toast.LENGTH_LONG).show();
                         }
                     }
@@ -401,10 +393,9 @@ public class _MapTop extends Fragment {
         });
 
 
-
     }
 
-    private void setMarker(LatLng location, Bitmap bitmap){
+    private void setMarker(LatLng location, Bitmap bitmap) {
 
         MarkerOptions options = new MarkerOptions();
         options.position(location);
@@ -412,7 +403,8 @@ public class _MapTop extends Fragment {
 
         mMap.addMarker(options);
     }
-    private void setMarker(LatLng location, int drawable){
+
+    private void setMarker(LatLng location, int drawable) {
 
         MarkerOptions options = new MarkerOptions();
         options.position(location);
@@ -479,11 +471,8 @@ public class _MapTop extends Fragment {
 
         }catch (IOException e){
             e.printStackTrace();
-        } catch (IndexOutOfBoundsException e){
-            Toast.makeText(getActivity(), "住所を取得できませんでした", Toast.LENGTH_LONG).show();
         }
     }
-
 
 
     private void setUpMapIfNeeded() {
@@ -541,12 +530,21 @@ public class _MapTop extends Fragment {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IndexOutOfBoundsException e){
-            Toast.makeText(getActivity(), "住所を取得できませんでした", Toast.LENGTH_LONG).show();
         }
     }
 
-    public static GoogleMap getMap(){
+    //ネットに繋がっているかチェックするメソッド
+    private boolean netWorkCheck(Context context){
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+        if (info != null){
+            return info.isConnected(); //繋がっている
+        }else{
+            return false; //繋がっていない
+        }
+    }
+
+    public static GoogleMap getMap() {
         return mMap;
     }
 

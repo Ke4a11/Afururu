@@ -40,9 +40,18 @@ public class _SettingTop extends Fragment {
         updatebtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                if(address_et.getText().toString().equals("")){
+                    Toast.makeText(getActivity(),"住所を入力してください",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 //コードが長くなるため、一時的にbalanceの値を保持する変数
                 String tmp_address = address_et.getText().toString();
                 String tmp_name = name_et.getText().toString();
+
 
                 //入力チェック
                 if (tmp_name.equals("")){
