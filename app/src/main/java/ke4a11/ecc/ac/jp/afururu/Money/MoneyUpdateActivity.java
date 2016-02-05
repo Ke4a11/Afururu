@@ -56,13 +56,20 @@ public class MoneyUpdateActivity extends AppCompatActivity {
         Intent i = getIntent();
         int id =i.getIntExtra("position",1);
         //+1しないと一個ずれる
-        id +=1;
 
-        //final型でないと、id登録できなかったのでString型に変換
+        if(id!=0){
+
+            //+1しないと一個ずれる
+            id +=1;
+
+        }
+
+
+        //final型でないとid登録できなかったのでStringがたに変換
         final String ids = String.valueOf(id);
 
         Toast.makeText(getApplicationContext(),"idは"+id+"desu", Toast.LENGTH_SHORT).show();
-
+        //String空文字追加
         String shop ="";
         String memo="";
         String date="";
@@ -115,23 +122,33 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                 String shop = shopText.getText().toString();
                 String memo = memoText.getText().toString();
                 String date = dateText.getText().toString();
-                Integer price = Integer.parseInt(priceText.getText().toString());
+                //したのif 文で使うようにString 型
+                //Integer price = Integer.parseInt(priceText.getText().toString());
                 int category = spinner.getSelectedItemPosition();
                 if (shop.equals("")) {
 
-                    Toast.makeText(getApplicationContext(), "名前を入力してください。", Toast.LENGTH_SHORT).show();
-                } else {
+                String stringprice = priceText.getText().toString();
+
+                if(stringprice == null||stringprice.equals("")) {
+                    Toast.makeText(MoneyUpdateActivity.this, "金額を入力してください", Toast.LENGTH_SHORT).show();
+                }else if (shop == null || shop.equals("")) {
+                    Toast.makeText(MoneyUpdateActivity.this, "SHOPを入力してください", Toast.LENGTH_SHORT).show();
+                }else if(memo==null||memo.equals("")){
+                    Toast.makeText(MoneyUpdateActivity.this,"MEMOを入力してください",Toast.LENGTH_SHORT).show();
+                }else {
+                    int category = spinner.getSelectedItemPosition();
                     ContentValues updateValues = new ContentValues();
                     updateValues.put("shop", shop);
                     updateValues.put("memo", memo);
                     updateValues.put("date", date);
-                    updateValues.put("price", price);
+                    updateValues.put("price", stringprice);
                     updateValues.put("category",category);
-                    //String whereClause = "id = ?";
-                    db.update("ecc", updateValues, "date=?", new String[]{date});
+                   // String whereClause = "id = ?";
+                    db.update("ecc", updateValues, "id=?" , new String[]{ids});
+               Intent i = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
+                    startActivity(i);
                 }
-                Intent i = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
-                startActivity(i);
+
             }
         });
 
@@ -141,6 +158,7 @@ public class MoneyUpdateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         db.execSQL("DROP TABLE ECC");
+
                     }
                 });
 

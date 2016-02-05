@@ -27,10 +27,13 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.util.Log;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import ke4a11.ecc.ac.jp.afururu.R;
+import ke4a11.ecc.ac.jp.afururu.TopActivity;
 
 /*TODO
 
@@ -47,6 +50,7 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
     public static String[] titleEngText;
     private ListView listView1;
     private  int mSelectedItem = -1;
+    //public static boolean visited = true;
 
     //英語カテゴリー名一覧用変数
     public List<String> category = new ArrayList<>();
@@ -99,7 +103,8 @@ public class English_Textview_Activity extends Activity implements AdapterView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_english_textview);
-
+        Toast.makeText(this,"ok", Toast.LENGTH_LONG).show();
+        TopActivity.setInfalateFlag(false);
 //色変えるー
         FrameLayout frameLayout = new FrameLayout(this);
         frameLayout.setBackgroundColor(Color.RED);

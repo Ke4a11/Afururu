@@ -23,6 +23,8 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
     private HttpClient hClient;
     private HttpGet hGetMethod;
     private _MoneyTop moneyTop;
+    private Money_Exchange money_exchange;
+    private int i=-1;
 
     //private ServiceMoneyExchange serviceMoneyExchange;
 /*
@@ -33,11 +35,25 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
     }
 */
     // コンストラクタ
-    public AsynCsv(_MoneyTop fragment){
+    public AsynCsv(_MoneyTop fragment,int ii){
+
+        //呼ばれた元がMoneyExchangeかMoneyTopか分ける処理
+        i=ii;
         moneyTop = fragment;
         hClient = new DefaultHttpClient();
         hGetMethod = new HttpGet();
     }
+
+    //コンスト楽た
+    public AsynCsv(Money_Exchange fragment,int ii){
+
+        //呼ばれた元がMoneyExchangeかMoneyTopか分ける処理
+        i=ii;
+        money_exchange = fragment;
+        hClient = new DefaultHttpClient();
+        hGetMethod = new HttpGet();
+    }
+
 
     // バックグラウンドで処理する（重い処理）
     @Override
@@ -49,7 +65,14 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
     // バックグラウンド処理が終了した後にメインスレッドに渡す処理
     @Override
     protected void onPostExecute(String result) {
+
+        if (i==0){
         moneyTop.setCurrency(result); //MoneyTopのsetCurrencyメソッド
+    }else{
+        money_exchange.setCurrency(result);
+
+        }
+
     }
 
     private String httpGet(String uri){

@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,6 +29,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 
 import ke4a11.ecc.ac.jp.afururu.R;
+import ke4a11.ecc.ac.jp.afururu.Setting.ShowDataBase;
 import ke4a11.ecc.ac.jp.afururu.TopActivity;
 
 public class MoneyInputActivity extends AppCompatActivity {
@@ -55,6 +59,8 @@ public class MoneyInputActivity extends AppCompatActivity {
         entryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String shop = shopText.getText().toString();
                 String memo = memoText.getText().toString();
                 String date = dateText.getText().toString();
@@ -64,21 +70,30 @@ public class MoneyInputActivity extends AppCompatActivity {
 
                 // 選択されているアイテムのIndexを取得
                 //int idx = spinner.getSelectedItemPosition();
+                //入力してくださいメッセージの連続
+                if(stringprice == null||stringprice.equals("")) {
+                    Toast.makeText(MoneyInputActivity.this, "金額を入力してください", Toast.LENGTH_SHORT).show();
+                }else if (shop == null || shop.equals("")) {
+                    Toast.makeText(MoneyInputActivity.this, "SHOPを入力してください", Toast.LENGTH_SHORT).show();
+                }else if(memo==null||memo.equals("")){
+                    Toast.makeText(MoneyInputActivity.this,"MEMOを入力してください",Toast.LENGTH_SHORT).show();
+                }else {
+                     // 選択されているアイテムを取得
+                     int category = spinner.getSelectedItemPosition();
+                     ContentValues insertValues = new ContentValues();
+                     insertValues.put("date", date);
+                     insertValues.put("shop", shop);
+                     insertValues.put("category", category);
+                     insertValues.put("memo", memo);
+                     insertValues.put("price", stringprice);
 
-                // 選択されているアイテムを取得
-                int category = spinner.getSelectedItemPosition();
-                ContentValues insertValues = new ContentValues();
-                insertValues.put("date",date);
-                insertValues.put("shop", shop);
-                insertValues.put("category",category);
-                insertValues.put("memo", memo);
-                insertValues.put("price",price);
-                long id = db.insert("ecc",date, insertValues);
+                     long id = db.insert("ecc", date, insertValues);
 
-                //一つ目の引数をthisではなくContextにする　登録かんりょうのToast表示
-                Toast.makeText(getApplicationContext(),"登録完了",Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(getApplicationContext(), TopActivity.class);
-                startActivity(i);
+                     //一つ目の引数をthisではなくContextにする　登録かんりょうのToast表示
+                     Toast.makeText(getApplicationContext(), "登録完了", Toast.LENGTH_SHORT).show();
+                     Intent i = new Intent(getApplicationContext(), TopActivity.class);
+                     startActivity(i);
+                 }
             }
         });
 
@@ -139,24 +154,6 @@ public class MoneyInputActivity extends AppCompatActivity {
                     //ソフトキーボードを閉じる
                     InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-
-                    /*登録押したときの処理の内容
-                    String shop = shopText.getText().toString();
-                    String memo = memoText.getText().toString();
-                    String date = dateText.getText().toString();
-                    // 選択されているアイテムのIndexを取得
-                    //int idx = spinner.getSelectedItemPosition();
-
-                    // 選択されているアイテムを取得
-                    String category = (String)spinner.getSelectedItem();
-
-                    ContentValues insertValues = new ContentValues();
-                    insertValues.put("date",date);
-                    insertValues.put("shop", shop);
-                    insertValues.put("category",category);
-                    insertValues.put("memo", memo);
-                    long id = db.insert("ecc", date, insertValues);*/
-
 
                     return true;
     }

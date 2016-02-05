@@ -125,7 +125,7 @@ public class Money_Setting extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });
+    });
 
         return view;
     }

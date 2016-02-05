@@ -1,6 +1,7 @@
 package ke4a11.ecc.ac.jp.afururu.Money;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,11 @@ import android.widget.Toast;
 import com.beardedhen.androidbootstrap.BootstrapButton;
 
 import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import ke4a11.ecc.ac.jp.afururu.R;
 
@@ -49,6 +55,15 @@ public class _MoneyTop extends Fragment {
     private TextView payoutView;
     //名前ビュー
     private TextView NameView;
+
+    //為替のURLに渡すString型の配列
+    private final String[] rateName = {"gbp","eur","usd"};
+
+    //String型の通貨きごう配列
+    private final String[] unitName = {"£","€","$"};
+
+    //為替の通貨単位
+    private String currencyunit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,7 +99,6 @@ public class _MoneyTop extends Fragment {
                 startActivity(i);
             }
         });
-
 
         //ボタン作成
        Button remmoney = (Button)view.findViewById(R.id.remmoney);
@@ -226,7 +240,7 @@ public class _MoneyTop extends Fragment {
 
     //為替をとってくるためのメソッド
     private void getcsv(){
-        AsynCsv asynCsv = new AsynCsv(this);
+        AsynCsv asynCsv = new AsynCsv(this,0);
         asynCsv.execute("http://api.aoikujira.com/kawase/csv/" + moneySpinner);
     }
 
@@ -236,7 +250,40 @@ public class _MoneyTop extends Fragment {
         String d = data;
         Float f = Float.parseFloat(d);
         data = String.format("%.1f",f);
-        mView.setText("¥" + data + "/£");
+
+
+        //日付をスラッシュ区切りでプライマリーキーとdataをDBに登録
+        //OpenHelper準備
+        MoneyOpenHelper helper = new MoneyOpenHelper(getContext());
+        final SQLiteDatabase db = helper.getWritableDatabase();
+        //現在日時を取得する
+        Calendar c = Calendar.getInstance();
+        //Dateを生成
+        Date tdate = new Date();
+
+        DateFormat df1 = new SimpleDateFormat("yyyy/MM/dd");
+        // 変換
+        String sDate = df1.format(tdate);
+
+        ContentValues insertValues = new ContentValues();
+        insertValues.put("date", String.valueOf(sDate));
+        insertValues.put("todayrate", data);
+
+        long id = db.insert("currency",data, insertValues);
+
+        //持ってくる為替の指定
+            moneySpinner = Money_Setting.selectedSpinner;
+
+        String a = "";
+        for(int i = 0; i < rateName.length; i++){
+            if (rateName[i].equals(moneySpinner)){
+                a = unitName[i];
+            }
+        }
+
+//        mView.setText("¥" + data + "/" + a)
+
+        mView.setText("1"+a+" = ¥" + data );
     }
 
 }

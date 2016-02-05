@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 //import package
 import com.astuetz.PagerSlidingTabStrip; //固定タブのためだけのライブラリ
@@ -48,6 +49,7 @@ public class TopActivity extends AppCompatActivity {
     ArrayList<LatLng> markerPoints;
     private Button btnFilter;
     public static Bitmap homeIcon;
+    private static boolean viewInflateFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,6 @@ public class TopActivity extends AppCompatActivity {
         setViews();
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.house3);
-        //              bitmap.
-
         homeIcon = Bitmap.createScaledBitmap(bitmap,50,50,false);
 
         //タブストリップの作成
@@ -79,10 +79,11 @@ public class TopActivity extends AppCompatActivity {
                         LatLng location = new LatLng(address.get(0).getLatitude(), address.get(0).getLongitude());
                         _MapTop. markerPoints.add(location);
                         options.position(location);
-                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.house3);
+                        //tmp_branchではなかった
+                        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.house3);
 //                        bitmap.
 
-                        Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap,50,50,false);
+                        //Bitmap bitmap2 = Bitmap.createScaledBitmap(bitmap,50,50,false);
 
                         options.icon(BitmapDescriptorFactory.fromBitmap(bitmap2));
                         _MapTop.getMap().addMarker(options);
@@ -159,8 +160,21 @@ public class TopActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        _MapTop.flg = true;
+//        if(!English_Textview_Activity.visited) {
+            viewInflateFlag = true;
+
+//        }else{
+            //English_Textview_Activity.visited = false;
+//        }
+        Toast.makeText(this, "onResume", Toast.LENGTH_LONG).show();
     }
 
+    public static boolean getInflateFlag(){
+        return viewInflateFlag;
+    }
+
+    public static void setInfalateFlag(boolean flag){
+        viewInflateFlag = flag;
+    }
 
 }
