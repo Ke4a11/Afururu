@@ -133,7 +133,7 @@ public class _MoneyTop extends Fragment {
         }
 
         //ユーザー名取得
-        NameView.setText("Hello!" + getUser());
+        NameView.setText("こんにちは " + getUser() + " さん!");
     }
 
 
@@ -162,7 +162,7 @@ public class _MoneyTop extends Fragment {
     //Settingで編集した名前を返す
     public String getUser(){
         SharedPreferences sp = getContext().getSharedPreferences("Setting", Context.MODE_PRIVATE );
-        String a = sp.getString("name", "ゲストユーザーさん！");
+        String a = sp.getString("name", "ゲストユーザー" + "");
         return a;
     }
 

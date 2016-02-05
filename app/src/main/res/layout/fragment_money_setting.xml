@@ -50,14 +50,14 @@
         android:layout_alignTop="@+id/updatebtn"
         android:layout_toEndOf="@+id/textView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="残金"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textView1"
-        android:layout_alignEnd="@+id/radioButton" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="残金"-->
+        <!--android:id="@+id/textView4"-->
+        <!--android:layout_below="@+id/textView1"-->
+        <!--android:layout_alignEnd="@+id/radioButton" />-->
 
     <TextView
         android:layout_width="wrap_content"
