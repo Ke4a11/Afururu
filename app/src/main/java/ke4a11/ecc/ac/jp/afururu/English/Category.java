@@ -250,11 +250,8 @@ public class Category {
 
         List<String> schoolqes = new ArrayList<String>();
 
-        schoolqes.add("変わりないよ!");
-        schoolqes.add("親しい感じの別れ方");
-        schoolqes.add("(一時の遠い)さようなら");
-        schoolqes.add("また会おうね");
-        schoolqes.add("また来週の日曜日ね");
+        schoolqes.add("別に");
+        schoolqes.add("特にない");
 
 
 

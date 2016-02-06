@@ -181,12 +181,7 @@ public class Eng_Text {
                             "See you next Sunday.",},
                     //いいよ、気にしないで
                     {"Not much.",
-                            "Nothing special.",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",}
+                            "Nothing special.",}
 
             };
     public static final String[][] DIALOG_res =
