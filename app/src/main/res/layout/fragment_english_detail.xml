@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ke4a11.ecc.ac.jp.afururu.English.English_Detail">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|top"
+                android:text="@string/hello_blank_fragment"
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/speechbtn"
+                android:layout_width="77dp"
+                android:layout_height="55dp"
+                android:layout_gravity="left|bottom"
+                android:background="@drawable/speechbtn" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>
