@@ -5,12 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*TODO
-private static final int COUNT = 10;
-public DummyItem
-の２つに実装予定の内容をコメントしている
- */
-
 /**
  * *****簡単な説明*****
  * 一番初めの読み込み時のみ実行されるので、ボタンを押した時の処理などはない。

@@ -55,7 +55,6 @@ import ke4a11.ecc.ac.jp.afururu.Money._MoneyTop;
 
 public class _MapTop extends Fragment {
 
-
     private static View view;
     private static GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private MapView mview;
@@ -151,7 +150,6 @@ public class _MapTop extends Fragment {
         }
         return view;
     }
-
 
     private void routeSearch() {
         progressDialog.show();
@@ -282,7 +280,6 @@ public class _MapTop extends Fragment {
         }
     }
 
-
     //リ･ルート検索
     private void re_routeSearch() {
         progressDialog.show();
@@ -309,7 +306,6 @@ public class _MapTop extends Fragment {
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute(url);
     }
-
 
     //ここより上は試作中
     @Override
@@ -411,7 +407,6 @@ public class _MapTop extends Fragment {
         return a;
     }
 
-
     public void onGetLocation(View view) {
         Geocoder gcoder = new Geocoder(getActivity(), Locale.getDefault());
         List<Address> lstAddr;
@@ -459,7 +454,6 @@ public class _MapTop extends Fragment {
             e.printStackTrace();
         }
     }
-
 
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.

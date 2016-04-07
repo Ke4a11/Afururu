@@ -172,7 +172,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="昨日:"
+                            android:text="前回:"
                             android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical" />
@@ -180,14 +180,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:id="@+id/day1ago"
+                            android:id="@+id/before1"
                             android:text=""
                             android:layout_weight="1"
                             android:textSize="15sp"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="一昨日:"
+                            android:text="前々回:"
                             android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical"
@@ -196,14 +196,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:id="@+id/day2ago"
+                            android:id="@+id/before2"
                             android:text=""
                             android:textSize="15sp"
                             android:layout_weight="1"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="三日前:"
+                            android:text="三つ前:"
                             android:textSize="12sp"
                             android:layout_weight="1"
                             android:layout_gravity="center_vertical"
@@ -212,7 +212,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
-                            android:id="@+id/day3ago"
+                            android:id="@+id/before3"
                             android:text=""
                             android:textSize="15sp"
                             android:layout_weight="1"/>
@@ -220,15 +220,15 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-            <!--android:text="今日のレートはお得ですよ！"-->
-            <!--android:id="@+id/suggest"-->
-            <!--android:textColor="#050505"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginTop="5dp" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="ここに為替の情報が入ります"
+            android:id="@+id/suggest"
+            android:textColor="#050505"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp" />
 
         <!--表示調整用のダミーView
         <View
@@ -239,7 +239,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:weightSum="2"
             android:gravity="top|bottom|center_horizontal">
             <!--<Button-->
@@ -253,7 +253,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:text="支出入力"
                 android:textSize="18dp"
                 android:layout_weight="1"
@@ -269,7 +269,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="為替計算"
                 android:textSize="18dp"
                 android:layout_weight="1"
@@ -278,7 +278,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Money設定"
                 android:textSize="18dp"
                 android:layout_weight="1"

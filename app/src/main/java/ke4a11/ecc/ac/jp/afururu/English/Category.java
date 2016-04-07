@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-/**
- * Created by it on 2016/02/02.
- */
 public class Category {
 
 
@@ -132,6 +129,7 @@ public class Category {
 
         Air_electrictrain.add("～までいきたいのですが。");
         Air_electrictrain.add("までの料金はいくらですか");
+        Air_electrictrain.add("片道分のチケットください");
         Air_electrictrain.add("○駅までの往復キップをください.");
         Air_electrictrain.add("発車時刻は何時ですか？");
         Air_electrictrain.add("時刻表はありますか？");
@@ -231,7 +229,6 @@ public class Category {
         schoolaisatu.add("いつもと同じ");
         schoolaisatu.add("余り良くない");
         schoolaisatu.add("この上なく悪い");
-        schoolaisatu.add("とてもひどく");
 
         List<String> schoolagain = new ArrayList<String>();
 
@@ -252,15 +249,6 @@ public class Category {
 
         schoolqes.add("別に");
         schoolqes.add("特にない");
-
-
-
-
-
-
-
-
-
 
         shoolDetail.put("日常", school_life);
         shoolDetail.put("How are you?と聞かれた時", schoolaisatu);

@@ -103,6 +103,7 @@ public class Money_Calendar extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity().getApplicationContext(),MoneyInputActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(i);
             }
         });
@@ -191,6 +192,7 @@ public class Money_Calendar extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent i = new Intent(getContext(),MoneyInputActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             startActivity(i);
                         }
                     });
@@ -290,6 +292,7 @@ public class Money_Calendar extends Fragment {
                                 @Override
                                 public void onClick(View v) {
                                     Intent i = new Intent(getContext(), MoneyInputActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                     startActivity(i);
                                 }
                             });
@@ -387,6 +390,7 @@ public class Money_Calendar extends Fragment {
                                 @Override
                                 public void onClick(View v) {
                                     Intent i = new Intent(getContext(), MoneyInputActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                                     startActivity(i);
                                 }
                             });

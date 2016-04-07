@@ -143,17 +143,20 @@ public class TopActivity extends AppCompatActivity {
      */
     public void toMoneySetting(View view){
         Intent i = new Intent(getApplicationContext(),MoneyActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         i.putExtra("moneyFlg","set");
         startActivity(i);
     }
 
     public void toListorCal(View view){
         Intent it = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(it);
     }
 
     public void toMoneyExchange(View view){
         Intent it = new Intent(getApplicationContext(),MoneyActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         it.putExtra("moneyFlg","exc");
         startActivity(it);
     }

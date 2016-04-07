@@ -61,15 +61,6 @@ public class Money_Exchange extends Fragment {
 
                 getcsv();
 
-              //
-
-             //   exint = Integer.parseInt(strmoney);
-             //exint =(int)money;
-             //
-
-                //
-
-
             }
         });
         //spinner用のアダプターを作成

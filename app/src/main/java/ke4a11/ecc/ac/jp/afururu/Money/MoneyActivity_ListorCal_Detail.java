@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.Toast;
 
 import ke4a11.ecc.ac.jp.afururu.R;
@@ -49,13 +48,10 @@ public class MoneyActivity_ListorCal_Detail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //フラグメントの詳細表示しているキーを持ってくる
+                final String ids = Money_ListorCal_Detail.PRIMARY;
 
-                //Intentの準備
-                Intent i = getIntent();
-                int id =i.getIntExtra("position", 1);
-
-                final String ids = String.valueOf(id);
-                db.delete("ecc","id=?",new String[]{ids});
+                db.delete("input","id=?",new String[]{ids});
 
                 Intent ik = new Intent(getApplicationContext(),MoneyActiviy_ListorCal.class);
                 startActivity(ik);

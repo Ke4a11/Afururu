@@ -18,7 +18,6 @@
         android:id="@+id/MoneySpinner"
         android:layout_gravity="left|top"
         android:spinnerMode="dialog"
-        android:text="aaaaaaaaaa"
         android:background="#ffffff"
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@+id/textView1"
@@ -51,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="5"
+            android:hint="残金を入力してください"
             android:inputType="number"
             android:id="@+id/edit_balanceMoney"
             android:layout_gravity="right"
@@ -78,7 +78,11 @@
         android:layout_alignTop="@+id/updatebtn"
         android:layout_toEndOf="@+id/textView" />
     </LinearLayout>
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="レートのDB確認"
+        android:id="@+id/showratedbbtn" />
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->

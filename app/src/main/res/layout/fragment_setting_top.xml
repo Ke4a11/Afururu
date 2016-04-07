@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:text="あなたの情報を入力して下さい"
+        android:hint="あなたの情報を入力して下さい"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -31,6 +31,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView2"
         android:ems="10"
+        android:hint="名前を入力してください"
         android:inputType="textPersonName">
 
         <requestFocus />
@@ -43,7 +44,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/editName"
-        android:text="滞在先の住所" />
+        android:hint="滞在先の住所"/>
 
     <EditText
         android:id="@+id/editAge"
@@ -52,7 +53,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView3"
-        android:ems="10"
+        android:ems="20"
+        android:hint="滞在先の住所を入力してください"
         android:inputType="textPostalAddress" />
 
     <Button

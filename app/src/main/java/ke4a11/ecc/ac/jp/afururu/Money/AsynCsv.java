@@ -14,46 +14,36 @@ import java.io.InputStreamReader;
 import java.net.URI;
 
 
-
 public class AsynCsv extends AsyncTask<String, Integer, String> {
 
     //表示する金額の種類
-    private final String currencies[] = {"CAD","EUR","GBP","JPY"};
+    //private final String currencies[] = {"CAD", "EUR", "GBP", "JPY"};
 
     private HttpClient hClient;
     private HttpGet hGetMethod;
     private _MoneyTop moneyTop;
     private Money_Exchange money_exchange;
-    private int i=-1;
+    private int i = -1;
 
-    //private ServiceMoneyExchange serviceMoneyExchange;
-/*
-    public AsynCsv(ServiceMoneyExchange service){
-        serviceMoneyExchange = service;
-        hClient = new DefaultHttpClient();
-        hGetMethod = new HttpGet();
-    }
-*/
     // コンストラクタ
-    public AsynCsv(_MoneyTop fragment,int ii){
+    public AsynCsv(_MoneyTop fragment, int ii) {
 
         //呼ばれた元がMoneyExchangeかMoneyTopか分ける処理
-        i=ii;
+        i = ii;
         moneyTop = fragment;
         hClient = new DefaultHttpClient();
         hGetMethod = new HttpGet();
     }
 
-    //コンスト楽た
-    public AsynCsv(Money_Exchange fragment,int ii){
+    //コンストラクタ
+    public AsynCsv(Money_Exchange fragment, int ii) {
 
         //呼ばれた元がMoneyExchangeかMoneyTopか分ける処理
-        i=ii;
+        i = ii;
         money_exchange = fragment;
         hClient = new DefaultHttpClient();
         hGetMethod = new HttpGet();
     }
-
 
     // バックグラウンドで処理する（重い処理）
     @Override
@@ -66,18 +56,18 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        if (i==0){
-        moneyTop.setCurrency(result); //MoneyTopのsetCurrencyメソッド
-    }else{
-        money_exchange.setCurrency(result);
+        if (i == 0) {
+            moneyTop.setCurrency(result); //MoneyTopのsetCurrencyメソッド
+        } else {
+            money_exchange.setCurrency(result);
 
         }
 
     }
 
-    private String httpGet(String uri){
+    private String httpGet(String uri) {
 
-        try{
+        try {
             hGetMethod.setURI(new URI(uri));
             HttpResponse resp = hClient.execute(hGetMethod);
 
@@ -91,15 +81,15 @@ public class AsynCsv extends AsyncTask<String, Integer, String> {
             //カンマで分けたものを一時的に保持する変数
             String splited[] = {};
 
-            while((tmp = input.readLine())!=null){
+            while ((tmp = input.readLine()) != null) {
                 //splitedにカンマ区切りで文字を入れる
                 splited = tmp.split(",");
                 //カンマで分けた文だけ回す
-                for (int i = 0; i < splited.length; i++){
+                for (int i = 0; i < splited.length; i++) {
                     //日本円だけ取り出し
-                    if (splited[i].equals("JPY")){
+                    if (splited[i].equals("JPY")) {
                         //data += splited[i] + splited[i+1] + "\n";
-                        data += splited[i+1];
+                        data += splited[i + 1];
                     }
                 }
             }
@@ -119,7 +109,7 @@ for(int j = 0; j < currencies.length; j++){
             input.close();
             return data;
 
-        }catch(Exception e){
+        } catch (Exception e) {
             return e.toString();
         }
     }

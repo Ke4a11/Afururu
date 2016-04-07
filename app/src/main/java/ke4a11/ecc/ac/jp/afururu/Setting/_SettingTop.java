@@ -47,7 +47,6 @@ public class _SettingTop extends Fragment {
                     return;
                 }
 
-
                 //コードが長くなるため、一時的にbalanceの値を保持する変数
                 String tmp_address = address_et.getText().toString();
                 String tmp_name = name_et.getText().toString();
@@ -95,15 +94,11 @@ public class _SettingTop extends Fragment {
         String a = sp.getString("name", "");
         String b = sp.getString("address","");
 
-        if (a.equals("")){
-            name_et.setText("名前を入力してください。");
-        }else{
+        if (!a.equals("")){
             name_et.setText(a);
         }
 
-        if (b.equals("")){
-            address_et.setText("住所を入力してください。");
-        }else{
+        if (!b.equals("")){
             address_et.setText(b);
         }
     }

@@ -123,6 +123,7 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
     startActivity(detailIntent);
   }
 
+  //引数によってカレンダーかリスト表示用のsqlを変える
   void DB_Select(boolean flg){
 
     MoneyOpenHelper helper = new MoneyOpenHelper(getApplicationContext());
@@ -130,12 +131,12 @@ public class MoneyActiviy_ListorCal extends AppCompatActivity implements Money_L
 
     if (flg){
       //カレンダー
-      String sql = "select id,date,shop,category,memo,sum(price) from ecc group by date;";
+      String sql = "select id,date,shop,category,memo,sum(price) from input group by date;";
       c = db.rawQuery(sql,null);
     }else{
       //リスト
-      String sql = "select id,date,shop,category,memo,price from ecc order by date DESC;";
-//      c = db.query("ecc", new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
+      String sql = "select id,date,shop,category,memo,price from input order by date DESC;";
+//      c = db.query(input, new String[]{"id", "date", "shop", "category", "memo", "price"}, null,
 //              null, null, null, "date ASC");
       c = db.rawQuery(sql,null);
     }

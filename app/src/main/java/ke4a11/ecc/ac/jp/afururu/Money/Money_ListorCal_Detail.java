@@ -18,7 +18,11 @@ import ke4a11.ecc.ac.jp.afururu.Money.dummy.DummyContent;
 
 public class Money_ListorCal_Detail extends Fragment {
 
+    //Dummycontentのhashmapで使うid
     public static final String ARG_ITEM_ID = "item_id";
+
+    //削除ボタンに使う
+    public static String PRIMARY;
 
     Button upbtn;
 
@@ -68,7 +72,8 @@ public class Money_ListorCal_Detail extends Fragment {
             ((TextView) rootView.findViewById(R.id.item_detail_category)).setText(spinnerText[mItem.category]);
             ((TextView) rootView.findViewById(R.id.item_detail_memo)).setText(mItem.memo);
             ((TextView) rootView.findViewById(R.id.item_detail_price)).setText(String.valueOf(mItem.price));
-
+            //一緒にセットする
+            PRIMARY = mItem.primary;
         }
 
         upbtn = (Button)rootView.findViewById(R.id.update_DB);
@@ -84,7 +89,7 @@ public class Money_ListorCal_Detail extends Fragment {
 
                 int a = Integer.parseInt(mItem.primary);
                 Intent i = new Intent(getContext(),MoneyUpdateActivity.class);
-
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("position", a);
                 startActivity(i);
             }
